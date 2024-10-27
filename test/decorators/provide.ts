@@ -1,11 +1,24 @@
+import { ok } from 'node:assert'
+import { describe, test } from 'node:test'
 import { provide } from 'aspectra'
-import { Database } from 'test/models/database'
+import { NamedSampleProvider, SampleProvider } from 'test/models/providers'
 
-class Group {
-  @provide(Database)
-  private readonly database!: Database
+class Test {
+  @provide(SampleProvider)
+  public readonly sampleProvider!: SampleProvider
 
-  public getPeople() {
-    return this.database.getUsers()
-  }
+  @provide(NamedSampleProvider.qualifier)
+  public readonly namedSampleProvider!: NamedSampleProvider
 }
+
+describe(import.meta.filename, () => {
+  test('should inject providers correctly', () => {
+    const test = new Test()
+    ok(test.sampleProvider.isOk)
+  })
+
+  test('should inject named providers correctly', () => {
+    const test = new Test()
+    ok(test.namedSampleProvider.isOk)
+  })
+})
