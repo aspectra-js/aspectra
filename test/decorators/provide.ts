@@ -1,9 +1,9 @@
-import { deepStrictEqual, ok } from 'node:assert'
+import { deepStrictEqual, equal, ok } from 'node:assert'
 import { describe, test } from 'node:test'
 import { provide } from 'aspectra'
 import { NamedSampleProvider, SampleProvider } from 'test/models/providers'
 
-class Test {
+class Providers {
   @provide(SampleProvider)
   public readonly sampleProvider!: SampleProvider
 
@@ -16,17 +16,16 @@ class Test {
 
 describe(import.meta.filename, () => {
   test('should inject providers correctly', () => {
-    const { isOk } = new Test().sampleProvider
-    ok(isOk)
+    ok(new Providers().sampleProvider.isOk)
   })
 
   test('should inject named providers correctly', () => {
-    const { isOk } = new Test().namedSampleProvider
-    ok(isOk)
+    ok(new Providers().namedSampleProvider.isOk)
   })
 
   test('injecting the same provider multiple times should return the same instance', () => {
-    const { sampleProvider, otherSampleProvider } = new Test()
+    const { sampleProvider, otherSampleProvider } = new Providers()
+    equal(SampleProvider.instance, 1)
     deepStrictEqual(sampleProvider, otherSampleProvider)
   })
 })

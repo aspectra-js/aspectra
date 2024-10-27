@@ -2,14 +2,20 @@ import { provider } from 'aspectra'
 
 @provider
 export class SampleProvider {
+  public static instance = 0
+
+  constructor() {
+    SampleProvider.instance++
+  }
+
   public readonly isOk = true
 }
 
-const name = 'named_sample_provider'
+const qualifier = 'named_sample_provider_qualifier'
 
-@provider(name)
+@provider(qualifier)
 export class NamedSampleProvider {
-  public static readonly qualifier = name
+  public static readonly qualifier = qualifier
 
   public readonly isOk = true
 }
