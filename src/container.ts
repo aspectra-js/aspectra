@@ -1,20 +1,22 @@
 import type { Class } from '#types'
 
-class Container {
-  private readonly bindings = new Map<string, unknown>()
+export type ContainerKey = string | symbol
 
-  public bind<T>(provider: Class<T, []>, id: string) {
-    if (this.bindings.has(id)) {
-      throw new Error(`Provider ${id} already exists`)
+class Container {
+  private readonly bindings = new Map<ContainerKey, unknown>()
+
+  public bind<T>(provider: Class<T, []>, key: ContainerKey) {
+    if (this.bindings.has(key)) {
+      throw new Error(`Provider ${key.toString()} already exists`)
     }
-    this.bindings.set(id, Reflect.construct(provider, []))
+    this.bindings.set(key, Reflect.construct(provider, []))
   }
 
-  public resolve<T>(id: string) {
-    if (!this.bindings.has(id)) {
-      throw new Error(`Provider ${id} not found`)
+  public resolve<T>(key: ContainerKey) {
+    if (!this.bindings.has(key)) {
+      throw new Error(`Provider ${key.toString()} not found`)
     }
-    return this.bindings.get(id) as T
+    return this.bindings.get(key) as T
   }
 }
 

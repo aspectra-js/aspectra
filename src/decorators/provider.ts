@@ -1,14 +1,14 @@
-import { container } from '#container'
+import { type ContainerKey, container } from '#container'
 import type { Class } from '#types'
 
 export function provider<T>(
   target: Class<T>,
   _: ClassDecoratorContext<typeof target>,
 ): void
-export function provider(name: string): typeof provider
+export function provider(name: ContainerKey): typeof provider
 
-export function provider<T>(arg: string | Class<T>) {
-  if (typeof arg === 'string') {
+export function provider<T>(arg: ContainerKey | Class<T>) {
+  if (typeof arg === 'string' || typeof arg === 'symbol') {
     return (target: Class<T>, _: ClassDecoratorContext<typeof target>) => {
       container.bind(target, arg)
     }

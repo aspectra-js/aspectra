@@ -1,7 +1,11 @@
 import { ok, throws } from 'node:assert'
 import { describe, test } from 'node:test'
 import { provider } from 'aspectra'
-import { NamedSampleProvider, SampleProvider } from 'test/models/providers'
+import {
+  NamedSampleProvider,
+  SampleProvider,
+  SymbolNamedSampleProvider,
+} from 'test/models/providers'
 import { container } from '#container'
 
 describe(import.meta.filename, () => {
@@ -13,6 +17,14 @@ describe(import.meta.filename, () => {
     ok(
       container.resolve<NamedSampleProvider>(NamedSampleProvider.qualifier)
         .isOk,
+    )
+  })
+
+  test('should registers to container with symbol', () => {
+    ok(
+      container.resolve<SymbolNamedSampleProvider>(
+        SymbolNamedSampleProvider.symbolQualifier,
+      ).isOk,
     )
   })
 

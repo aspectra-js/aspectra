@@ -19,3 +19,12 @@ export class NamedSampleProvider {
 
   public readonly isOk = true
 }
+
+const symbolQualifier = Symbol.for(qualifier)
+
+@provider(symbolQualifier)
+export class SymbolNamedSampleProvider {
+  public static readonly symbolQualifier = symbolQualifier
+
+  public readonly isOk = true
+}
