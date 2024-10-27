@@ -13,8 +13,9 @@
     "baseUrl": ".",
     "paths": {
       "aspectra": ["src/index.ts"],
-      "#*": ["./src/*"],
-      "~/*": ["./*"]
+      "#*": ["src/*"],
+      "test/*": ["test/*"],
+      "package.json": ["package.json"]
     }
   },
   "exclude": ["dist", "node_modules"]

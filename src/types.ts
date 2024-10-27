@@ -14,7 +14,7 @@ export type MixinConstructorArgs = any[]
  *
  * biome-ignore lint/suspicious/noExplicitAny: Definition
  */
-export type Class<T, A extends Args = any[]> = {
+export interface Class<T, A extends Args = any[]> {
   new (...args: A): T
   prototype: Pick<T, keyof T>
 }
