@@ -10,7 +10,7 @@ class Test {
     return this.value
   }
 
-  public incrementBy(value: number) {
+  public add(value: number) {
     this.value += value
   }
 }
@@ -23,22 +23,22 @@ describe(import.meta.filename, () => {
 
   test(`should correctly increment value when method is passed around - ${autobind.name}`, () => {
     const test = new Test(0)
-    const { incrementBy } = test
-    incrementBy(2)
+    const { add } = test
+    add(2)
     equal(test.get(), 2)
   })
 
   test(`should increment value twice and retrieve updated value - ${autobind.name}`, () => {
-    const { incrementBy, get } = new Test(0)
-    incrementBy(1)
-    incrementBy(2)
+    const { add, get } = new Test(0)
+    add(1)
+    add(2)
     equal(get(), 3)
   })
 
   test(`should handle positive initial value and increment correctly - ${autobind.name}`, () => {
-    const { incrementBy, get } = new Test(10)
+    const { add, get } = new Test(10)
     equal(get(), 10)
-    incrementBy(1)
+    add(1)
     equal(get(), 11)
   })
 })
