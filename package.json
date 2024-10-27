@@ -26,6 +26,7 @@
     "@types/node": "^22.8.1",
     "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
+    "fumadocs-typescript": "^3.0.0",
     "lefthook": "^1.8.1",
     "sort-package-json": "^2.10.1",
     "tsup": "^8.3.5",

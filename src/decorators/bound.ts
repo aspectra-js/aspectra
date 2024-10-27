@@ -1,5 +1,23 @@
 import type { Args, Fun } from '#types'
 
+/**
+ * Binds a class method to its instance, ensuring `this` always refers to the
+ * instance, even when the method is used outside the class.
+ *
+ * @example
+ * ```typescript
+ * class Example {
+ *   private readonly name = 'John'
+ *
+ *   @bound public greet() {
+ *     console.log(`Hello from ${this.name}`)
+ *   }
+ * }
+ *
+ * const { greet } = new Example()
+ * greet() // "Hello from John"
+ * ```
+ */
 export function bound<A extends Args, R, T>(
   target: Fun<A, R, T>,
   context: ClassMethodDecoratorContext<T, typeof target>,
