@@ -10,35 +10,35 @@ class Test {
     return this.value
   }
 
-  public increment() {
-    this.value++
+  public incrementBy(value: number) {
+    this.value += value
   }
 }
 
 describe(import.meta.filename, () => {
-  test(`should return initial value when retrieving - @${autobind.name}`, () => {
+  test(`should return initial value when retrieving - ${autobind.name}`, () => {
     const { get } = new Test(0)
     equal(get(), 0)
   })
 
-  test(`should correctly increment value when method is passed around - @${autobind.name}`, () => {
+  test(`should correctly increment value when method is passed around - ${autobind.name}`, () => {
     const test = new Test(0)
-    const { increment } = test
-    increment()
-    equal(test.get(), 1)
+    const { incrementBy } = test
+    incrementBy(2)
+    equal(test.get(), 2)
   })
 
-  test(`should increment value twice and retrieve updated value - @${autobind.name}`, () => {
-    const { increment, get } = new Test(0)
-    increment()
-    increment()
-    equal(get(), 2)
+  test(`should increment value twice and retrieve updated value - ${autobind.name}`, () => {
+    const { incrementBy, get } = new Test(0)
+    incrementBy(1)
+    incrementBy(2)
+    equal(get(), 3)
   })
 
-  test(`should handle positive initial value and increment correctly - @${autobind.name}`, () => {
-    const { increment, get } = new Test(10)
+  test(`should handle positive initial value and increment correctly - ${autobind.name}`, () => {
+    const { incrementBy, get } = new Test(10)
     equal(get(), 10)
-    increment()
+    incrementBy(1)
     equal(get(), 11)
   })
 })

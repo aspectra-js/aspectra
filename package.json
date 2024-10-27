@@ -17,7 +17,7 @@
     "format": "biome format --write && sort-package-json",
     "lint": "biome lint --write && sort-package-json",
     "prepare": "lefthook install",
-    "test": "tsx --test --experimental-test-coverage",
+    "test": "tsx --test",
     "test:watch": "tsx --test --watch",
     "type-check": "tsc"
   },

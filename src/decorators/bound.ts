@@ -1,7 +1,7 @@
-import type { Fun } from '#types'
+import type { Args, Fun } from '#types'
 
-export function bound<T, R>(
-  target: Fun<[], R, T>,
+export function bound<A extends Args, R, T>(
+  target: Fun<A, R, T>,
   context: ClassMethodDecoratorContext<T, typeof target>,
 ) {
   context.addInitializer(function () {
