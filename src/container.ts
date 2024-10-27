@@ -3,7 +3,7 @@ import type { Class } from '#types'
 class Container {
   private bindings = new Map<string, unknown>()
 
-  public bind<T>(provider: Class<T, []>, id: string = provider.name) {
+  public bind<T>(provider: Class<T, []>, id: string) {
     if (this.bindings.has(id)) {
       throw new Error(`Provider ${id} already exists`)
     }
