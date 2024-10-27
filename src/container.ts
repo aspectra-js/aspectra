@@ -1,16 +1,16 @@
 import type { Class } from '#types'
 
 class Container {
-  private bindings = new Map<string, object>()
+  private bindings = new Map<string, unknown>()
 
-  public bind<T extends object>(id: string, provider: Class<T, []>) {
+  public bind<T>(id: string, provider: Class<T, []>) {
     if (this.bindings.has(id)) {
       throw new Error(`Provider ${id.toString()} already exists`)
     }
     this.bindings.set(id, Reflect.construct(provider, []))
   }
 
-  public register<T extends object>(provider: Class<T, []>) {
+  public register<T>(provider: Class<T, []>) {
     this.bind(provider.name, provider)
   }
 
