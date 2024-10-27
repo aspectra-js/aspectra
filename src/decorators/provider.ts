@@ -7,11 +7,11 @@ export function provider<T>(
 ): void
 export function provider(name: string): typeof provider
 
-export function provider<T>(arg0: string | Class<T>) {
-  if (typeof arg0 === 'string') {
+export function provider<T>(arg: string | Class<T>) {
+  if (typeof arg === 'string') {
     return (target: Class<T>, _: ClassDecoratorContext<typeof target>) => {
-      container.bind(arg0, target)
+      container.bind(target, arg)
     }
   }
-  container.register(arg0)
+  container.bind(arg, arg.name)
 }

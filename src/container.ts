@@ -3,23 +3,18 @@ import type { Class } from '#types'
 class Container {
   private bindings = new Map<string, unknown>()
 
-  public bind<T>(id: string, provider: Class<T, []>) {
+  public bind<T>(provider: Class<T, []>, id: string = provider.name) {
     if (this.bindings.has(id)) {
-      throw new Error(`Provider ${id.toString()} already exists`)
+      throw new Error(`Provider ${id} already exists`)
     }
     this.bindings.set(id, Reflect.construct(provider, []))
   }
 
-  public register<T>(provider: Class<T, []>) {
-    this.bind(provider.name, provider)
-  }
-
   public resolve<T>(id: string) {
-    const instance = this.bindings.get(id)
-    if (!instance) {
-      throw new Error(`Provider ${id.toString()} not found`)
+    if (!this.bindings.has(id)) {
+      throw new Error(`Provider ${id} not found`)
     }
-    return instance as T
+    return this.bindings.get(id) as T
   }
 }
 
