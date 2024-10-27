@@ -12,11 +12,7 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true,
-      "complexity": {
-        "noStaticOnlyClass": "off",
-        "noForEach": "off"
-      }
+      "recommended": true
     }
   },
   "formatter": {
