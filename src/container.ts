@@ -1,7 +1,7 @@
 import type { Class } from '#types'
 
 class Container {
-  private bindings = new Map<string, unknown>()
+  private readonly bindings = new Map<string, unknown>()
 
   public bind<T>(provider: Class<T, []>, id: string) {
     if (this.bindings.has(id)) {
