@@ -13,8 +13,8 @@
     "baseUrl": ".",
     "paths": {
       "aspectra": ["src/index.ts"],
-      "~/*": ["./*"],
-      "#*": ["./src/*"]
+      "#*": ["./src/*"],
+      "~/*": ["./*"]
     }
   },
   "exclude": ["dist", "node_modules"]
