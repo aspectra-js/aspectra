@@ -1,5 +1,5 @@
 export { bound } from '#decorators/bound'
 export { autobind } from '#decorators/autobind'
-export { provide } from '#decorators/provide'
-export { provider } from '#decorators/provider'
+export { provide } from '#decorators/injection/provide'
+export { provider } from '#decorators/injection/provider'
 export { entry } from '#decorators/entry'

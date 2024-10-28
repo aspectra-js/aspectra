@@ -1,4 +1,4 @@
-import { container } from '#container'
+import { container } from '#decorators/injection/container'
 import type { Class } from '#types'
 
 export function provide<T, P>(module: Class<P> | string) {

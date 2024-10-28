@@ -2,6 +2,7 @@
   "name": "aspectra",
   "version": "0.0.0",
   "description": "The decorator library.",
+  "main": "src/index.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/shunueda/aspectra.git"
@@ -11,7 +12,9 @@
   "exports": "./dist/index",
   "files": ["dist"],
   "scripts": {
+    "build:banner": "tsx scripts/banner",
     "build:docs": "tsx scripts/docs",
+    "prebuild": "run-p build:*",
     "build": "tsup",
     "check": "biome check --write",
     "commit": "git add --all && cz",
@@ -24,23 +27,25 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
+    "@microsoft/tsdoc": "^0.15.0",
+    "@microsoft/tsdoc-config": "^0.17.0",
     "@types/node": "^22.8.1",
     "@types/react": "^18.3.12",
     "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
     "geist": "^1.3.1",
     "lefthook": "^1.8.1",
+    "npm-run-all": "^4.1.5",
     "react": "^18.3.1",
     "satori": "^0.11.2",
     "sort-package-json": "^2.10.1",
+    "ts-markdown": "^1.2.0",
+    "ts-morph": "^24.0.0",
     "tsup": "^8.3.5",
     "tsx": "^4.19.2"
   },
   "peerDependencies": {
     "typescript": "^5.6.3"
   },
-  "packageManager": "pnpm@9.12.0",
-  "dependencies": {
-    "ts-markdown": "^1.2.0"
-  }
+  "packageManager": "pnpm@9.12.0"
 }

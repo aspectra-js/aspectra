@@ -1,4 +1,4 @@
-import { type ContainerKey, container } from '#container'
+import { type ContainerKey, container } from '#decorators/injection/container'
 import type { Class } from '#types'
 
 export function provider<T>(

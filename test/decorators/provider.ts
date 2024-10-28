@@ -6,7 +6,7 @@ import {
   SampleProvider,
   SymbolNamedSampleProvider,
 } from 'test/models/providers'
-import { container } from '#container'
+import { container } from '#decorators/injection/container'
 
 describe(import.meta.filename, () => {
   test('should register to container', () => {

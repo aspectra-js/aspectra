@@ -1,6 +1,8 @@
 import type { Class } from '#types'
 
 /**
+ * @documentation
+ *
  * Automatically invokes a class's static `main` method.
  *
  * @remarks

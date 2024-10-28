@@ -8,6 +8,7 @@ await mkdir(assets, {
 })
 
 export const paths = {
+  src: 'src',
+  readme: 'README.md',
   banner: join(assets, 'banner.svg'),
-  readme: join(assets, 'README.md'),
 } as const

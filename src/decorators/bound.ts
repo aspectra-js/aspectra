@@ -1,8 +1,9 @@
 import type { Args, Fun } from '#types'
 
 /**
- * Binds a class method to its instance, ensuring `this` always refers to the
- * instance, even when the method is used outside the class.
+ * @documentation
+ *
+ * Binds a class method to its instance.
  *
  * @example
  * ```typescript

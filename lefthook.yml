@@ -8,3 +8,6 @@ pre-commit:
     check:
       run: pnpm check
       stage_fixed: true
+    build:
+      run: pnpm build
+      stage_fixed: true

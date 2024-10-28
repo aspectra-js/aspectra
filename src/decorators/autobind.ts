@@ -1,5 +1,30 @@
 import type { Class, MixinConstructorArgs } from '#types'
 
+/**
+ * @documentation
+ *
+ * Automatically binds all class methods to the instance.
+ *
+ * @example
+ * ```typescript
+ * @autobind
+ * class Example {
+ *   private readonly name = 'John'
+ *
+ *   public greet() {
+ *     console.log(`Hello from ${this.name}`)
+ *   }
+ *
+ *   public farewell() {
+ *     console.log(`Goodbye from ${this.name}`)
+ *   }
+ * }
+ *
+ * const { greet, farewell } = new Example()
+ * greet() // "Hello from John"
+ * farewell() // "Goodbye from John"
+ * ```
+ */
 export function autobind<T extends Class<object>>(
   target: T,
   _: ClassDecoratorContext<T>,
