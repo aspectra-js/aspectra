@@ -1,7 +1,7 @@
 {
   "name": "aspectra",
   "version": "0.0.0",
-  "description": "Aspect-oriented programming!",
+  "description": "The decorator library.",
   "repository": {
     "type": "git",
     "url": "https://github.com/shunueda/aspectra.git"
