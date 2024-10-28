@@ -11,6 +11,7 @@
   "exports": "./dist/index",
   "files": ["dist"],
   "scripts": {
+    "build:docs": "tsx scripts/docs",
     "build": "tsup",
     "check": "biome check --write",
     "commit": "git add --all && cz",
@@ -24,9 +25,13 @@
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@types/node": "^22.8.1",
+    "@types/react": "^18.3.12",
     "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
+    "geist": "^1.3.1",
     "lefthook": "^1.8.1",
+    "react": "^18.3.1",
+    "satori": "^0.11.2",
     "sort-package-json": "^2.10.1",
     "tsup": "^8.3.5",
     "tsx": "^4.19.2"
@@ -34,5 +39,8 @@
   "peerDependencies": {
     "typescript": "^5.6.3"
   },
-  "packageManager": "pnpm@9.12.0"
+  "packageManager": "pnpm@9.12.0",
+  "dependencies": {
+    "ts-markdown": "^1.2.0"
+  }
 }

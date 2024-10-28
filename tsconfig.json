@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es2022",
     "experimentalDecorators": false,
-    "lib": ["esnext.decorators"],
+    "lib": ["esnext", "esnext.decorators"],
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
     "module": "preserve",
@@ -16,7 +16,8 @@
       "#*": ["src/*"],
       "test/*": ["test/*"],
       "package.json": ["package.json"]
-    }
+    },
+    "jsx": "preserve"
   },
   "exclude": ["dist", "node_modules", "docs"]
 }
