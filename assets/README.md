@@ -1,13 +1,6 @@
-<div align="center">
-  <img src="assets/banner.svg">
-  <h3 align="center">aspectra</h3>
-</div>
+<div align="center"><img src="assets/banner.svg" alt="assets/banner.svg"></div>
+<div align="center"><h3>aspectra</h3></div>
+<div align="center">The decorator library.</div>
 
-<p align="center">
-  The decorator library.
-</p>
-
-<hr>
-
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > `experimentalDecorators` must be **DISABLED** in `tsconfig.json`

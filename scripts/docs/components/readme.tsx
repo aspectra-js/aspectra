@@ -1,24 +1,20 @@
+import { EOL } from 'node:os'
 import { description, name } from 'package.json'
+import { center } from 'scripts/docs/lib/center'
 import { paths } from 'scripts/docs/paths'
-import { tsMarkdown } from 'ts-markdown'
+import { blockquote, hr, tsMarkdown } from 'ts-markdown'
 
-const entries = [] satisfies Parameters<typeof tsMarkdown>[0]
+type MarkdownEntryOrPrimitive = Parameters<typeof tsMarkdown>[0]
 
-export const readme = `
+const entries = [
+  center(`<img src="${paths.banner}" alt="${paths.banner}">`),
+  center(`<h3>${name}</h3>`),
+  center(description),
+  '',
+  blockquote([
+    '[!IMPORTANT]',
+    '`experimentalDecorators` must be **DISABLED** in `tsconfig.json`',
+  ]),
+] satisfies MarkdownEntryOrPrimitive
 
-<div align="center">
-  <img src="${paths.banner}">
-  <h3 align="center">${name}</h3>
-</div>
-
-<p align="center">
-  ${description}
-</p>
-
-<hr>
-
-> [!IMPORTANT]  
-> \`experimentalDecorators\` must be **DISABLED** in \`tsconfig.json\`
-
-${tsMarkdown(entries)}
-  `.trim()
+export const readme = tsMarkdown(entries).trim()
