@@ -1,12 +1,12 @@
 import { readFile } from 'node:fs/promises'
-import { parse } from 'node:path'
+import { join, parse } from 'node:path'
 import { ImageResponse } from 'next/og'
 import { Banner } from '#components/banner'
 
 const paths = [
   'node_modules/geist/dist/fonts/geist-sans/Geist-Bold.ttf',
   'node_modules/geist/dist/fonts/geist-mono/GeistMono-Bold.ttf',
-]
+].map(path => join(process.cwd(), path))
 
 export async function GET() {
   return new ImageResponse(<Banner />, {
