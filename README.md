@@ -32,15 +32,15 @@
 
 
 
-- [autobind](#autobind)
+- [`autobind`](#autobind)
 
 
 
-- [bound](#bound)
+- [`bound`](#bound)
 
 
 
-- [entry](#entry)
+- [`entry`](#entry)
 
 
 
