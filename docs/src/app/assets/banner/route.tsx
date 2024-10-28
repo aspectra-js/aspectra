@@ -9,15 +9,17 @@ const fonts = await Promise.all(
   }),
 )
 
+const imageResponse = new ImageResponse(<Banner />, {
+  fonts: await Promise.all(
+    fonts.map(async font => ({
+      ...parse(font[0]),
+      data: font[1],
+    })),
+  ),
+  width: 1200,
+  height: 400,
+})
+
 export async function GET() {
-  return new ImageResponse(<Banner />, {
-    fonts: await Promise.all(
-      fonts.map(async font => ({
-        ...parse(font[0]),
-        data: font[1],
-      })),
-    ),
-    width: 1200,
-    height: 400,
-  })
+  return imageResponse
 }
