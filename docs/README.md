@@ -10,6 +10,6 @@
 </p>
 
 > [!IMPORTANT]  
-> Decorators are now Stage 3.
->
-> Make sure `experimentalDecorators` is not enabled in `tsconfig.json`
+> [NOTICE]
+> This library uses Stage 3 decorators - `experimentalDecorators` must be disabled in `tsconfig.json`!
+
