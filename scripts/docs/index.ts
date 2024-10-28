@@ -33,7 +33,7 @@ const toc = [
 ] satisfies MarkdownEntryOrPrimitive
 
 const entries = docs.flatMap(doc => [
-  h4(doc.name),
+  h4(tsMarkdown([code(doc.name)])),
   doc.description,
   blockquote(doc.remarks),
   doc.example || '',

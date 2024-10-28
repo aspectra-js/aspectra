@@ -1,8 +1,6 @@
 import type { Args, Fun } from '#types'
 
 /**
- * @documentation
- *
  * Binds a class method to its instance.
  *
  * @example

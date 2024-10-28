@@ -1,8 +1,6 @@
 import type { Class, MixinConstructorArgs } from '#types'
 
 /**
- * @documentation
- *
  * Automatically binds all class methods to the instance.
  *
  * @example

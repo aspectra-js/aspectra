@@ -2,9 +2,6 @@ import type { Class } from '#types'
 
 export type ContainerKey = string | symbol
 
-/**
- * @internal
- */
 class Container {
   private readonly bindings = new Map<ContainerKey, unknown>()
 

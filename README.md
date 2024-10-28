@@ -44,11 +44,23 @@
 
 
 
+#### injection
+
+
+
+- [`provide`](#provide)
+
+
+
+- [`provider`](#provider)
+
+
+
 ---
 
 
 
-#### autobind
+#### `autobind`
 
 
 
@@ -79,7 +91,7 @@ farewell() // "Goodbye from John"
 ```
 
 
-#### bound
+#### `bound`
 
 
 
@@ -104,7 +116,7 @@ greet() // "Hello from John"
 ```
 
 
-#### entry
+#### `entry`
 
 
 
@@ -125,3 +137,27 @@ class Main {
   }
 }
 ```
+
+
+#### `provide`
+
+
+
+
+
+
+> 
+
+
+
+
+
+
+#### `provider`
+
+
+
+
+
+
+>

@@ -1,11 +1,12 @@
 import { EOL } from 'node:os'
+import { TSDocParser } from '@microsoft/tsdoc'
 import { Project } from 'ts-morph'
 import type { Documentation } from '../documentation'
-import { tsdocParser } from './parser'
 import { render } from './render'
 import { Tag } from './tag'
 
 const project = new Project()
+const tsdocParser = new TSDocParser()
 
 export function parse(path: string): Documentation[] {
   return (
@@ -23,9 +24,6 @@ export function parse(path: string): Documentation[] {
           **/
           `,
         )
-        if (!context.docComment.modifierTagSet.hasTagName(Tag.DOCUMENTATION)) {
-          return
-        }
         return {
           name: fun.getName() || '',
           path,
@@ -41,7 +39,6 @@ export function parse(path: string): Documentation[] {
             ?.replace(Tag.EXAMPLE, '')
             ?.trim(),
         } satisfies Documentation
-      })
-      .filter(it => !!it) || []
+      }) || []
   )
 }
