@@ -3,17 +3,18 @@ import { join, parse } from 'node:path'
 import { ImageResponse } from 'next/og'
 import { Banner } from '#components/banner'
 
-const paths = [
-  'node_modules/geist/dist/fonts/geist-sans/Geist-Bold.ttf',
-  'node_modules/geist/dist/fonts/geist-mono/GeistMono-Bold.ttf',
-].map(path => join(process.cwd(), path))
+const fonts = await Promise.all(
+  ['Geist-Bold.ttf', 'GeistMono-Bold.ttf'].map(async name => {
+    return [name, await readFile(join(process.cwd(), 'fonts', name))] as const
+  }),
+)
 
 export async function GET() {
   return new ImageResponse(<Banner />, {
     fonts: await Promise.all(
-      paths.map(async path => ({
-        ...parse(path),
-        data: await readFile(path),
+      fonts.map(async font => ({
+        ...parse(font[0]),
+        data: font[1],
       })),
     ),
     width: 1200,
