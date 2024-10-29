@@ -70,7 +70,6 @@
 Automatically binds all class methods to the instance.
 
 
-> 
 
 
 
@@ -101,7 +100,6 @@ farewell() // "Goodbye from John"
 Binds a class method to its instance.
 
 
-> 
 
 
 
@@ -149,7 +147,6 @@ class Main {
 Automatically invokes a decorated method.
 
 
-> 
 
 
 
@@ -192,7 +189,6 @@ const instance = new Derived() // throws
 Makes a class singleton, ensuring that only one instance of the class is created.
 
 
-> 
 
 
 

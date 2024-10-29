@@ -1,9 +1,8 @@
-import { main } from 'package.json'
 import { type Options, defineConfig } from 'tsup'
 import { compilerOptions } from './tsconfig.json'
 
 export default defineConfig({
-  entry: [main],
+  entry: ['src/index.ts'],
   target: compilerOptions.target as Options['target'],
   minify: true,
   format: 'esm',

@@ -12,7 +12,6 @@
   "exports": {
     ".": "./dist/index"
   },
-  "main": "src/index.ts",
   "files": ["dist"],
   "scripts": {
     "build:banner": "tsx scripts/banner",

@@ -45,7 +45,7 @@ const toc = [
 const entries = docs.flatMap(doc => [
   h4(code(doc.name)),
   doc.description,
-  blockquote(doc.remarks),
+  doc.remarks ? blockquote(doc.remarks) : '',
   doc.example || '',
 ]) satisfies MarkdownEntryOrPrimitive
 
