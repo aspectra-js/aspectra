@@ -1,4 +1,4 @@
-import type { Class } from '#types'
+import type { Class, MixinConstructorArgs } from '#types'
 
 /**
  * Seals a class, preventing it from being extended.
@@ -15,12 +15,12 @@ import type { Class } from '#types'
  *
  * const instance = new Derived() // throws
  */
-export function sealed(
-  target: Class<object>,
-  context: ClassDecoratorContext<typeof target>,
+export function sealed<T extends Class<object>>(
+  target: T,
+  _: ClassDecoratorContext<T>,
 ) {
   return class extends target {
-    constructor(...args: ConstructorParameters<typeof target>) {
+    constructor(...args: MixinConstructorArgs) {
       if (new.target !== target) {
         throw new Error(
           `Class ${target.name} is sealed and cannot be extended.`,

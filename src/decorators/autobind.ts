@@ -34,10 +34,9 @@ export function autobind<T extends Class<object>>(
         keyof this
       >
       for (const name of names) {
-        if (name === 'constructor' || typeof this[name] !== 'function') {
-          continue
+        if (typeof this[name] === 'function' && name !== 'constructor') {
+          this[name] = this[name].bind(this)
         }
-        this[name] = this[name].bind(this)
       }
     }
   }
