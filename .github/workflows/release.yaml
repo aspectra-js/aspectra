@@ -34,6 +34,7 @@ jobs:
         with:
           run_install: |
             - args: [--frozen-lockfile]
+      - run: pnpm test
       - run: pnpm build
       - run: pnpm release-it ${{ inputs.increment }}
         env:
