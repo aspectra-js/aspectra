@@ -10,8 +10,10 @@ import type { Class } from '#types'
  *
  * @remarks
  * If an `identifier` is provided (`string` or `symbol`), the key will be used to
- * resolve the dependency from the container. Otherwise, name of the class will
- * be used as an identifier.
+ * resolve the dependency. Otherwise, name of the class will be used as an identifier.
+ *
+ * If a provider is injected multiple times, new instance will **not** be created -
+ * the same instance will be returned.
  *
  * @example
  * ```typescript
