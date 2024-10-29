@@ -21,7 +21,7 @@ const toc = [
     .entries()
     .flatMap(([category, docs]) => [
       h4(category),
-      ...docs.map(doc =>
+      docs.map(doc =>
         ul([
           link({
             href: `#${doc.name}`,
@@ -30,7 +30,7 @@ const toc = [
         ]),
       ),
     ]),
-] satisfies MarkdownEntryOrPrimitive
+].flat() satisfies MarkdownEntryOrPrimitive
 
 const entries = docs.flatMap(doc => [
   h4(tsMarkdown([code(doc.name)])),

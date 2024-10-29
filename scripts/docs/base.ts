@@ -11,7 +11,6 @@ export const base = [
   center(description),
   '<br />',
   blockquote([
-    '[!IMPORTANT]',
     'This package provides **stage 3 (stable) decorators.**',
     '`experimentalDecorators` must be **DISABLED** in `tsconfig.json`',
   ]),
