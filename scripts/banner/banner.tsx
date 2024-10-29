@@ -6,18 +6,22 @@ const full: CSSProperties = {
   height: '100%',
 }
 
-const patternFactor = 30
+const config = {
+  patternFactor: 30,
+  stroke: 'rgba(255,255,255,0.10)',
+}
+
 const background = encodeURIComponent(`
   <svg
     xmlns='http://www.w3.org/2000/svg'
-    width='${patternFactor * 4}'
-    height='${patternFactor * 7}'
+    width='${config.patternFactor * 4}'
+    height='${config.patternFactor * 7}'
     viewBox='0 0 80 140'
   >
     <g transform='matrix(0 1 -1 0 80 0)'>
       <path
         fill='none'
-        stroke='rgba(255,255,255,0.05)'
+        stroke='${config.stroke}'
         stroke-width='2'
         d='M47 0H0V80H47l46-80h47v80H93zM117 40H23l-23 40 140-80-23 40 23 40-140-80 23 40M70-5v90'
       />
