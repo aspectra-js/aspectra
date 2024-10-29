@@ -8,7 +8,9 @@
   },
   "license": "MIT",
   "type": "module",
-  "exports": "./dist/index",
+  "exports": {
+    ".": "./dist/index"
+  },
   "main": "src/index.ts",
   "files": ["dist"],
   "scripts": {
