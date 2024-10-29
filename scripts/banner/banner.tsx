@@ -8,7 +8,7 @@ const full: CSSProperties = {
 
 const config = {
   patternFactor: 30,
-  stroke: 'rgba(255,255,255,0.10)',
+  stroke: 'rgba(255, 255, 255, 0.05)',
 }
 
 const background = encodeURIComponent(`
