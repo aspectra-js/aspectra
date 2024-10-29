@@ -1,4 +1,8 @@
-import { type ContainerKey, container } from '#decorators/injection/container'
+import {
+  Container,
+  type ContainerKey,
+  container,
+} from '#decorators/injection/container'
 import type { Class } from '#types'
 
 export function provider<T>(
@@ -8,7 +12,7 @@ export function provider<T>(
 export function provider(name: ContainerKey): typeof provider
 
 export function provider<T>(arg: ContainerKey | Class<T>) {
-  if (typeof arg === 'string' || typeof arg === 'symbol') {
+  if (Container.isKey(arg)) {
     return (target: Class<T>, _: ClassDecoratorContext<typeof target>) => {
       container.bind(target, arg)
     }

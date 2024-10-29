@@ -2,7 +2,7 @@ import type { Class } from '#types'
 
 export type ContainerKey = string | symbol
 
-class Container {
+export class Container {
   private readonly bindings = new Map<ContainerKey, unknown>()
 
   public bind<T>(provider: Class<T, []>, key: ContainerKey) {
@@ -17,6 +17,10 @@ class Container {
       throw new Error(`Provider ${key.toString()} not found`)
     }
     return this.bindings.get(key) as T
+  }
+
+  public static isKey(key: unknown): key is ContainerKey {
+    return typeof key === 'string' || typeof key === 'symbol'
   }
 }
 
