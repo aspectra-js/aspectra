@@ -22,12 +22,12 @@ export function provider(identifier: Identifier): typeof provider
  * @example
  * ```typescript
  * @provider
- * export class SampleProvider {
+ * class SampleProvider {
  *   // ...
  * }
  *
  * @provider('custom_name')
- * export class NamedSampleProvider {
+ * class NamedSampleProvider {
  *   // ...
  * }
  * ```
