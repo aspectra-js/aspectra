@@ -129,8 +129,6 @@ Automatically invokes a class's static `main` method.
 
 
 ```typescript
-import { entry } from 'aspectra'
-
 @entry
 class Main {
   public static main() {
@@ -212,8 +210,9 @@ john.id === jane.id // true
 Inject a [`@provider`](#provider) into a class field.
 
 
-> If an `identifier` is provided (`string` or `symbol`), the key will be used to
-> resolve the dependency. Otherwise, name of the class will be used as an identifier.
+> If an `identifier` is provided (`string` or `symbol`), this will be used to
+> resolve the dependency. Otherwise, name of the class will be used as an
+> identifier.
 > 
 > If a provider is injected multiple times, new instance will **not** be created -
 > the same instance will be returned.

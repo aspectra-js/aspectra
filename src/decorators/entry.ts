@@ -8,8 +8,6 @@ import type { Class } from '#types'
  *
  * @example
  * ```typescript
- * import { entry } from 'aspectra'
- *
  * @entry
  * class Main {
  *   public static main() {

@@ -1,26 +1,28 @@
 import type { Class } from '#types'
 
-export type BindingsIdentifier = string | symbol
+export type ContainerIdentifier = string | symbol
 
 export class Container {
-  private readonly bindings = new Map<BindingsIdentifier, unknown>()
+  private readonly bindings = new Map<ContainerIdentifier, unknown>()
 
-  public bind<T>(provider: Class<T, []>, identifier: BindingsIdentifier) {
+  public bind<T>(provider: Class<T, []>, identifier: ContainerIdentifier) {
     if (this.bindings.has(identifier)) {
       throw new Error(`Provider ${identifier.toString()} already exists`)
     }
     this.bindings.set(identifier, Reflect.construct(provider, []))
   }
 
-  public resolve<T>(key: BindingsIdentifier) {
-    if (!this.bindings.has(key)) {
-      throw new Error(`Provider ${key.toString()} not found`)
+  public resolve<T>(indentifier: ContainerIdentifier) {
+    if (!this.bindings.has(indentifier)) {
+      throw new Error(`Provider ${indentifier.toString()} not found`)
     }
-    return this.bindings.get(key) as T
+    return this.bindings.get(indentifier) as T
   }
 
-  public static isContainerIdentifier(key: unknown): key is BindingsIdentifier {
-    return typeof key === 'string' || typeof key === 'symbol'
+  public static isContainerIdentifier(
+    identifier: unknown,
+  ): identifier is ContainerIdentifier {
+    return typeof identifier === 'string' || typeof identifier === 'symbol'
   }
 }
 
