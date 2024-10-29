@@ -19,7 +19,7 @@
     "prebuild": "run-p build:*",
     "build": "tsup",
     "check": "pnpm format && biome check --write",
-    "commit": "pnpm prebuild && pnpm check && git add --all && cz",
+    "commit": "pnpm prebuild && git add --all && cz",
     "format:json": "sort-package-json",
     "format": "run-p format:*",
     "prepare": "lefthook install",
