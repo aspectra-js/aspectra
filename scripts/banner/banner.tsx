@@ -13,7 +13,7 @@ export function Banner() {
         ...full,
         background:
           'linear-gradient(45deg, rgba(168,132,237,1) 0%, rgba(145,215,184,1) 100%)',
-        borderRadius: '1.5em',
+        borderRadius: '1em',
         color: '#fafafa',
         display: 'flex',
         fontSmooth: 'always',
