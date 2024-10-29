@@ -9,12 +9,9 @@ export const base = [
   center(`<img src="${paths.banner}" alt="${paths.banner}">`),
   center(`<h3>${name}</h3>`),
   center(description),
-  '<br />',
-  center(`<code>$ npm install ${name}</code>`),
-  '<br />',
   blockquote([
     '[!IMPORTANT]',
-    'This package uses Stage 3 (stable) decorators.',
+    'This package provides **stage 3 (stable) decorators.**',
     '`experimentalDecorators` must be **DISABLED** in `tsconfig.json`',
   ]),
 ] satisfies MarkdownEntryOrPrimitive

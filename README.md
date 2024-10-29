@@ -7,17 +7,8 @@
 <div align="center">The decorator library.</div>
 
 
-<br />
-
-
-<div align="center"><code>$ npm install aspectra</code></div>
-
-
-<br />
-
-
 > [!IMPORTANT]
-> This package uses Stage 3 (stable) decorators.
+> This package provides **stage 3 (stable) decorators.**
 > `experimentalDecorators` must be **DISABLED** in `tsconfig.json`
 
 
