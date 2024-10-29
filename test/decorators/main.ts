@@ -1,17 +1,17 @@
 import { equal } from 'node:assert'
 import { describe, mock, test } from 'node:test'
-import { entry } from 'aspectra'
+import { main } from 'aspectra'
 
 const mockFn = mock.fn()
 
-@entry
+// biome-ignore lint/complexity/noStaticOnlyClass: test
 class Main {
-  public static main() {
+  @main public static start() {
     mockFn()
   }
 }
 
-describe(import.meta.filename, () => {
+describe(import.meta.filename, context => {
   test('should run main method', () => {
     equal(mockFn.mock.callCount(), 1)
   })

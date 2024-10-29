@@ -46,6 +46,10 @@
 
 
 
+- [`main`](#main)
+
+
+
 #### injection
 
 
@@ -135,6 +139,28 @@ import { entry } from 'aspectra'
 @entry
 class Main {
   public static main() {
+    console.log('Hello, World!')
+  }
+}
+```
+
+
+#### `main`
+
+
+
+Automatically invokes a decorated method.
+
+
+> 
+
+
+
+```typescript
+import { main } from 'aspectra'
+
+class Main {
+  @main public static start() {
     console.log('Hello, World!')
   }
 }
