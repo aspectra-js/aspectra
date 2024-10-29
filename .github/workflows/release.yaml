@@ -28,6 +28,8 @@ jobs:
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
       - uses: actions/setup-node@v4
+        with:
+          registry-url: "https://registry.npmjs.org"
       - uses: pnpm/action-setup@v3
         with:
           run_install: |
