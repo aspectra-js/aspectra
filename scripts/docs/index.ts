@@ -42,6 +42,6 @@ const entries = docs.flatMap(doc => [
 await writeFile(
   paths.readme,
   tsMarkdown(
-    [base, hr(), toc, hr(), entries].flat().flatMap(it => ['', it, '']),
+    [base, toc, hr(), entries].flat().flatMap(it => ['', it, '']),
   ).trim(),
 )
