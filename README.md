@@ -186,12 +186,12 @@ Registers a class as a provider, allowing it to be injected via
 
 ```typescript
 @provider
-export class SampleProvider {
+class SampleProvider {
   // ...
 }
 
 @provider('custom_name')
-export class NamedSampleProvider {
+class NamedSampleProvider {
   // ...
 }
 ```
