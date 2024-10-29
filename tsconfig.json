@@ -10,15 +10,15 @@
     "moduleResolution": "bundler",
     "noEmit": true,
     "paths": {
+      "aspectra": ["dist/index"],
       "#*": ["src/*"],
-      "aspectra": ["src/index.ts"],
-      "package.json": ["package.json"],
-      "test/*": ["test/*"]
+      "test/*": ["test/*"],
+      "package.json": ["package.json"]
     },
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
     "verbatimModuleSyntax": true
   },
-  "exclude": ["dist", "node_modules", "docs"]
+  "exclude": ["dist", "node_modules"]
 }

@@ -1,11 +1,21 @@
 import { readdirSync } from 'node:fs'
 import { writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
-import { type MarkdownEntryOrPrimitive, base } from 'scripts/docs/base'
+import { base } from 'scripts/docs/base'
 import { categorize } from 'scripts/docs/categorize'
 import { parse } from 'scripts/docs/tsdoc/parse'
 import { paths } from 'scripts/paths'
-import { blockquote, code, h3, h4, hr, link, tsMarkdown, ul } from 'ts-markdown'
+import {
+  type MarkdownEntryOrPrimitive,
+  blockquote,
+  code,
+  h3,
+  h4,
+  hr,
+  link,
+  tsMarkdown,
+  ul,
+} from 'ts-markdown'
 
 const docs = readdirSync(paths.src, {
   recursive: true,
@@ -33,7 +43,7 @@ const toc = [
 ].flat() satisfies MarkdownEntryOrPrimitive
 
 const entries = docs.flatMap(doc => [
-  h4(tsMarkdown([code(doc.name)])),
+  h4(code(doc.name)),
   doc.description,
   blockquote(doc.remarks),
   doc.example || '',

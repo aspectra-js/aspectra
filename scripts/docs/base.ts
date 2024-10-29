@@ -1,9 +1,11 @@
 import { description, name } from 'package.json'
 import { center } from 'scripts/docs/center'
 import { paths } from 'scripts/paths'
-import { blockquote, type tsMarkdown } from 'ts-markdown'
-
-export type MarkdownEntryOrPrimitive = Parameters<typeof tsMarkdown>[0]
+import {
+  type MarkdownEntryOrPrimitive,
+  blockquote,
+  type tsMarkdown,
+} from 'ts-markdown'
 
 export const base = [
   center(`<img src="${paths.banner}" alt="${paths.banner}">`),
