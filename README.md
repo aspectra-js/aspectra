@@ -1,10 +1,10 @@
-<div align="center"><img src="assets/banner.svg" alt="assets/banner.svg"></div>
+<div align='center'><img src='assets/banner.svg' alt='assets/banner.svg'></div>
 
 
-<div align="center"><h3>aspectra</h3></div>
+<div align='center'><h3>aspectra</h3></div>
 
 
-<div align="center">The decorator library.</div>
+<div align='center'>The decorator library.</div>
 
 
 <br />
@@ -88,8 +88,8 @@ class Example {
 }
 
 const { greet, farewell } = new Example()
-greet() // "Hello from John"
-farewell() // "Goodbye from John"
+greet() // 'Hello from John'
+farewell() // 'Goodbye from John'
 ```
 
 
@@ -113,7 +113,7 @@ class Example {
 }
 
 const { greet } = new Example()
-greet() // "Hello from John"
+greet() // 'Hello from John'
 ```
 
 

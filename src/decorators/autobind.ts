@@ -19,8 +19,8 @@ import type { Class, MixinConstructorArgs } from '#types'
  * }
  *
  * const { greet, farewell } = new Example()
- * greet() // "Hello from John"
- * farewell() // "Goodbye from John"
+ * greet() // 'Hello from John'
+ * farewell() // 'Goodbye from John'
  * ```
  */
 export function autobind<T extends Class<object>>(

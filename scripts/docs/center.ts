@@ -1,3 +1,3 @@
 export function center(content: string) {
-  return `<div align="center">${content}</div>`
+  return `<div align='center'>${content}</div>`
 }

@@ -14,7 +14,7 @@ import type { Args, Fun } from '#types'
  * }
  *
  * const { greet } = new Example()
- * greet() // "Hello from John"
+ * greet() // 'Hello from John'
  * ```
  */
 export function bound<A extends Args, R, T>(
