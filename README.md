@@ -145,21 +145,53 @@ class Main {
 
 
 
+Inject a [`@provider`](#provider) into a class field.
+
+
+> If an `identifier` is provided (`string` or `symbol`), the key will be used to
+> resolve the dependency from the container. Otherwise, name of the class will
+> be used as an identifier.
 
 
 
-> 
+```typescript
+class Providers {
+  @provide(SampleProvider)
+  // notice the `!` for definite assignment
+  private readonly provider!: SampleProvider;
 
+  // with a custom name
+  @provide('custom_name')
+  private readonly namedProvider!: NamedProvider;
 
-
-
+  // this will be a same instance as the `provider` above
+  @provide(SampleProvider)
+  private readonly second_provider!: SampleProvider;
+}
+```
 
 
 #### `provider`
 
 
 
+Registers a class as a provider, allowing it to be injected via
+[@provide](#provide).
+
+
+> You can set a custom `identifier` (`string` or `symbol`). Otherwise,
+> name of the class will be used as an identifier.
 
 
 
->
+```typescript
+@provider
+export class SampleProvider {
+  // ...
+}
+
+@provider('custom_name')
+export class NamedSampleProvider {
+  // ...
+}
+```
