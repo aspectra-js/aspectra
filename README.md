@@ -7,11 +7,13 @@
 <div align="center">The decorator library.</div>
 
 
-### Installation
+<br />
 
 
+<div align="center"><code>$ npm install aspectra</code></div>
 
-`$ npm install aspectra`
+
+<br />
 
 
 > [!IMPORTANT]

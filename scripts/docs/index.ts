@@ -1,7 +1,7 @@
 import { readdirSync } from 'node:fs'
 import { writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
-import { getCategory } from 'scripts/docs/getCategory'
+import { categorize } from 'scripts/docs/categorize'
 import { type MarkdownEntryOrPrimitive, readme } from 'scripts/docs/readme'
 import { parse } from 'scripts/docs/tsdoc/parse'
 import { paths } from 'scripts/paths'
@@ -17,7 +17,7 @@ const docs = readdirSync(paths.src, {
 
 const toc = [
   h3('Features'),
-  ...Map.groupBy(docs, getCategory)
+  ...Map.groupBy(docs, categorize)
     .entries()
     .flatMap(([category, docs]) => [
       h4(category),
