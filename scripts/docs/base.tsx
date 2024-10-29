@@ -5,7 +5,7 @@ import { blockquote, code, type tsMarkdown } from 'ts-markdown'
 
 export type MarkdownEntryOrPrimitive = Parameters<typeof tsMarkdown>[0]
 
-export const readme = [
+export const base = [
   center(`<img src="${paths.banner}" alt="${paths.banner}">`),
   center(`<h3>${name}</h3>`),
   center(description),

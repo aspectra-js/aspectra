@@ -1,8 +1,8 @@
 import { readdirSync } from 'node:fs'
 import { writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
+import { type MarkdownEntryOrPrimitive, base } from 'scripts/docs/base'
 import { categorize } from 'scripts/docs/categorize'
-import { type MarkdownEntryOrPrimitive, readme } from 'scripts/docs/readme'
 import { parse } from 'scripts/docs/tsdoc/parse'
 import { paths } from 'scripts/paths'
 import { blockquote, code, h3, h4, hr, link, tsMarkdown, ul } from 'ts-markdown'
@@ -42,6 +42,6 @@ const entries = docs.flatMap(doc => [
 await writeFile(
   paths.readme,
   tsMarkdown(
-    [readme, hr(), toc, hr(), entries].flat().flatMap(it => ['', it, '']),
+    [base, hr(), toc, hr(), entries].flat().flatMap(it => ['', it, '']),
   ).trim(),
 )
