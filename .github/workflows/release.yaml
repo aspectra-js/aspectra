@@ -33,7 +33,7 @@ jobs:
           run_install: |
             - args: [--frozen-lockfile]
       - run: pnpm build
-      - run: release-it ${{ inputs.increment }}
+      - run: pnpm release-it ${{ inputs.increment }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
