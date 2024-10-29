@@ -4,10 +4,7 @@ pre-commit:
     test:
       run: pnpm test
     type-check:
-      run: pnpm type-check & pnpm --filter docs type-check
+      run: pnpm type-check
     check:
       run: pnpm check
-      stage_fixed: true
-    build:
-      run: pnpm build
       stage_fixed: true

@@ -1,12 +1,9 @@
 import {
+  type BindingsIdentifier,
   Container,
-  type Identifier,
   container,
 } from '#decorators/injection/container'
 import type { Class } from '#types'
-
-export function provide<T, P>(module: Class<P>): void
-export function provide<T, P>(identifier: Identifier): void
 
 /**
  * Inject a [`@provider`](#provider) into a class field.
@@ -33,7 +30,7 @@ export function provide<T, P>(identifier: Identifier): void
  * }
  * ```
  */
-export function provide<T, P>(arg: Class<P> | Identifier) {
+export function provide<T, P>(arg: Class<P> | BindingsIdentifier) {
   return (_: unknown, context: ClassFieldDecoratorContext<T, P>) => {
     context.addInitializer(function () {
       this[context.name as keyof T] = container.resolve(

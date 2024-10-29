@@ -1,6 +1,6 @@
 import {
+  type BindingsIdentifier,
   Container,
-  type Identifier,
   container,
 } from '#decorators/injection/container'
 import type { Class } from '#types'
@@ -9,11 +9,11 @@ export function provider<T>(
   target: Class<T>,
   _: ClassDecoratorContext<typeof target>,
 ): void
-export function provider(identifier: Identifier): typeof provider
+export function provider(identifier: BindingsIdentifier): typeof provider
 
 /**
  * Registers a class as a provider, allowing it to be injected via
- * [@provide](#provide).
+ * [`@provide`](#provide).
  *
  * @remarks
  * You can set a custom `identifier` (`string` or `symbol`). Otherwise,
@@ -32,7 +32,7 @@ export function provider(identifier: Identifier): typeof provider
  * }
  * ```
  */
-export function provider<T>(arg: Identifier | Class<T>) {
+export function provider<T>(arg: BindingsIdentifier | Class<T>) {
   if (Container.isContainerIdentifier(arg)) {
     return (target: Class<T>, _: ClassDecoratorContext<typeof target>) => {
       container.bind(target, arg)

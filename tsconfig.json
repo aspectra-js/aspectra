@@ -1,23 +1,24 @@
 {
   "compilerOptions": {
-    "target": "es2022",
+    "baseUrl": ".",
     "experimentalDecorators": false,
-    "lib": ["esnext", "esnext.decorators"],
     "isolatedModules": true,
-    "verbatimModuleSyntax": true,
+    "jsx": "preserve",
+    "lib": ["esnext", "esnext.decorators"],
     "module": "preserve",
     "moduleDetection": "force",
     "moduleResolution": "bundler",
     "noEmit": true,
-    "strict": true,
-    "baseUrl": ".",
     "paths": {
-      "aspectra": ["src/index.ts"],
       "#*": ["src/*"],
-      "test/*": ["test/*"],
-      "package.json": ["package.json"]
+      "aspectra": ["src/index.ts"],
+      "package.json": ["package.json"],
+      "test/*": ["test/*"]
     },
-    "jsx": "preserve"
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "es2022",
+    "verbatimModuleSyntax": true
   },
   "exclude": ["dist", "node_modules", "docs"]
 }

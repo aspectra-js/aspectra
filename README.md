@@ -176,7 +176,7 @@ class Providers {
 
 
 Registers a class as a provider, allowing it to be injected via
-[@provide](#provide).
+[`@provide`](#provide).
 
 
 > You can set a custom `identifier` (`string` or `symbol`). Otherwise,
