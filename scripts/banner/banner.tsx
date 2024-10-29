@@ -6,6 +6,25 @@ const full: CSSProperties = {
   height: '100%',
 }
 
+const patternFactor = 30
+const background = encodeURIComponent(`
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='${patternFactor * 4}'
+    height='${patternFactor * 7}'
+    viewBox='0 0 80 140'
+  >
+    <g transform='matrix(0 1 -1 0 80 0)'>
+      <path
+        fill='none'
+        stroke='rgba(255,255,255,0.05)'
+        stroke-width='2'
+        d='M47 0H0V80H47l46-80h47v80H93zM117 40H23l-23 40 140-80-23 40 23 40-140-80 23 40M70-5v90'
+      />
+    </g>
+  </svg>
+`)
+
 export function Banner() {
   return (
     <div
@@ -23,7 +42,7 @@ export function Banner() {
         style={{
           ...full,
           alignItems: 'center',
-          background: `url("data:image/svg+xml;charset=utf-8,%3csvg version='1.1' xmlns='http://www.w3.org/2000/svg' width='120' height='210' viewBox='0 0 80 140' preserveAspectRatio='none'%3e%3cg opacity='.025' transform='matrix(0 1-1 0 80 0)'%3e%3cpath fill='none' stroke='%23333333' stroke-width='5' d='M47 0h-47v80h47l46-80h47v80h-47zM117 40h-94l-23 40l140-80-23 40 23 40-140-80 23 40M70-5v90'/%3e%3c/g%3e%3c/svg%3e")`,
+          background: `url('data:image/svg+xml;charset=utf-8,${background}')`,
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
