@@ -182,7 +182,7 @@ class Main {
 Seals a class, preventing it from being extended.
 
 
-> Error is throw when attempting to instantiate a derived class.
+> Error is thrown when attempting to instantiate a derived class.
 
 
 

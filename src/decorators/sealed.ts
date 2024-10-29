@@ -4,7 +4,7 @@ import type { Class, MixinConstructorArgs } from '#types'
  * Seals a class, preventing it from being extended.
  *
  * @remarks
- * Error is throw when attempting to instantiate a derived class.
+ * Error is thrown when attempting to instantiate a derived class.
  *
  * @example
  * ```typescript
