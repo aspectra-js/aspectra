@@ -9,11 +9,12 @@ import type { Class, MixinConstructorArgs } from '#types'
  * @example
  * ```typescript
  * @sealed
- * class Base { /* ... *\/ }
+ * class Base {}
  *
- * class Derived extends Base { /* ... *\/ }
+ * class Derived extends Base {}
  *
  * const instance = new Derived() // throws
+ * ```
  */
 export function sealed<T extends Class<object>>(
   target: T,

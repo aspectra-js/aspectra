@@ -17,7 +17,7 @@
     "prebuild": "run-p build:*",
     "build": "tsup",
     "check": "biome check --write",
-    "commit": "pnpm build && git add --all && cz",
+    "commit": "pnpm prebuild && git add --all && cz",
     "format:json": "sort-package-json",
     "format": "pnpm format:json && biome format --write",
     "lint": "pnpm format:json && biome lint --write",

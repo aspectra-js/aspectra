@@ -183,12 +183,13 @@ Seals a class, preventing it from being extended.
 
 
 ```typescript
+@sealed
+class Base {}
 
-class Base { /* ... *\/ }
-
-class Derived extends Base { /* ... *\/ }
+class Derived extends Base {}
 
 const instance = new Derived() // throws
+```
 
 
 #### `provide`
