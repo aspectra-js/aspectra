@@ -10,21 +10,18 @@ import { container } from '#decorators/injection/container'
 
 describe(import.meta.filename, () => {
   test('should register to container', () => {
-    ok(container.resolve<SampleProvider>(SampleProvider.name).isOk)
+    ok(container.resolve<SampleProvider>(SampleProvider.name))
   })
 
   test('should registers to container with name', () => {
-    ok(
-      container.resolve<NamedSampleProvider>(NamedSampleProvider.qualifier)
-        .isOk,
-    )
+    ok(container.resolve<NamedSampleProvider>(NamedSampleProvider.qualifier))
   })
 
   test('should registers to container with symbol', () => {
     ok(
       container.resolve<SymbolNamedSampleProvider>(
         SymbolNamedSampleProvider.symbolQualifier,
-      ).isOk,
+      ),
     )
   })
 

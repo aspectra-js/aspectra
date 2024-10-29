@@ -4,7 +4,6 @@ import { main } from 'aspectra'
 
 const mockFn = mock.fn()
 
-// biome-ignore lint/complexity/noStaticOnlyClass: test
 class Main {
   @main public static start() {
     mockFn()
