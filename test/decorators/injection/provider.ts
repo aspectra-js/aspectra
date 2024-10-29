@@ -1,12 +1,12 @@
 import { ok, throws } from 'node:assert'
 import { describe, test } from 'node:test'
-import { provider } from 'aspectra'
 import {
   NamedSampleProvider,
   SampleProvider,
   SymbolNamedSampleProvider,
 } from 'test/models/providers'
 import { container } from '#decorators/injection/container'
+import { provider } from '#index'
 
 describe(import.meta.filename, () => {
   test('should register to container', () => {

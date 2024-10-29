@@ -50,6 +50,10 @@
 
 
 
+- [`sealed`](#sealed)
+
+
+
 #### injection
 
 
@@ -165,6 +169,26 @@ class Main {
   }
 }
 ```
+
+
+#### `sealed`
+
+
+
+Seals a class, preventing it from being extended.
+
+
+> Error is throw when attempting to instantiate a derived class.
+
+
+
+```typescript
+
+class Base { /* ... *\/ }
+
+class Derived extends Base { /* ... *\/ }
+
+const instance = new Derived() // throws
 
 
 #### `provide`

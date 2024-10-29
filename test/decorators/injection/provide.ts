@@ -1,7 +1,7 @@
 import { equal, ok } from 'node:assert'
 import { describe, test } from 'node:test'
-import { provide } from 'aspectra'
 import { NamedSampleProvider, SampleProvider } from 'test/models/providers'
+import { provide } from '#index'
 
 class Providers {
   @provide(SampleProvider)
