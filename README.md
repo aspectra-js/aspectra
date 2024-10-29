@@ -54,6 +54,10 @@
 
 
 
+- [`singleton`](#singleton)
+
+
+
 #### injection
 
 
@@ -189,6 +193,30 @@ class Base {}
 class Derived extends Base {}
 
 const instance = new Derived() // throws
+```
+
+
+#### `singleton`
+
+
+
+Makes a class singleton, ensuring that only one instance of the class is created.
+
+
+> 
+
+
+
+```typescript
+@singleton
+class Person {
+  public readonly id = Math.random()
+}
+
+const john = new Person()
+const jane = new Person()
+
+john.id === jane.id // true
 ```
 
 
