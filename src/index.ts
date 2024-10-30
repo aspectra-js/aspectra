@@ -1,10 +1,7 @@
 export { Aspectra } from '#aspectra'
 export { autobind } from '#decorators/autobind'
 export { bound } from '#decorators/bound'
-export {
-  Container,
-  type PrimitiveContainerIdentifier,
-} from '#container'
+export { Container } from '#container'
 export { Context } from '#context'
 export { contextualized } from '#decorators/injection/contextualized'
 export { entry } from '#decorators/entry'
@@ -14,3 +11,5 @@ export { sealed } from '#decorators/sealed'
 export { singleton } from '#decorators/singleton'
 export { provide } from '#decorators/injection/provide'
 export { provider } from '#decorators/injection/provider'
+
+export type { Identifier, PrimitiveIdentifier } from '#types/identifier'

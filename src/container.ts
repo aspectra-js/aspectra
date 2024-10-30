@@ -1,10 +1,5 @@
 import type { Class } from '#types'
-
-export type PrimitiveContainerIdentifier = string | symbol
-
-export type ContainerIdentifier<T = unknown> =
-  | Class<T, []>
-  | PrimitiveContainerIdentifier
+import type { Identifier, PrimitiveIdentifier } from '#types/identifier'
 
 export class Container {
   /**
@@ -13,11 +8,11 @@ export class Container {
    */
   public static isPrimitiveIdentifier(
     identifier: unknown,
-  ): identifier is PrimitiveContainerIdentifier {
+  ): identifier is PrimitiveIdentifier {
     return typeof identifier === 'string' || typeof identifier === 'symbol'
   }
 
-  public static identifierToString(identifier: ContainerIdentifier): string {
+  public static identifierToString(identifier: Identifier): string {
     return Container.isPrimitiveIdentifier(identifier)
       ? identifier.toString()
       : identifier.name
@@ -26,20 +21,20 @@ export class Container {
   /**
    * @internal
    * The internal storage for bindings.
-   * k: [ContainerIdentifier] or class
+   * k: [Identifier]
    * v: instance of the class
    */
-  private readonly bindings = new Map<ContainerIdentifier, unknown>()
+  private readonly bindings = new Map<Identifier, unknown>()
 
   public register<T>(provider: Class<T, []>): void
   public register<T>(
     provider: Class<T, []>,
-    primitiveIdentifier: PrimitiveContainerIdentifier,
+    primitiveIdentifier: PrimitiveIdentifier,
   ): void
 
   public register<T>(
     provider: Class<T, []>,
-    primitiveIdentifier?: PrimitiveContainerIdentifier,
+    primitiveIdentifier?: PrimitiveIdentifier,
   ) {
     const containerIdentifier = primitiveIdentifier || provider
     if (this.bindings.has(containerIdentifier)) {
@@ -52,7 +47,7 @@ export class Container {
     this.bindings.set(containerIdentifier, Reflect.construct(provider, []))
   }
 
-  public resolve<T>(identifier: ContainerIdentifier) {
+  public resolve<T>(identifier: Identifier) {
     if (!this.bindings.has(identifier)) {
       throw new Error(
         `Provider ${Container.identifierToString(identifier)} not found`,

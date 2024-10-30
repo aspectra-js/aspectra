@@ -1,5 +1,5 @@
-import { Aspectra, Context } from 'aspectra'
-import { Container, type PrimitiveContainerIdentifier } from '#container'
+import { Context, type PrimitiveIdentifier } from 'aspectra'
+import { Container } from '#container'
 import type { Class } from '#types'
 
 export function provider<T>(
@@ -7,9 +7,7 @@ export function provider<T>(
   _: ClassDecoratorContext<typeof target>,
 ): void
 
-export function provider(
-  identifier: PrimitiveContainerIdentifier,
-): typeof provider
+export function provider(identifier: PrimitiveIdentifier): typeof provider
 
 /**
  * Registers a class as a provider, allowing it to be injected via
@@ -31,7 +29,7 @@ export function provider(
  * }
  * ```
  */
-export function provider<T>(arg: PrimitiveContainerIdentifier | Class<T>) {
+export function provider<T>(arg: PrimitiveIdentifier | Class<T>) {
   if (Container.isPrimitiveIdentifier(arg)) {
     return (target: Class<T>, _: ClassDecoratorContext<typeof target>) => {
       Context.getOrRegister(target).container.register(target, arg)
