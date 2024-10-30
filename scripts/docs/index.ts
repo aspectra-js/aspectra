@@ -2,8 +2,7 @@ import { readdirSync } from 'node:fs'
 import { writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { base } from 'scripts/docs/base'
-import { categorize } from 'scripts/docs/categorize'
-import { parse } from 'scripts/docs/tsdoc/parse'
+import { parseDoc } from 'scripts/docs/tsdoc/parse-doc'
 import { paths } from 'scripts/paths'
 import {
   type MarkdownEntryOrPrimitive,
@@ -22,12 +21,12 @@ const docs = readdirSync(paths.src, {
   withFileTypes: true,
 })
   .filter(it => it.isFile())
-  .flatMap(it => parse(join(it.parentPath, it.name)))
+  .flatMap(it => parseDoc(join(it.parentPath, it.name)))
   .sort()
 
 const toc: MarkdownEntryOrPrimitive = [
   h3('Features'),
-  ...Map.groupBy(docs, categorize)
+  ...Map.groupBy(docs, docs => docs.category)
     .entries()
     .flatMap(([category, docs]) => [
       h4(category),
@@ -42,12 +41,17 @@ const toc: MarkdownEntryOrPrimitive = [
     ]),
 ].flat()
 
-const entries: MarkdownEntryOrPrimitive = docs.flatMap(doc => [
-  h4(code(doc.name)),
-  doc.description,
-  doc.remarks ? blockquote(doc.remarks) : '',
-  doc.example || '',
-])
+const entries: MarkdownEntryOrPrimitive = docs.flatMap((doc, i) => {
+  return [
+    h3(
+      i === 0 || doc.category !== docs[i - 1].category ? docs[i].category : '',
+    ),
+    h4(code(doc.name)),
+    doc.description,
+    doc.remarks ? blockquote(doc.remarks) : '',
+    doc.example || '',
+  ]
+})
 
 await writeFile(
   paths.readme,

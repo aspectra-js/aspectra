@@ -1,4 +1,5 @@
 import { EOL } from 'node:os'
+import { parse, sep } from 'node:path'
 import { TSDocParser } from '@microsoft/tsdoc'
 import { Project } from 'ts-morph'
 import type { Documentation } from '../documentation'
@@ -8,7 +9,7 @@ import { Tag } from './tag'
 const project = new Project()
 const tsdocParser = new TSDocParser()
 
-export function parse(path: string): Documentation[] {
+export function parseDoc(path: string): Documentation[] {
   return (project
     .addSourceFileAtPath(path)
     .getFunctions()
@@ -27,6 +28,7 @@ export function parse(path: string): Documentation[] {
         return
       }
       return {
+        category: parse(path).dir.split(sep).at(-1) || '',
         name: fun.getName() || '',
         path,
         description: render(context.docComment.summarySection)?.trim() || '',

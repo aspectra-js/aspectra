@@ -77,6 +77,10 @@
 
 
 
+### decorators
+
+
+
 #### `autobind`
 
 
@@ -107,6 +111,10 @@ farewell() // 'Goodbye from John'
 ```
 
 
+### 
+
+
+
 #### `bound`
 
 
@@ -131,6 +139,10 @@ greet() // 'Hello from John'
 ```
 
 
+### 
+
+
+
 #### `entry`
 
 
@@ -152,6 +164,10 @@ class Main {
 ```
 
 
+### 
+
+
+
 #### `main`
 
 
@@ -171,6 +187,10 @@ class Main {
   }
 }
 ```
+
+
+### 
+
 
 
 #### `memoize`
@@ -198,6 +218,10 @@ console.log(calculator.square(2)) // 4
 ```
 
 
+### 
+
+
+
 #### `sealed`
 
 
@@ -217,6 +241,10 @@ class Derived extends Base {}
 
 const instance = new Derived() // throws
 ```
+
+
+### 
+
 
 
 #### `singleton`
@@ -240,6 +268,10 @@ const jane = new Person()
 
 john.id === jane.id // true
 ```
+
+
+### injection
+
 
 
 #### `contextualized`
@@ -291,6 +323,10 @@ class OutOfContextConsumer {
 ```
 
 
+### 
+
+
+
 #### `provide`
 
 
@@ -321,6 +357,10 @@ class Providers {
   private readonly second_provider!: SampleProvider;
 }
 ```
+
+
+### 
+
 
 
 #### `provider`
