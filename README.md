@@ -42,10 +42,6 @@ Set the following options in your `tsconfig.json`:
 
 
 
-- [`entry`](#entry)
-
-
-
 - [`main`](#main)
 
 
@@ -140,30 +136,6 @@ class Example {
 
 const { greet } = new Example()
 greet() // 'Hello from John'
-```
-
-
-
-
-
-#### `entry`
-
-
-
-Automatically invokes a class's static `main` method.
-
-
-> The target class must include a static `main` method.
-
-
-
-```typescript
-@entry
-class Main {
-  public static main() {
-    console.log('Hello, World!')
-  }
-}
 ```
 
 
