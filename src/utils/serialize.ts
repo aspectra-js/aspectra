@@ -22,7 +22,7 @@ export function serialize(value: Serializable): string {
     return `__${name}_null__`
   }
   if (typeof value === 'bigint') {
-    return `__${name}_bigint_${value.toString()}n`
+    return `__${name}_bigint_${value.toString()}n__`
   }
   if (value instanceof Date) {
     return value.toISOString()
