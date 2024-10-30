@@ -17,6 +17,7 @@ import { type Serializable, serialize } from '#utils/hash'
  * const calculator = new Calculator()
  * console.log(calculator.square(2)) // Calculating... 4
  * console.log(calculator.square(2)) // 4
+ * ```
  */
 export function memoize<T, U extends Args & Serializable, R>(
   target: Fun<U, R, T>,

@@ -193,6 +193,7 @@ class Calculator {
 const calculator = new Calculator()
 console.log(calculator.square(2)) // Calculating... 4
 console.log(calculator.square(2)) // 4
+```
 
 
 #### `sealed`
