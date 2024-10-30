@@ -13,9 +13,6 @@
 <div align='center'>The decorator library.</div>
 
 
-<br />
-
-
 ### Installation
 
 

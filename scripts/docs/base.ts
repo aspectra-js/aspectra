@@ -17,7 +17,6 @@ export const base: MarkdownEntryOrPrimitive[] = [
   center(`<img src='${paths.banner}' alt='${paths.banner}'>`),
   center(`<h3>${name}</h3>`),
   center(description),
-  '<br />',
   h3('Installation'),
   'Set the following options in your `tsconfig.json`:',
   blockquote([
