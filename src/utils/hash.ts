@@ -11,6 +11,9 @@ export type Serializable =
   | Serializable[]
   | Date
 
+/**
+ * @internal
+ */
 export function serialize(value: Serializable): string {
   if (value === undefined) {
     return `__${name}_undefined__`

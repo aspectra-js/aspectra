@@ -51,14 +51,6 @@
 
 
 
-#### utils
-
-
-
-- [`serialize`](#serialize)
-
-
-
 #### injection
 
 
@@ -238,19 +230,6 @@ const jane = new Person()
 
 john.id === jane.id // true
 ```
-
-
-#### `serialize`
-
-
-
-
-
-
-
-
-
-
 
 
 #### `provide`

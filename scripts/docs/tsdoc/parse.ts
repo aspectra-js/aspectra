@@ -9,13 +9,12 @@ const project = new Project()
 const tsdocParser = new TSDocParser()
 
 export function parse(path: string): Documentation[] {
-  return (
-    project
-      .addSourceFileAtPath(path)
-      .getFunctions()
-      .map(fun => {
-        const context = tsdocParser.parseString(
-          `
+  return (project
+    .addSourceFileAtPath(path)
+    .getFunctions()
+    .map(fun => {
+      const context = tsdocParser.parseString(
+        `
           /**
           ${(fun.getJsDocs().at(0)?.getInnerText() || '')
             .split(EOL)
@@ -23,22 +22,25 @@ export function parse(path: string): Documentation[] {
             .join(EOL)}
           **/
           `,
+      )
+      if (context.docComment.modifierTagSet.isInternal()) {
+        return
+      }
+      return {
+        name: fun.getName() || '',
+        path,
+        description: render(context.docComment.summarySection)?.trim() || '',
+        remarks: render(context.docComment.remarksBlock)
+          ?.replace(Tag.REMARKS, '')
+          ?.trim(),
+        example: render(
+          context.docComment.customBlocks.find(
+            it => it.blockTag.tagName === Tag.EXAMPLE,
+          ),
         )
-        return {
-          name: fun.getName() || '',
-          path,
-          description: render(context.docComment.summarySection)?.trim() || '',
-          remarks: render(context.docComment.remarksBlock)
-            ?.replace(Tag.REMARKS, '')
-            ?.trim(),
-          example: render(
-            context.docComment.customBlocks.find(
-              it => it.blockTag.tagName === Tag.EXAMPLE,
-            ),
-          )
-            ?.replace(Tag.EXAMPLE, '')
-            ?.trim(),
-        } satisfies Documentation
-      }) || []
-  )
+          ?.replace(Tag.EXAMPLE, '')
+          ?.trim(),
+      } satisfies Documentation
+    })
+    .filter(Boolean) || []) as Documentation[]
 }
