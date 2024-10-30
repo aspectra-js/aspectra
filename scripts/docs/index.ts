@@ -25,7 +25,7 @@ const docs = readdirSync(paths.src, {
   .flatMap(it => parse(join(it.parentPath, it.name)))
   .sort()
 
-const toc = [
+const toc: MarkdownEntryOrPrimitive = [
   h3('Features'),
   ...Map.groupBy(docs, categorize)
     .entries()
@@ -40,14 +40,14 @@ const toc = [
         ]),
       ),
     ]),
-].flat() satisfies MarkdownEntryOrPrimitive
+].flat()
 
-const entries = docs.flatMap(doc => [
+const entries: MarkdownEntryOrPrimitive = docs.flatMap(doc => [
   h4(code(doc.name)),
   doc.description,
   doc.remarks ? blockquote(doc.remarks) : '',
   doc.example || '',
-]) satisfies MarkdownEntryOrPrimitive
+])
 
 await writeFile(
   paths.readme,
