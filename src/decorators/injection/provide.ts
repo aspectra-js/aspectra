@@ -1,5 +1,5 @@
-import type { ContainerIdentifier } from '#decorators/injection/container'
-import { Context } from '#decorators/injection/context'
+import type { ContainerIdentifier } from '#container'
+import { Context } from '#context'
 import type { Class } from '#types'
 
 export function provide<T, P>(
@@ -14,11 +14,10 @@ export function provide<T, P>(
  *
  * @remarks
  * If an `identifier` is provided (`string` or `symbol`), this will be used to
- * resolve the dependency. Otherwise, name of the class will be used as an
- * identifier.
+ * resolve the dependency.
  *
- * If a provider is injected multiple times, new instance will **not** be created -
- * the same instance will be returned.
+ * Even if a provider is injected multiple times, **same** instance will
+ * be returned every time.
  *
  * @example
  * ```typescript

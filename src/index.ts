@@ -4,8 +4,8 @@ export { bound } from '#decorators/bound'
 export {
   Container,
   type PrimitiveContainerIdentifier,
-} from '#decorators/injection/container'
-export { Context } from '#decorators/injection/context'
+} from '#container'
+export { Context } from '#context'
 export { contextualized } from '#decorators/injection/contextualized'
 export { entry } from '#decorators/entry'
 export { main } from '#decorators/main'

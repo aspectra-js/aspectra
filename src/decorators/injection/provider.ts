@@ -1,8 +1,5 @@
 import { Aspectra, Context } from 'aspectra'
-import {
-  Container,
-  type PrimitiveContainerIdentifier,
-} from '#decorators/injection/container'
+import { Container, type PrimitiveContainerIdentifier } from '#container'
 import type { Class } from '#types'
 
 export function provider<T>(

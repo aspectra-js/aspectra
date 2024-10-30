@@ -1,12 +1,12 @@
 import { Aspectra } from '#aspectra'
-import { Container } from '#decorators/injection/container'
+import { Container } from '#container'
 import type { Class } from '#types'
 import type { PrimitiveIdentifier } from '#types/identifier'
 
 export type ContextIdentifier = PrimitiveIdentifier
 
 export interface Contextualized extends Class<unknown> {
-  [Aspectra.context]: ContextIdentifier
+  readonly [Aspectra.context]: ContextIdentifier
 }
 
 export class Context {
