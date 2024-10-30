@@ -278,9 +278,10 @@ john.id === jane.id // true
 
 
 
+> Note: Read [`@provider`](#provider) and [`@provide`](#provide) first for
+> better understanding.
+
 Injection is contextualized. This allows a manual control of the context.
-(Note: Read [`@provider`](#provider) and [`@provide`](#provide) first for
-better understanding.)
 
 `provider`s are stored in a `container`, which is registered in a `context`.
 You won't have to worry about this. By default, all `provider`s are stored
