@@ -23,7 +23,6 @@
     "format:json": "sort-package-json",
     "format": "run-p format:*",
     "prepare": "lefthook install",
-    "pretest": "pnpm build",
     "test": "tsx --test",
     "test:watch": "tsx --test --watch",
     "type-check": "tsc"

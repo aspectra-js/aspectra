@@ -37,6 +37,10 @@
 
 
 
+- [`contextualized`](#contextualized)
+
+
+
 - [`entry`](#entry)
 
 
@@ -54,18 +58,6 @@
 
 
 - [`singleton`](#singleton)
-
-
-
-#### injection
-
-
-
-- [`provide`](#provide)
-
-
-
-- [`provider`](#provider)
 
 
 
@@ -125,6 +117,19 @@ class Example {
 const { greet } = new Example()
 greet() // 'Hello from John'
 ```
+
+
+#### `contextualized`
+
+
+
+
+
+
+
+
+
+
 
 
 #### `entry`
@@ -235,63 +240,4 @@ const john = new Person()
 const jane = new Person()
 
 john.id === jane.id // true
-```
-
-
-#### `provide`
-
-
-
-Inject a [`@provider`](#provider) into a class field.
-
-
-> If an `identifier` is provided (`string` or `symbol`), this will be used to
-> resolve the dependency. Otherwise, name of the class will be used as an
-> identifier.
-> 
-> If a provider is injected multiple times, new instance will **not** be created -
-> the same instance will be returned.
-
-
-
-```typescript
-class Providers {
-  @provide(SampleProvider)
-  // notice the `!` for definite assignment
-  private readonly provider!: SampleProvider;
-
-  // with a custom name
-  @provide('custom_name')
-  private readonly namedProvider!: NamedProvider;
-
-  // this will be a same instance as the `provider` above
-  @provide(SampleProvider)
-  private readonly second_provider!: SampleProvider;
-}
-```
-
-
-#### `provider`
-
-
-
-Registers a class as a provider, allowing it to be injected via
-[`@provide`](#provide).
-
-
-> You can set a custom `identifier` (`string` or `symbol`). Otherwise,
-> name of the class will be used as an identifier.
-
-
-
-```typescript
-@provider
-class SampleProvider {
-  // ...
-}
-
-@provider('custom_name')
-class NamedSampleProvider {
-  // ...
-}
 ```
