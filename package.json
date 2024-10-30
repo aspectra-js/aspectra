@@ -2,6 +2,20 @@
   "name": "aspectra",
   "version": "0.1.3",
   "description": "The decorator library.",
+  "keywords": [
+    "aspect oriented",
+    "decorator",
+    "decorators",
+    "dependency injection",
+    "dependency inversion",
+    "di",
+    "injection",
+    "inversion of control",
+    "inversify",
+    "ioc",
+    "node",
+    "typescript"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/shunueda/aspectra.git"
