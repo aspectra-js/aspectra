@@ -16,6 +16,7 @@
     "rules": {
       "recommended": true,
       "complexity": {
+        "noForEach": "off",
         "noStaticOnlyClass": "off"
       }
     }

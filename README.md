@@ -39,11 +39,23 @@
 
 
 
+- [`memoize`](#memoize)
+
+
+
 - [`sealed`](#sealed)
 
 
 
 - [`singleton`](#singleton)
+
+
+
+#### utils
+
+
+
+- [`serialize`](#serialize)
 
 
 
@@ -159,6 +171,30 @@ class Main {
 ```
 
 
+#### `memoize`
+
+
+
+Memoizes the method. Usful for optimizing expensive computations.
+
+
+
+
+
+```typescript
+class Calculator {
+  @memoize
+  public square(num: number): number {
+    console.log('Calculating...')
+    return num * num
+  }
+}
+
+const calculator = new Calculator()
+console.log(calculator.square(2)) // Calculating... 4
+console.log(calculator.square(2)) // 4
+
+
 #### `sealed`
 
 
@@ -201,6 +237,19 @@ const jane = new Person()
 
 john.id === jane.id // true
 ```
+
+
+#### `serialize`
+
+
+
+
+
+
+
+
+
+
 
 
 #### `provide`

@@ -1,5 +1,5 @@
 import { equal } from 'node:assert'
-import { describe, mock, test } from 'node:test'
+import { afterEach, describe, mock, test } from 'node:test'
 import { entry } from 'aspectra'
 
 const mockFn = mock.fn()
@@ -12,6 +12,10 @@ class Main {
 }
 
 describe(import.meta.filename, () => {
+  afterEach(() => {
+    mockFn.mock.resetCalls()
+  })
+
   test('should run main method', () => {
     equal(mockFn.mock.callCount(), 1)
   })
