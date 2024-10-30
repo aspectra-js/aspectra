@@ -20,8 +20,8 @@ export const base: MarkdownEntryOrPrimitive[] = [
   h3('Installation'),
   'Set the following options in your `tsconfig.json`:',
   blockquote([
-    '"experimentalDecorators": false, // or remove this line',
+    '`"experimentalDecorators": false,` // or remove this line',
     '',
-    '"target": "es2022" // or above',
+    '`"target": "es2022"` // or above',
   ]),
 ]
