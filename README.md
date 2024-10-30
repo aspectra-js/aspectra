@@ -16,8 +16,16 @@
 <br />
 
 
-> This package provides **stage 3 (stable) decorators.**
-> `experimentalDecorators` must be **DISABLED** in `tsconfig.json`
+### Installation
+
+
+
+Set the following options in your `tsconfig.json`:
+
+
+> "experimentalDecorators": false, // or remove this line
+> 
+> "target": "es2022" // or above
 
 
 

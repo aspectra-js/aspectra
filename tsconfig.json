@@ -4,13 +4,13 @@
     "experimentalDecorators": false,
     "isolatedModules": true,
     "jsx": "preserve",
-    "lib": ["esnext", "esnext.decorators"],
+    "lib": ["esnext"],
     "module": "preserve",
     "moduleDetection": "force",
     "moduleResolution": "bundler",
     "noEmit": true,
     "paths": {
-      "aspectra": ["src/index"],
+      "aspectra": ["src"],
       "#*": ["src/*"],
       "test/*": ["test/*"],
       "package.json": ["package.json"]
