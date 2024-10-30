@@ -284,16 +284,16 @@ john.id === jane.id // true
 Injection is contextualized. This allows a manual control of the context.
 
 `provider`s are stored in a `container`, which is registered in a `context`.
-You won't have to worry about this. By default, all `provider`s are stored
-in a primary context, however, there might be a case you want to create an
-isolated context; for example, when you want to run tests
-([Example](https://github.com/shunueda/aspectra/blob/main/test/decorators/injection/provide.ts)).
+In general, you won't have to worry about this, as by default all `provider`s
+are stored in a 'primary context', however, there might be a case you want to
+create an isolated context, for example, when you want to run tests
+([example](https://github.com/shunueda/aspectra/blob/main/test/decorators/injection/provide.ts)).
 
 
-> Use of this decorator is optional, even if you want to manually controll the
-> context. Just like the example below, you can add a static field
+> Use of this decorator is optional, even if you wish to manually control the
+> context; just like the example below, you can simply add a static field
 > `[Aspectra.context]`. However, `@contextualized` will check for the existence
-> of this field at compile time, so it is recommended for better type safety.
+> of this field at the compile time, thus recommended for better type safety.
 
 
 
@@ -303,6 +303,7 @@ const context = 'custom_context'
 @contextualized
 @provider
 class Provider {
+  // lack of this field will cause a compile-time error
   public static readonly [Aspectra.context] = context
 }
 
