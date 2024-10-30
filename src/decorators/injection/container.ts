@@ -2,7 +2,9 @@ import type { Class } from '#types'
 
 export type PrimitiveContainerIdentifier = string | symbol
 
-export type ContainerIdentifier = Class<unknown> | PrimitiveContainerIdentifier
+export type ContainerIdentifier<T = unknown> =
+  | Class<T, []>
+  | PrimitiveContainerIdentifier
 
 export class Container {
   /**
@@ -29,13 +31,13 @@ export class Container {
    */
   private readonly bindings = new Map<ContainerIdentifier, unknown>()
 
-  public bind<T>(provider: Class<T, []>): void
-  public bind<T>(
+  public register<T>(provider: Class<T, []>): void
+  public register<T>(
     provider: Class<T, []>,
     primitiveIdentifier: PrimitiveContainerIdentifier,
   ): void
 
-  public bind<T>(
+  public register<T>(
     provider: Class<T, []>,
     primitiveIdentifier?: PrimitiveContainerIdentifier,
   ) {
@@ -50,19 +52,12 @@ export class Container {
     this.bindings.set(containerIdentifier, Reflect.construct(provider, []))
   }
 
-  public resolve<T extends Class<unknown>>(identifier: ContainerIdentifier) {
-    if (identifier === Container) {
-      return this as unknown as T
-    }
+  public resolve<T>(identifier: ContainerIdentifier) {
     if (!this.bindings.has(identifier)) {
       throw new Error(
         `Provider ${Container.identifierToString(identifier)} not found`,
       )
     }
     return this.bindings.get(identifier) as T
-  }
-
-  public reset() {
-    this.bindings.clear()
   }
 }

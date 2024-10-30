@@ -1,8 +1,8 @@
 import { equal, notEqual } from 'node:assert'
 import { describe, test } from 'node:test'
-import { Context } from 'aspectra'
 import { Aspectra } from '#aspectra'
-import { contextualized } from '#decorators/contextualized'
+import { contextualized } from '#decorators/injection/contextualized'
+import { Context } from '#index'
 
 class Uncontextualized {}
 
@@ -23,12 +23,12 @@ class B {
 
 describe(import.meta.filename, () => {
   test('should get primary context for uncontextualized', () => {
-    equal(Context.get(Uncontextualized), Context.primary)
+    equal(Context.getOrRegister(Uncontextualized), Context.primary)
   })
   test('should register new contexts', () => {
-    notEqual(Context.get(A), Context.get(B))
+    notEqual(Context.getOrRegister(A), Context.getOrRegister(B))
   })
   test('should register same context', () => {
-    equal(Context.get(A), Context.get(SameContextAsA))
+    equal(Context.getOrRegister(A), Context.getOrRegister(SameContextAsA))
   })
 })

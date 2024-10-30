@@ -1,5 +1,5 @@
 import { Aspectra } from '#aspectra'
-import { Container } from '#container'
+import { Container } from '#decorators/injection/container'
 import type { Class } from '#types'
 import type { PrimitiveIdentifier } from '#types/identifier'
 
@@ -18,9 +18,12 @@ export class Context {
 
   private static readonly contexts = new Map<ContextIdentifier, Context>()
 
-  public static get(cls: Class<unknown>): Context {
+  public static getOrRegister(cls: Class<unknown>): Context {
     if (Context.isContextualized(cls)) {
       if (!Context.contexts.has(cls[Aspectra.context])) {
+        if (Aspectra.context in cls) {
+          return Context.register(cls[Aspectra.context])
+        }
         throw new Error(`Context ${String(cls[Aspectra.context])} not found`)
       }
       // biome-ignore lint/style/noNonNullAssertion: Checked for existence above
@@ -29,11 +32,15 @@ export class Context {
     return Context.primary
   }
 
-  public static register(identifier: ContextIdentifier): void {
+  public static register(identifier: ContextIdentifier): Context {
     if (!Context.contexts.has(identifier)) {
-      Context.contexts.set(identifier, new Context())
+      const context = new Context()
+      Context.contexts.set(identifier, context)
+      return context
     }
+    // biome-ignore lint/style/noNonNullAssertion: Checked for existence above
+    return Context.contexts.get(identifier)!
   }
 
-  private readonly container = new Container()
+  public readonly container = new Container()
 }

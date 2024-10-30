@@ -1,5 +1,3 @@
-import { Context } from '#context'
-
 /**
  * Well-known symbols for Aspectra.
  */
