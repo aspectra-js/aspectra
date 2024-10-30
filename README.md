@@ -66,15 +66,15 @@ Set the following options in your `tsconfig.json`:
 
 
 
-- [`contextualized`](#contextualized)
-
-
-
 - [`provide`](#provide)
 
 
 
 - [`provider`](#provider)
+
+
+
+- [`contextualized`](#contextualized)
 
 
 
@@ -116,7 +116,6 @@ farewell() // 'Goodbye from John'
 ```
 
 
-### 
 
 
 
@@ -144,7 +143,6 @@ greet() // 'Hello from John'
 ```
 
 
-### 
 
 
 
@@ -169,7 +167,6 @@ class Main {
 ```
 
 
-### 
 
 
 
@@ -194,7 +191,6 @@ class Main {
 ```
 
 
-### 
 
 
 
@@ -223,7 +219,6 @@ console.log(calculator.square(2)) // 4
 ```
 
 
-### 
 
 
 
@@ -248,7 +243,6 @@ const instance = new Derived() // throws
 ```
 
 
-### 
 
 
 
@@ -276,6 +270,69 @@ john.id === jane.id // true
 
 
 ### injection
+
+
+
+#### `provide`
+
+
+
+Inject a [`@provider`](#provider) into a class field.
+
+
+> If an `identifier` is provided (`string` or `symbol`), this will be used to
+> resolve the dependency.
+> 
+> Even if a provider is injected multiple times, **same** instance will
+> be returned every time.
+
+
+
+```typescript
+class Providers {
+  @provide(SampleProvider)
+  // notice the `!` for definite assignment
+  private readonly provider!: SampleProvider;
+
+  // with a custom name
+  @provide('custom_name')
+  private readonly namedProvider!: NamedProvider;
+
+  // this will be a same instance as the `provider` above
+  @provide(SampleProvider)
+  private readonly second_provider!: SampleProvider;
+}
+```
+
+
+
+
+
+#### `provider`
+
+
+
+Registers a class as a provider, allowing it to be injected via
+[`@provide`](#provide).
+
+
+> You can set a custom `identifier` (`string` or `symbol`).
+
+
+
+```typescript
+@provider
+class SampleProvider {
+  // ...
+}
+
+@provider('custom_name')
+class NamedSampleProvider {
+  // ...
+}
+```
+
+
 
 
 
@@ -326,70 +383,5 @@ class OutOfContextConsumer {
   // `@provide` will attemp to resolve from the primary context (and fail)
   @provide(Provider)
   public readonly provider!: Provider
-}
-```
-
-
-### 
-
-
-
-#### `provide`
-
-
-
-Inject a [`@provider`](#provider) into a class field.
-
-
-> If an `identifier` is provided (`string` or `symbol`), this will be used to
-> resolve the dependency.
-> 
-> Even if a provider is injected multiple times, **same** instance will
-> be returned every time.
-
-
-
-```typescript
-class Providers {
-  @provide(SampleProvider)
-  // notice the `!` for definite assignment
-  private readonly provider!: SampleProvider;
-
-  // with a custom name
-  @provide('custom_name')
-  private readonly namedProvider!: NamedProvider;
-
-  // this will be a same instance as the `provider` above
-  @provide(SampleProvider)
-  private readonly second_provider!: SampleProvider;
-}
-```
-
-
-### 
-
-
-
-#### `provider`
-
-
-
-Registers a class as a provider, allowing it to be injected via
-[`@provide`](#provide).
-
-
-> You can set a custom `identifier` (`string` or `symbol`).
-
-
-
-```typescript
-@provider
-class SampleProvider {
-  // ...
-}
-
-@provider('custom_name')
-class NamedSampleProvider {
-  // ...
 }
 ```

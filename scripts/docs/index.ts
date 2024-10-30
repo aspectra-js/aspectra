@@ -2,6 +2,7 @@ import { readdirSync } from 'node:fs'
 import { writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { base } from 'scripts/docs/base'
+import { sorter } from 'scripts/docs/sorter'
 import { parseDoc } from 'scripts/docs/tsdoc/parse-doc'
 import { paths } from 'scripts/paths'
 import {
@@ -22,15 +23,15 @@ const docs = readdirSync(paths.src, {
 })
   .filter(it => it.isFile())
   .flatMap(it => parseDoc(join(it.parentPath, it.name)))
-  .sort()
+  .sort(sorter)
 
 const toc: MarkdownEntryOrPrimitive = [
   h3('Features'),
-  ...Map.groupBy(docs, docs => docs.category)
+  ...Map.groupBy(docs, doc => doc.category)
     .entries()
-    .flatMap(([category, docs]) => [
+    .flatMap(([category, categoryDocs]) => [
       h4(category),
-      docs.map(doc =>
+      categoryDocs.sort(sorter).map(doc =>
         ul([
           link({
             href: `#${doc.name}`,
@@ -43,9 +44,9 @@ const toc: MarkdownEntryOrPrimitive = [
 
 const entries: MarkdownEntryOrPrimitive = docs.flatMap((doc, i) => {
   return [
-    h3(
-      i === 0 || doc.category !== docs[i - 1].category ? docs[i].category : '',
-    ),
+    i === 0 || doc.category !== docs[i - 1].category
+      ? h3(docs[i].category)
+      : '',
     h4(code(doc.name)),
     doc.description,
     doc.remarks ? blockquote(doc.remarks) : '',
