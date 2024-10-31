@@ -1,5 +1,3 @@
-import '#polyfill'
-
 export { autobind } from '#decorators/utility/autobind'
 export { bound } from '#decorators/utility/bound'
 export { Container } from '#container'
@@ -14,3 +12,14 @@ export { provide } from '#decorators/injection/provide'
 export { provider } from '#decorators/injection/provider'
 
 export type { Id, PrimitiveId } from '#types/identifier'
+
+/**
+ * [Symbol.metadata] polyfill
+ */
+declare global {
+  interface SymbolConstructor {
+    readonly metadata: unique symbol
+  }
+}
+// biome-ignore lint/suspicious/noExplicitAny: Polyfill
+;(Symbol as any).metadata ??= Symbol.for('Symbol.metadata')
