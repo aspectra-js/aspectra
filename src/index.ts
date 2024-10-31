@@ -1,4 +1,5 @@
-export { Aspectra } from '#aspectra'
+import '#polyfill'
+
 export { autobind } from '#decorators/utility/autobind'
 export { bound } from '#decorators/utility/bound'
 export { Container } from '#container'
@@ -11,4 +12,4 @@ export { singleton } from '#decorators/utility/singleton'
 export { provide } from '#decorators/injection/provide'
 export { provider } from '#decorators/injection/provider'
 
-export type { Identifier, PrimitiveIdentifier } from '#types/identifier'
+export type { Id, PrimitiveId } from '#types/identifier'

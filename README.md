@@ -29,9 +29,9 @@ Set the following options in your `tsconfig.json`:
 
 
 
-  | injection | utility |
+  | injection | types | utility |
   | - | - |
-  | [`provide`](#provide)<br>[`provider`](#provider)<br>[`contextualized`](#contextualized) | [`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoize`](#memoize)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
+  | [`provide`](#provide)<br>[`provider`](#provider)<br>[`contextualized`](#contextualized) | [`idToString`](#idToString)<br>[`isPrimitiveId`](#isPrimitiveId) | [`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoize`](#memoize)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
   
 
 
@@ -150,11 +150,44 @@ class Consumer {
 
 class OutOfContextConsumer {
   // this will fail at runtime as the context is different of that of `Provider`
-  // `@provide` will attemp to resolve from the primary context (and fail)
+  // `@provide` will attempt to resolve from the primary context (and fail)
   @provide(Provider)
   public readonly provider!: Provider
 }
 ```
+
+
+### types
+
+
+
+#### `idToString`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### `isPrimitiveId`
+
+
+
+
+
+
+
+
+
+
 
 
 ### utility

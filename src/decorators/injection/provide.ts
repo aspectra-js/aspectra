@@ -1,12 +1,12 @@
-import { Context } from '#context'
+import { Context, type ContextId } from '#context'
 import type { Class } from '#types'
-import type { Identifier } from '#types/identifier'
+import type { Id } from '#types/identifier'
 
 export function provide<T, P>(
   provider: Class<P>,
 ): (_: unknown, context: ClassFieldDecoratorContext<T, P>) => void
 export function provide<T, P>(
-  identifier: Identifier,
+  contextId: ContextId,
 ): (_: unknown, context: ClassFieldDecoratorContext<T, P>) => void
 
 /**
@@ -36,7 +36,7 @@ export function provide<T, P>(
  * }
  * ```
  */
-export function provide<T extends Class<unknown>, P>(arg: Identifier<P>) {
+export function provide<T extends Class<unknown>, P>(arg: Id<P>) {
   return (_: unknown, context: ClassFieldDecoratorContext<T, P>) => {
     context.addInitializer(function () {
       this[context.name as keyof T] = Context.getOrRegister(

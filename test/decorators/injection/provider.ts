@@ -1,22 +1,18 @@
 import { ok } from 'node:assert'
 import { describe, test } from 'node:test'
-import { Aspectra, Context, contextualized, provider } from 'aspectra'
+import { Context, contextualized, provider } from 'aspectra'
 
-const context = import.meta.filename
+const contextId = import.meta.filename
 
-@contextualized
+@contextualized(contextId)
 @provider
-class Provider {
-  public static readonly [Aspectra.context] = context
-}
+class Provider {}
 
 const identifier = 'custom_name'
 
-@contextualized
+@contextualized(contextId)
 @provider(identifier)
-class IdentifiedProvider {
-  public static readonly [Aspectra.context] = context
-}
+class IdentifiedProvider {}
 
 describe(import.meta.filename, () => {
   test('should create a provider', () => {

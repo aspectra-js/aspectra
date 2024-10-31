@@ -1,25 +1,21 @@
 import { equal, notEqual } from 'node:assert'
 import { describe, test } from 'node:test'
-import { Aspectra } from '#aspectra'
+import { Context } from '#context'
 import { contextualized } from '#decorators/injection/contextualized'
-import { Context } from '#index'
 
 class Uncontextualized {}
 
-@contextualized
-class A {
-  public static readonly [Aspectra.context] = A.name
-}
+const context = 'contex'
+const otherContext = 'other_context'
 
-@contextualized
-class SameContextAsA {
-  public static readonly [Aspectra.context] = A.name
-}
+@contextualized(context)
+class A {}
 
-@contextualized
-class B {
-  public static readonly [Aspectra.context] = B.name
-}
+@contextualized(context)
+class SameContextAsA {}
+
+@contextualized(otherContext)
+class B {}
 
 describe(import.meta.filename, () => {
   test('should get primary context for uncontextualized', () => {

@@ -1,4 +1,5 @@
-import type { Contextualized } from '#context'
+import type { ContextId } from '#context'
+import { Metadata } from '#metadata'
 import type { Class } from '#types'
 
 /**
@@ -41,13 +42,14 @@ import type { Class } from '#types'
  *
  * class OutOfContextConsumer {
  *   // this will fail at runtime as the context is different of that of `Provider`
- *   // `@provide` will attemp to resolve from the primary context (and fail)
+ *   // `@provide` will attempt to resolve from the primary context (and fail)
  *   @provide(Provider)
  *   public readonly provider!: Provider
  * }
  * ```
  */
-export function contextualized<T>(
-  target: Class<T> & Contextualized,
-  _: ClassDecoratorContext<typeof target>,
-) {}
+export function contextualized<T>(contextId: ContextId) {
+  return (target: Class<T>, _: ClassDecoratorContext<typeof target>) => {
+    Metadata.fromClass(target).contextId = contextId
+  }
+}

@@ -1,34 +1,28 @@
 import { equal, ok } from 'node:assert'
 import { describe, test } from 'node:test'
-import { Aspectra, contextualized, provide, provider } from 'aspectra'
+import { contextualized, provide, provider } from 'aspectra'
 
-const context = import.meta.filename
+const contextId = import.meta.filename
 
-@contextualized
+@contextualized(contextId)
 @provider
-class Provider {
-  public static readonly [Aspectra.context] = context
-}
+class Provider {}
 
-const identifier = 'custom_name'
+const providerId = 'custom_name'
 
-@contextualized
-@provider(identifier)
-class IdentifiedProvider {
-  public static readonly [Aspectra.context] = context
-}
+@contextualized(contextId)
+@provider(providerId)
+class IdentifiedProvider {}
 
-@contextualized
+@contextualized(contextId)
 class Providers {
-  public static readonly [Aspectra.context] = context
-
   @provide(Provider)
   public readonly provider!: Provider
 
   @provide(Provider)
   public readonly otherProvider!: Provider
 
-  @provide(identifier)
+  @provide(providerId)
   public readonly identifiedProvider!: IdentifiedProvider
 }
 

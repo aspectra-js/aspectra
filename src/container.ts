@@ -1,58 +1,32 @@
 import type { Class } from '#types'
-import type { Identifier, PrimitiveIdentifier } from '#types/identifier'
+import { type Id, type PrimitiveId, idToString } from '#types/identifier'
+
+type ContainerId = Id
 
 export class Container {
   /**
    * @internal
-   * Check if the identifier is a valid container identifier.
-   */
-  public static isPrimitiveIdentifier(
-    identifier: unknown,
-  ): identifier is PrimitiveIdentifier {
-    return typeof identifier === 'string' || typeof identifier === 'symbol'
-  }
-
-  public static identifierToString(identifier: Identifier): string {
-    return Container.isPrimitiveIdentifier(identifier)
-      ? identifier.toString()
-      : identifier.name
-  }
-
-  /**
-   * @internal
    * The internal storage for bindings.
-   * k: [Identifier]
+   * k: id
    * v: instance of the class
    */
-  private readonly bindings = new Map<Identifier, unknown>()
+  private readonly bindings = new Map<ContainerId, unknown>()
 
   public register<T>(provider: Class<T, []>): void
-  public register<T>(
-    provider: Class<T, []>,
-    primitiveIdentifier: PrimitiveIdentifier,
-  ): void
+  public register<T>(provider: Class<T, []>, containerId: PrimitiveId): void
 
-  public register<T>(
-    provider: Class<T, []>,
-    primitiveIdentifier?: PrimitiveIdentifier,
-  ) {
-    const containerIdentifier = primitiveIdentifier || provider
-    if (this.bindings.has(containerIdentifier)) {
-      throw new Error(
-        `Provider ${Container.identifierToString(
-          containerIdentifier,
-        )} already exists`,
-      )
+  public register<T>(provider: Class<T, []>, containerId?: PrimitiveId) {
+    const id = containerId || provider
+    if (this.bindings.has(id)) {
+      throw new Error(`Provider ${idToString(id)} already exists`)
     }
-    this.bindings.set(containerIdentifier, Reflect.construct(provider, []))
+    this.bindings.set(id, Reflect.construct(provider, []))
   }
 
-  public resolve<T>(identifier: Identifier) {
-    if (!this.bindings.has(identifier)) {
-      throw new Error(
-        `Provider ${Container.identifierToString(identifier)} not found`,
-      )
+  public resolve<T>(id: ContainerId) {
+    if (!this.bindings.has(id)) {
+      throw new Error(`Provider ${idToString(id)} not found`)
     }
-    return this.bindings.get(identifier) as T
+    return this.bindings.get(id) as T
   }
 }

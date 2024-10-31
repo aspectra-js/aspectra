@@ -1,33 +1,27 @@
-import { Aspectra } from '#aspectra'
 import { Container } from '#container'
+import { Metadata } from '#metadata'
 import type { Class } from '#types'
-import type { PrimitiveIdentifier } from '#types/identifier'
+import type { PrimitiveId } from '#types/identifier'
 
-export interface Contextualized extends Class<unknown> {
-  readonly [Aspectra.context]: PrimitiveIdentifier
-}
+export type ContextId = PrimitiveId
 
 export class Context {
-  private static readonly contexts = new Map<PrimitiveIdentifier, Context>()
+  private static readonly contexts = new Map<ContextId, Context>()
 
   public static readonly primary = new Context()
 
-  public static isContextualized(cls: Class<unknown>): cls is Contextualized {
-    return Aspectra.context in (cls as Contextualized)
-  }
-
   public static getOrRegister(cls: Class<unknown>): Context {
-    if (Context.isContextualized(cls)) {
-      const identifier = cls[Aspectra.context]
-      if (!Context.contexts.has(identifier)) {
-        const context = new Context()
-        Context.contexts.set(identifier, context)
-        return context
-      }
-      // biome-ignore lint/style/noNonNullAssertion: Checked for existence above
-      return Context.contexts.get(cls[Aspectra.context])!
+    const { contextId } = Metadata.fromClass(cls)
+    if (!contextId) {
+      return Context.primary
     }
-    return Context.primary
+    if (!Context.contexts.has(contextId)) {
+      const context = new Context()
+      Context.contexts.set(contextId, context)
+      return context
+    }
+    // biome-ignore lint/style/noNonNullAssertion: Checked for existence above
+    return Context.contexts.get(contextId)!
   }
 
   public readonly container = new Container()
