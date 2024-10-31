@@ -1,14 +1,9 @@
-import { name } from 'package.json'
 import { Context, type ContextId } from '#injection/context'
 import { ProviderScope } from '#injection/provider'
 import type { Class, UnknownArgs } from '#types'
 
 export class Metadata {
-  // namespace for metadata to avoid collisions
-  private static readonly namespace = Symbol(`${name}.metadata`)
-
-  public readonly contextIds = new Set<ContextId>([Context.globalId])
-  public providerScope = ProviderScope.SINGLETON
+  private static readonly namespace = Symbol(Metadata.name)
 
   public static fromClass<T>(target: Class<T, UnknownArgs>) {
     if (!target[Symbol.metadata]) {
@@ -28,4 +23,7 @@ export class Metadata {
     context.metadata[Metadata.namespace] ??= new Metadata()
     return context.metadata[Metadata.namespace] as Metadata
   }
+
+  public readonly contextIds = new Set<ContextId>([Context.global.id])
+  public providerScope = ProviderScope.SINGLETON
 }

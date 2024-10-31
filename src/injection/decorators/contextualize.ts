@@ -1,4 +1,4 @@
-import type { ContextId } from '#injection/context'
+import { Context, type ContextId } from '#injection/context'
 import { Metadata } from '#injection/metadata'
 import type { Class, UnknownArgs } from '#types'
 
@@ -46,6 +46,7 @@ export function contextualize(...contextIds: ContextId[]) {
     const metadata = Metadata.fromContext(context)
     for (const contextId of contextIds) {
       metadata.contextIds.add(contextId)
+      Context.registerIfMissing(contextId)
     }
   }
 }

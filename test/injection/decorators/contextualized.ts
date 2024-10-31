@@ -18,15 +18,15 @@ class B {}
 
 describe(import.meta.filename, () => {
   test('should get global context for uncontextualized', () => {
-    ok(Context.getOrRegisterAll(Uncontextualized))
+    ok(Context.getAllVisible(Uncontextualized))
   })
   test('should register new contexts', () => {
-    notEqual(Context.getOrRegisterAll(A), Context.getOrRegisterAll(B))
+    notEqual(Context.getAllVisible(A), Context.getAllVisible(B))
   })
   test('should register same context', () => {
     equal(
-      Context.getOrRegisterAll(A).intersection(
-        Context.getOrRegisterAll(SameContextAsA),
+      Context.getAllVisible(A).intersection(
+        Context.getAllVisible(SameContextAsA),
       ).size,
       2,
     )

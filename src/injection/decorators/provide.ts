@@ -25,15 +25,17 @@ export function provide<T extends object, P>(provider: ProviderClassType) {
   return (_: unknown, context: ClassFieldDecoratorContext<T, P>) => {
     const name = context.name as keyof T
     context.addInitializer(function () {
-      const contexts = Context.getOrRegisterAll(
+      const contexts = Context.getAllVisible(
         this.constructor as ProviderClassType,
       )
       for (const context of contexts) {
         const resolved = context.container.resolve(provider)
         if (resolved) {
           this[name] = resolved as T[keyof T]
+          return
         }
       }
+      throw new Error(`Provider ${provider.name} not found`)
     })
   }
 }
