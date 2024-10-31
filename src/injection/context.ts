@@ -1,6 +1,6 @@
 import { Container } from '#injection/container'
 import { Metadata } from '#injection/metadata'
-import type { Class, UnknownArgs } from '#types'
+import type { Class, UnknownArgs, UnknownClass } from '#types'
 
 export type ContextId = PropertyKey
 
@@ -15,7 +15,7 @@ export class Context {
 
   private constructor(public readonly id: ContextId) {}
 
-  public static getAllVisible(cls: Class<unknown, UnknownArgs>) {
+  public static getAllVisible(cls: UnknownClass) {
     const metadata = Metadata.fromClass(cls)
     const contexts = new Set<Context>()
     for (const contextId of metadata.contextIds) {

@@ -1,5 +1,7 @@
 export type UnknownArgs = unknown[]
 
+export type UnknownClass = Class<unknown, UnknownArgs>
+
 /**
  * TS2545: A mixin class must have a constructor with a single rest parameter of type 'any[]'.
  *

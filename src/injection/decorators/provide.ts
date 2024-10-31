@@ -1,5 +1,6 @@
 import { Context } from '#injection/context'
 import type { ProviderClassType } from '#injection/provider'
+import type { UnknownClass } from '#types'
 
 /**
  * Inject a [`@provider`](#provider) into a class field.
@@ -25,9 +26,7 @@ export function provide<T extends object, P>(provider: ProviderClassType) {
   return (_: unknown, context: ClassFieldDecoratorContext<T, P>) => {
     const name = context.name as keyof T
     context.addInitializer(function () {
-      const contexts = Context.getAllVisible(
-        this.constructor as ProviderClassType,
-      )
+      const contexts = Context.getAllVisible(this.constructor as UnknownClass)
       for (const context of contexts) {
         const resolved = context.container.resolve(provider)
         if (resolved) {
