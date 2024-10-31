@@ -26,7 +26,7 @@ import type { Class } from '#types'
  *   @provide(Provider)
  *   private readonly otherProvider!: Provider
  *
- *   // ↑ These will be the same instance (`singleton`)
+ *   // ^ These will be the same instance (`singleton`)
  *
  *   @provide(TransientProvider)
  *   private readonly transientProvider!: TransientProvider
@@ -34,7 +34,7 @@ import type { Class } from '#types'
  *   @provide(TransientProvider)
  *   private readonly otherTransientProvider!: TransientProvider
  *
- *   // ↑ These will be different instances (`transient`)
+ *   // ^ These will be different instances (`transient`)
  * }
  * ```
  */

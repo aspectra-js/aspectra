@@ -19,14 +19,10 @@ export function provider(id: PrimitiveId): typeof provider
  * @example
  * ```typescript
  * @provider
- * class SampleProvider {
- *   // ...
- * }
+ * class SampleProvider {}
  *
  * @provider('custom_name')
- * class NamedSampleProvider {
- *   // ...
- * }
+ * class NamedSampleProvider {}
  * ```
  */
 export function provider<T>(

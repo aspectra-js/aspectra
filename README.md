@@ -57,14 +57,10 @@ Registers a class as a provider, allowing it to be injected via
 
 ```typescript
 @provider
-class SampleProvider {
-  // ...
-}
+class SampleProvider {}
 
 @provider('custom_name')
-class NamedSampleProvider {
-  // ...
-}
+class NamedSampleProvider {}
 ```
 
 
@@ -217,7 +213,7 @@ class Providers {
   @provide(Provider)
   private readonly otherProvider!: Provider
 
-  // ↑ These will be the same instance (`singleton`)
+  // ^ These will be the same instance (`singleton`)
 
   @provide(TransientProvider)
   private readonly transientProvider!: TransientProvider
@@ -225,7 +221,7 @@ class Providers {
   @provide(TransientProvider)
   private readonly otherTransientProvider!: TransientProvider
 
-  // ↑ These will be different instances (`transient`)
+  // ^ These will be different instances (`transient`)
 }
 ```
 
