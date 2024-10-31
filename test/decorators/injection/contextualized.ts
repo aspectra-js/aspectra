@@ -1,7 +1,6 @@
 import { equal, notEqual } from 'node:assert'
 import { describe, test } from 'node:test'
-import { Context } from '#context'
-import { contextualized } from '#decorators/injection/contextualized'
+import { Context, contextualized } from 'aspectra'
 
 class Uncontextualized {}
 

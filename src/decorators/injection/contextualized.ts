@@ -48,8 +48,11 @@ import type { Class } from '#types'
  * }
  * ```
  */
-export function contextualized<T>(contextId: ContextId) {
-  return (target: Class<T>, _: ClassDecoratorContext<typeof target>) => {
-    Metadata.fromClass(target).contextId = contextId
+export function contextualized(contextId: ContextId) {
+  return (
+    target: Class<object>,
+    context: ClassDecoratorContext<typeof target>,
+  ) => {
+    Metadata.fromContext(context).contextId = contextId
   }
 }
