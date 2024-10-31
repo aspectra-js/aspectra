@@ -29,7 +29,7 @@ Set the following options in your `tsconfig.json`:
 
 
 
-  | injection | util |
+  | injection | utility |
   | - | - |
   | [`provide`](#provide)<br>[`provider`](#provider)<br>[`contextualized`](#contextualized) | [`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoize`](#memoize)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
   
@@ -157,7 +157,7 @@ class OutOfContextConsumer {
 ```
 
 
-### util
+### utility
 
 
 
