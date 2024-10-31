@@ -9,8 +9,8 @@ on:
     inputs:
       increment:
         required: true
-        description: "Select the version increment type"
-        default: "patch"
+        description: 'Select the version increment type'
+        default: 'patch'
         type: choice
         options:
           - major
@@ -25,14 +25,14 @@ jobs:
         with:
           fetch-depth: 0
       - run: |
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
+          git config user.name '${{ github.actor }}'
+          git config user.email '${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com'
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
           cache: 'pnpm'
           node-version-file: 'package.json'
-          registry-url: "https://registry.npmjs.org"
+          registry-url: 'https://registry.npmjs.org'
       - run: pnpm install --frozen-lockfile
       - run: pnpm test
       - run: pnpm build
