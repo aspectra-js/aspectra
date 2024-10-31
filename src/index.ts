@@ -11,8 +11,6 @@ export { transient } from '#decorators/injection/transient'
 export { provide } from '#decorators/injection/provide'
 export { provider } from '#decorators/injection/provider'
 
-export type { Id, PrimitiveId } from '#types/identifier'
-
 /**
  * [Symbol.metadata] polyfill
  */

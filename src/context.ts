@@ -1,9 +1,8 @@
 import { Container } from '#container'
 import { Metadata } from '#metadata'
 import type { Class } from '#types'
-import type { PrimitiveId } from '#types/identifier'
 
-export type ContextId = PrimitiveId
+export type ContextId = PropertyKey
 
 export class Context {
   private static readonly contexts = new Map<ContextId, Context>()

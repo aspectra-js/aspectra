@@ -51,16 +51,16 @@ Registers a class as a provider, allowing it to be injected via
 [`@provide`](#provide).
 
 
-> You can set a custom `identifier` (`string` or `symbol`).
 
 
 
 ```typescript
 @provider
-class SampleProvider {}
-
-@provider('custom_name')
-class NamedSampleProvider {}
+class DatabaseProvider {
+  public getAll() {
+    // ...
+  }
+}
 ```
 
 
@@ -74,11 +74,8 @@ class NamedSampleProvider {}
 Inject a [`@provider`](#provider) into a class field.
 
 
-> If an `identifier` is provided (`string` or `symbol`), this will be used to
-> resolve the dependency.
-> 
-> Even if a provider is injected multiple times, **same** instance will
-> be returned every time.
+> This decorator injects a provider into the specified class field. If injected
+> multiple times, **the same** instance will be returned each time.
 
 
 
@@ -88,11 +85,7 @@ class Providers {
   // notice the `!` for definite assignment
   private readonly provider!: SampleProvider;
 
-  // with a custom name
-  @provide('custom_name')
-  private readonly namedProvider!: NamedProvider;
-
-  // this will be a same instance as the `provider` above
+  // this will be the same instance as the `provider` above
   @provide(SampleProvider)
   private readonly second_provider!: SampleProvider;
 }
