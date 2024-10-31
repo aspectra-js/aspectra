@@ -1,4 +1,4 @@
-import type { Args, Fun } from '#types'
+import type { Fun, UnknownArgs } from '#types'
 
 /**
  * Binds a class method to its instance.
@@ -17,7 +17,7 @@ import type { Args, Fun } from '#types'
  * greet() // 'Hello from John'
  * ```
  */
-export function bound<A extends Args, R, T>(
+export function bound<A extends UnknownArgs, R, T>(
   target: Fun<A, R, T>,
   context: ClassMethodDecoratorContext<T, typeof target>,
 ) {

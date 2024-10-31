@@ -1,4 +1,4 @@
-export type Args = unknown[]
+export type UnknownArgs = unknown[]
 
 /**
  * TS2545: A mixin class must have a constructor with a single rest parameter of type 'any[]'.
@@ -12,9 +12,10 @@ export type MixinConstructorArgs = any[]
  *
  * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes}
  */
-export interface Class<T, A extends Args> {
-  new (...args: A): T
+export interface Class<T, A extends UnknownArgs> {
   prototype: Pick<T, keyof T>
+
+  new (...args: A): T
 }
 
 /**
@@ -22,4 +23,7 @@ export interface Class<T, A extends Args> {
  *
  * {@link https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Functions}
  */
-export type Fun<A extends Args, R, T = unknown> = (this: T, ...args: A) => R
+export type Fun<A extends UnknownArgs, R, T = unknown> = (
+  this: T,
+  ...args: A
+) => R

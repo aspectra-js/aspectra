@@ -1,14 +1,15 @@
-import { Provider, type ProviderClassType } from '#injection/provider'
+import type { Provider, ProviderClassType } from '#injection/provider'
 
 export class Container {
   private readonly providers = new WeakMap<ProviderClassType, Provider>()
 
-  public register(providerClass: ProviderClassType) {
-    const provider = Provider.createFromClass(providerClass)
-    if (this.providers.has(providerClass)) {
-      throw new Error(`Provider ${provider.classType.name} already exists`)
+  public register(provider: Provider) {
+    const { classType } = provider
+    if (this.providers.has(classType)) {
+      throw new Error(`Provider ${classType.name} already exists`)
     }
-    this.providers.set(providerClass, provider)
+    this.providers.set(classType, provider)
+    return provider
   }
 
   public resolve<T>(providerClass: ProviderClassType) {

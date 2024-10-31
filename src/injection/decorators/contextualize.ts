@@ -1,6 +1,6 @@
 import type { ContextId } from '#injection/context'
 import { Metadata } from '#injection/metadata'
-import type { Args, Class } from '#types'
+import type { Class, UnknownArgs } from '#types'
 
 /**
  * > Note: Read [`@provider`](#provider) and [`@provide`](#provide) first for
@@ -40,7 +40,7 @@ import type { Args, Class } from '#types'
  */
 export function contextualize(...contextIds: ContextId[]) {
   return (
-    target: Class<object, Args>,
+    target: Class<object, UnknownArgs>,
     context: ClassDecoratorContext<typeof target>,
   ) => {
     const metadata = Metadata.fromContext(context)

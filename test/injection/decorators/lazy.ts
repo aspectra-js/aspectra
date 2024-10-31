@@ -1,6 +1,6 @@
 import { equal } from 'node:assert'
 import { describe, mock, test } from 'node:test'
-import { contextualize, provide, provider } from '#index'
+import { Context, contextualize, provide, provider } from '#index'
 import { lazy } from '#injection/decorators/lazy'
 
 const contextId = import.meta.filename

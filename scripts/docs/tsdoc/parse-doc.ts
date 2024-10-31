@@ -1,5 +1,5 @@
 import { EOL } from 'node:os'
-import { dirname, parse, sep } from 'node:path'
+import { dirname, sep } from 'node:path'
 import { TSDocParser } from '@microsoft/tsdoc'
 import { Project } from 'ts-morph'
 import type { Documentation } from '../documentation'

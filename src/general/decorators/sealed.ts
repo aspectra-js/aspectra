@@ -1,4 +1,4 @@
-import type { Args, Class, MixinConstructorArgs } from '#types'
+import type { Class, MixinConstructorArgs } from '#types'
 
 /**
  * Seals a class, preventing it from being extended.

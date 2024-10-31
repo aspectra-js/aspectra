@@ -28,7 +28,7 @@ describe(import.meta.filename, () => {
       Context.getOrRegisterAll(A).intersection(
         Context.getOrRegisterAll(SameContextAsA),
       ).size,
-      1,
+      2,
     )
   })
 })

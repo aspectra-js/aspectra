@@ -1,4 +1,4 @@
-import type { Args, Fun } from '#types'
+import type { Fun, UnknownArgs } from '#types'
 
 /**
  * Automatically invokes a decorated method.
@@ -14,7 +14,7 @@ import type { Args, Fun } from '#types'
  * }
  * ```
  **/
-export function main<A extends Args, R, T>(
+export function main<A extends UnknownArgs, R, T>(
   target: Fun<A, R, T>,
   context: ClassMethodDecoratorContext<T, typeof target> & {
     static: true

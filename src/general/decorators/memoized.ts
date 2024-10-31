@@ -1,5 +1,5 @@
 import { type Serializable, serialize } from '#general/serialize'
-import type { Args, Fun } from '#types'
+import type { Fun, UnknownArgs } from '#types'
 
 /**
  * Memoizes the method. Usful for optimizing expensive computations.
@@ -18,7 +18,7 @@ import type { Args, Fun } from '#types'
  * console.log(calculator.square(2)) // 4
  * ```
  */
-export function memoized<T, U extends Args & Serializable, R>(
+export function memoized<T, U extends UnknownArgs & Serializable, R>(
   target: Fun<U, R, T>,
   context: ClassMethodDecoratorContext<T, typeof target>,
 ) {

@@ -1,4 +1,5 @@
 import { Context } from '#index'
+import { Provider } from '#injection/provider'
 import type { Class } from '#types'
 
 /**
@@ -20,8 +21,9 @@ export function provider<T>(
   context: ClassDecoratorContext<typeof target>,
 ) {
   context.addInitializer(function () {
+    const provider = Provider.createFromClass(target)
     Context.getOrRegisterAll(this).forEach(context => {
-      context.container.register(target)
+      context.container.register(provider)
     })
   })
 }

@@ -1,6 +1,5 @@
 import { Metadata } from '#injection/metadata'
 import { type ProviderClassType, ProviderScope } from '#injection/provider'
-import type { Class } from '#types'
 
 /**
  * Marks a class as lazy-loaded.
