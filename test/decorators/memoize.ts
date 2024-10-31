@@ -1,11 +1,11 @@
 import { equal } from 'node:assert'
 import { afterEach, describe, mock, test } from 'node:test'
-import { memoize } from 'aspectra'
+import { memoized } from 'aspectra'
 
 const mockFn = mock.fn()
 
 class Test {
-  @memoize public square(num: number) {
+  @memoized public square(num: number) {
     mockFn()
     return num ** 2
   }

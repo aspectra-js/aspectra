@@ -7,8 +7,7 @@ import { type Serializable, serialize } from '#utils/serialize'
  * @example
  * ```typescript
  * class Calculator {
- *   @memoize
- *   public square(num: number): number {
+ *   @memoized public square(num: number): number {
  *     console.log('Calculating...')
  *     return num * num
  *   }
@@ -19,7 +18,7 @@ import { type Serializable, serialize } from '#utils/serialize'
  * console.log(calculator.square(2)) // 4
  * ```
  */
-export function memoize<T, U extends Args & Serializable, R>(
+export function memoized<T, U extends Args & Serializable, R>(
   target: Fun<U, R, T>,
   context: ClassMethodDecoratorContext<T, typeof target>,
 ) {

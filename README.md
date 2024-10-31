@@ -31,7 +31,7 @@ This library provides **stable (stage 3) decorators**. Set the following options
 
   | injection | utility |
   | - | - |
-  | [`provider`](#provider)<br>[`provide`](#provide)<br>[`contextualize`](#contextualize)<br>[`lazy`](#lazy)<br>[`transient`](#transient) | [`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoize`](#memoize)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
+  | [`provider`](#provider)<br>[`provide`](#provide)<br>[`contextualize`](#contextualize)<br>[`lazy`](#lazy)<br>[`transient`](#transient) | [`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoized`](#memoized)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
   
 
 
@@ -307,7 +307,7 @@ class Main {
 
 
 
-#### `memoize`
+#### `memoized`
 
 
 
@@ -319,8 +319,7 @@ Memoizes the method. Usful for optimizing expensive computations.
 
 ```typescript
 class Calculator {
-  @memoize
-  public square(num: number): number {
+  @memoized public square(num: number): number {
     console.log('Calculating...')
     return num * num
   }
