@@ -4,6 +4,7 @@ export enum ProviderScope {
   SINGLETON = 'singleton',
   TRANSIENT = 'transient',
   LAZY = 'lazy',
+  DEFAULT = ProviderScope.SINGLETON,
 }
 
 export abstract class Provider {

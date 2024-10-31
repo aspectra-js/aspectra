@@ -35,5 +35,11 @@ export function lazy<T>(
   target: Class<T>,
   context: ClassDecoratorContext<typeof target>,
 ) {
-  Metadata.fromContext(context).providerScope = ProviderScope.LAZY
+  const metadata = Metadata.fromContext(context)
+  if (metadata.providerScope !== ProviderScope.DEFAULT) {
+    throw new Error(
+      `Provider ${target.name} is already marked as ${metadata.providerScope}.`,
+    )
+  }
+  metadata.providerScope = ProviderScope.LAZY
 }
