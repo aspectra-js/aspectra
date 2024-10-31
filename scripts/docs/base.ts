@@ -12,6 +12,7 @@ export const base: MarkdownEntryOrPrimitive[] = [
   center(`<h3>${name}</h3>`),
   center(description),
   h3('Installation'),
-  'Set the following options in your `tsconfig.json`:',
-  blockquote(['`"experimentalDecorators": false,` // or remove this line']),
+  'This library provides **stable (stage 3) decorators**. ' +
+    'Set the following options in your `tsconfig.json`:',
+  blockquote(['`"experimentalDecorators": false` // or remove this line']),
 ]

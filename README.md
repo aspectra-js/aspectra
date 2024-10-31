@@ -17,10 +17,10 @@
 
 
 
-Set the following options in your `tsconfig.json`:
+This library provides **stable (stage 3) decorators**. Set the following options in your `tsconfig.json`:
 
 
-> `"experimentalDecorators": false,` // or remove this line
+> `"experimentalDecorators": false` // or remove this line
 
 
 
@@ -31,7 +31,7 @@ Set the following options in your `tsconfig.json`:
 
   | injection | utility |
   | - | - |
-  | [`provide`](#provide)<br>[`provider`](#provider)<br>[`contextualize`](#contextualize)<br>[`lazy`](#lazy)<br>[`transient`](#transient) | [`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoize`](#memoize)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
+  | [`provider`](#provider)<br>[`provide`](#provide)<br>[`contextualize`](#contextualize)<br>[`lazy`](#lazy)<br>[`transient`](#transient) | [`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoize`](#memoize)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
   
 
 
@@ -40,6 +40,34 @@ Set the following options in your `tsconfig.json`:
 
 
 ### injection
+
+
+
+#### `provider`
+
+
+
+Registers a class as a provider, allowing it to be injected via
+[`@provide`](#provide).
+
+
+> You can set a custom `identifier` (`string` or `symbol`).
+
+
+
+```typescript
+@provider
+class SampleProvider {
+  // ...
+}
+
+@provider('custom_name')
+class NamedSampleProvider {
+  // ...
+}
+```
+
+
 
 
 
@@ -71,34 +99,6 @@ class Providers {
   // this will be a same instance as the `provider` above
   @provide(SampleProvider)
   private readonly second_provider!: SampleProvider;
-}
-```
-
-
-
-
-
-#### `provider`
-
-
-
-Registers a class as a provider, allowing it to be injected via
-[`@provide`](#provide).
-
-
-> You can set a custom `identifier` (`string` or `symbol`).
-
-
-
-```typescript
-@provider
-class SampleProvider {
-  // ...
-}
-
-@provider('custom_name')
-class NamedSampleProvider {
-  // ...
 }
 ```
 
@@ -156,13 +156,34 @@ class OutOfContextConsumer {
 
 
 
+Marks a class as lazy-loaded.
+
+
+> All providers are by default instantiated when [`@provide`](#provide)d. When a class is
+> marked [`@lazy`](#lazy), it will only be instantiated when it is first requested.
 
 
 
+```typescript
+@provider
+class Provider {}
 
+@lazy
+@provider
+class LazyProvider {}
 
+class Providers {
+  // `Provider` will be instantiated immediately
+  @provide(Provider)
+  private readonly provider!: Provider
 
+  @provide(LazyProvider)
+  private readonly lazyProvider!: LazyProvider
+}
 
+// `LazyProvider` will be instantiated here
+const providers = new Providers()
+```
 
 
 
@@ -172,13 +193,41 @@ class OutOfContextConsumer {
 
 
 
+Marks a class as transient.
+
+
+> All providers are by default `singleton`, meaning they are instantiated
+> once and reused. However, [`@transient`](#transient) classes will be
+> instantiated every time they are requested.
 
 
 
+```typescript
+@provider
+class Provider {}
 
+@transient
+@provider
+class TransientProvider {}
 
+class Providers {
+  @provide(Provider)
+  private readonly provider!: Provider
 
+  @provide(Provider)
+  private readonly otherProvider!: Provider
 
+  // ↑ These will be the same instance (`singleton`)
+
+  @provide(TransientProvider)
+  private readonly transientProvider!: TransientProvider
+
+  @provide(TransientProvider)
+  private readonly otherTransientProvider!: TransientProvider
+
+  // ↑ These will be different instances (`transient`)
+}
+```
 
 
 ### utility
