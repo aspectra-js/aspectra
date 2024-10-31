@@ -6,7 +6,7 @@ import type { Class } from '#types'
  * > Note: Read [`@provider`](#provider) and [`@provide`](#provide) first for
  * > better understanding.
  *
- * Injection is contextualized. [`@contextualized`] allows a manual control of
+ * Injection is contextualized. `@contextualize` allows a manual control of
  * the context.
  *
  * `provider`s are stored in a `container`, which is registered in a `context`.
@@ -19,11 +19,11 @@ import type { Class } from '#types'
  * ```typescript
  * const contextId = 'custom_context'
  *
- * @contextualized(contextId)
+ * @contextualize(contextId)
  * @provider
  * class Provider {}
  *
- * @contextualized(contextId)
+ * @contextualize(contextId)
  * class Consumer {
  *   // this will be resolved from the same context as `Provider`
  *   @provide(Provider)
@@ -38,7 +38,7 @@ import type { Class } from '#types'
  * }
  * ```
  */
-export function contextualized(contextId: ContextId) {
+export function contextualize(contextId: ContextId) {
   return (
     target: Class<object>,
     context: ClassDecoratorContext<typeof target>,

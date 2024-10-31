@@ -1,16 +1,16 @@
 import { ok } from 'node:assert'
 import { describe, test } from 'node:test'
-import { Context, contextualized, provider } from 'aspectra'
+import { Context, contextualize, provider } from 'aspectra'
 
 const contextId = import.meta.filename
 
-@contextualized(contextId)
+@contextualize(contextId)
 @provider
 class Provider {}
 
 const identifier = 'custom_name'
 
-@contextualized(contextId)
+@contextualize(contextId)
 @provider(identifier)
 class IdentifiedProvider {}
 

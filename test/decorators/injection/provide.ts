@@ -1,20 +1,20 @@
 import { equal, ok } from 'node:assert'
 import { describe, test } from 'node:test'
-import { contextualized, provide, provider } from 'aspectra'
+import { contextualize, provide, provider } from 'aspectra'
 
 const contextId = import.meta.filename
 
-@contextualized(contextId)
+@contextualize(contextId)
 @provider
 class Provider {}
 
 const providerId = 'custom_name'
 
-@contextualized(contextId)
+@contextualize(contextId)
 @provider(providerId)
 class IdentifiedProvider {}
 
-@contextualized(contextId)
+@contextualize(contextId)
 class Providers {
   @provide(Provider)
   public readonly provider!: Provider

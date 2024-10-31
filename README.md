@@ -31,7 +31,7 @@ Set the following options in your `tsconfig.json`:
 
   | injection | utility |
   | - | - |
-  | [`provide`](#provide)<br>[`provider`](#provider)<br>[`contextualized`](#contextualized) | [`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoize`](#memoize)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
+  | [`provide`](#provide)<br>[`provider`](#provider)<br>[`contextualize`](#contextualize) | [`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoize`](#memoize)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
   
 
 
@@ -106,14 +106,14 @@ class NamedSampleProvider {
 
 
 
-#### `contextualized`
+#### `contextualize`
 
 
 
 > Note: Read [`@provider`](#provider) and [`@provide`](#provide) first for
 > better understanding.
 
-Injection is contextualized. [`@contextualized`] allows a manual control of
+Injection is contextualized. `@contextualize` allows a manual control of
 the context.
 
 `provider`s are stored in a `container`, which is registered in a `context`.
@@ -129,11 +129,11 @@ create an isolated context, for example, when you want to run tests
 ```typescript
 const contextId = 'custom_context'
 
-@contextualized(contextId)
+@contextualize(contextId)
 @provider
 class Provider {}
 
-@contextualized(contextId)
+@contextualize(contextId)
 class Consumer {
   // this will be resolved from the same context as `Provider`
   @provide(Provider)

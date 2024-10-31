@@ -1,19 +1,19 @@
 import { equal, notEqual } from 'node:assert'
 import { describe, test } from 'node:test'
-import { Context, contextualized } from 'aspectra'
+import { Context, contextualize } from 'aspectra'
 
 class Uncontextualized {}
 
 const context = 'contex'
 const otherContext = 'other_context'
 
-@contextualized(context)
+@contextualize(context)
 class A {}
 
-@contextualized(context)
+@contextualize(context)
 class SameContextAsA {}
 
-@contextualized(otherContext)
+@contextualize(otherContext)
 class B {}
 
 describe(import.meta.filename, () => {
