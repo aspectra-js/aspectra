@@ -31,7 +31,7 @@ Set the following options in your `tsconfig.json`:
 
   | injection | util |
   | - | - |
-  | `provide`<br>`provider`<br>`contextualized` | `autobind`<br>`bound`<br>`main`<br>`memoize`<br>`sealed`<br>`singleton` |
+  | [`provide`](#provide)<br>[`provider`](#provider)<br>[`contextualized`](#contextualized) | [`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoize`](#memoize)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
   
 
 

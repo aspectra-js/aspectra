@@ -33,7 +33,9 @@ const toc: MarkdownEntryOrPrimitive = [
   | ${grouped.map(([category]) => category).join(' | ')} |
   | - | - |
   | ${grouped
-    .map(([_, docs]) => docs.map(doc => `\`${doc.name}\``).join('<br>'))
+    .map(([_, docs]) =>
+      docs.map(doc => `[\`${doc.name}\`](#${doc.name})`).join('<br>'),
+    )
     .join(' | ')} |
   `,
 ]
