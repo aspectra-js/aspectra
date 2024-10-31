@@ -38,11 +38,14 @@ import type { Args, Class } from '#types'
  * }
  * ```
  */
-export function contextualize(contextId: ContextId) {
+export function contextualize(...contextIds: ContextId[]) {
   return (
     target: Class<object, Args>,
     context: ClassDecoratorContext<typeof target>,
   ) => {
-    Metadata.fromContext(context).contextId = contextId
+    const metadata = Metadata.fromContext(context)
+    for (const contextId of contextIds) {
+      metadata.contextIds.add(contextId)
+    }
   }
 }

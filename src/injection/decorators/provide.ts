@@ -23,10 +23,17 @@ import type { ProviderClassType } from '#injection/provider'
  */
 export function provide<T extends object, P>(provider: ProviderClassType) {
   return (_: unknown, context: ClassFieldDecoratorContext<T, P>) => {
+    const name = context.name as keyof T
     context.addInitializer(function () {
-      this[context.name as keyof T] = Context.getOrRegister(
+      const contexts = Context.getOrRegisterAll(
         this.constructor as ProviderClassType,
-      ).container.resolve(provider) as T[keyof T]
+      )
+      for (const context of contexts) {
+        const resolved = context.container.resolve(provider)
+        if (resolved) {
+          this[name] = resolved as T[keyof T]
+        }
+      }
     })
   }
 }

@@ -20,6 +20,8 @@ export function provider<T>(
   context: ClassDecoratorContext<typeof target>,
 ) {
   context.addInitializer(function () {
-    Context.getOrRegister(this).container.register(target)
+    Context.getOrRegisterAll(this).forEach(context => {
+      context.container.register(target)
+    })
   })
 }

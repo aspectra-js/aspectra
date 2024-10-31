@@ -26,17 +26,17 @@ class Consumer {
 }
 
 describe(import.meta.filename, () => {
-  // test('should not create at initialization', () => {
-  //   equal(mockFn.mock.callCount(), 0)
-  // })
+  test('should not create at initialization', () => {
+    equal(mockFn.mock.callCount(), 0)
+  })
 
   test('should create new provider on access', () => {
     new Consumer()
     equal(mockFn.mock.callCount(), 1)
   })
 
-  // test('should not create new provider every time', () => {
-  //   const { provider, otherProvider } = new Consumer()
-  //   equal(provider, otherProvider)
-  // })
+  test('should not create new provider every time', () => {
+    const { provider, otherProvider } = new Consumer()
+    equal(provider, otherProvider)
+  })
 })

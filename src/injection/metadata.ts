@@ -26,6 +26,7 @@ export class Metadata {
     return context.metadata[Metadata.namespace] as Metadata
   }
 
-  public contextId?: ContextId
+  // initialize at [Context::getOrRegister] to avoid circular dependency
+  public readonly contextIds = new Set<ContextId>()
   public providerScope = ProviderScope.SINGLETON
 }

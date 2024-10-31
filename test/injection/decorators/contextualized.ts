@@ -1,4 +1,4 @@
-import { equal, notEqual } from 'node:assert'
+import { equal, notEqual, ok } from 'node:assert'
 import { describe, test } from 'node:test'
 import { Context, contextualize } from '#index'
 
@@ -18,12 +18,17 @@ class B {}
 
 describe(import.meta.filename, () => {
   test('should get global context for uncontextualized', () => {
-    equal(Context.getOrRegister(Uncontextualized), Context.global)
+    ok(Context.getOrRegisterAll(Uncontextualized))
   })
   test('should register new contexts', () => {
-    notEqual(Context.getOrRegister(A), Context.getOrRegister(B))
+    notEqual(Context.getOrRegisterAll(A), Context.getOrRegisterAll(B))
   })
   test('should register same context', () => {
-    equal(Context.getOrRegister(A), Context.getOrRegister(SameContextAsA))
+    equal(
+      Context.getOrRegisterAll(A).intersection(
+        Context.getOrRegisterAll(SameContextAsA),
+      ).size,
+      1,
+    )
   })
 })

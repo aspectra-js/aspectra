@@ -10,6 +10,10 @@ class Provider {}
 
 describe(import.meta.filename, () => {
   test('should create a provider', () => {
-    ok(Context.getOrRegister(Provider).container.resolve(Provider))
+    ok(
+      [...Context.getOrRegisterAll(Provider)].some(context =>
+        context.container.resolve(Provider),
+      ),
+    )
   })
 })

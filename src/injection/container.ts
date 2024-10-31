@@ -12,10 +12,6 @@ export class Container {
   }
 
   public resolve<T>(providerClass: ProviderClassType) {
-    const resolved = this.providers.get(providerClass)?.provide<T>()
-    if (!resolved) {
-      throw new Error(`Provider ${providerClass.name} not found`)
-    }
-    return resolved
+    return this.providers.get(providerClass)?.provide<T>()
   }
 }
