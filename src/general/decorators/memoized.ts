@@ -1,5 +1,5 @@
+import { type Serializable, serialize } from '#general/serialize'
 import type { Args, Fun } from '#types'
-import { type Serializable, serialize } from '#utils/serialize'
 
 /**
  * Memoizes the method. Usful for optimizing expensive computations.

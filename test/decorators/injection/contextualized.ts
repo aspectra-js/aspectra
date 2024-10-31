@@ -17,8 +17,8 @@ class SameContextAsA {}
 class B {}
 
 describe(import.meta.filename, () => {
-  test('should get primary context for uncontextualized', () => {
-    equal(Context.getOrRegister(Uncontextualized), Context.primary)
+  test('should get global context for uncontextualized', () => {
+    equal(Context.getOrRegister(Uncontextualized), Context.global)
   })
   test('should register new contexts', () => {
     notEqual(Context.getOrRegister(A), Context.getOrRegister(B))

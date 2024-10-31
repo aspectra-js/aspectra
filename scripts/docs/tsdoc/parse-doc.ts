@@ -1,5 +1,5 @@
 import { EOL } from 'node:os'
-import { parse, sep } from 'node:path'
+import { dirname, parse, sep } from 'node:path'
 import { TSDocParser } from '@microsoft/tsdoc'
 import { Project } from 'ts-morph'
 import type { Documentation } from '../documentation'
@@ -28,7 +28,7 @@ export function parseDoc(path: string): Documentation[] {
         return
       }
       return {
-        category: parse(path).dir.split(sep).at(-1) || '',
+        category: categorize(path),
         name: fun.getName() || '',
         path,
         description: render(context.docComment.summarySection)?.trim() || '',
@@ -45,4 +45,13 @@ export function parseDoc(path: string): Documentation[] {
       } satisfies Documentation
     })
     .filter(Boolean) || []) as Documentation[]
+}
+
+function categorize(path: string): string {
+  const segs = dirname(path).split(sep)
+  const last = segs.at(-1)
+  if (last === 'decorators') {
+    return segs[segs.length - 2]
+  }
+  return last || ''
 }

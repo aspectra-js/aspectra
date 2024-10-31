@@ -11,7 +11,7 @@ import type { Class } from '#types'
  *
  * `provider`s are stored in a `container`, which is registered in a `context`.
  * In general, you won't have to worry about this, as by default all `provider`s
- * are stored in a "primary context", however, there might be a case you want to
+ * are stored in a "global context", however, there might be a case you want to
  * create an isolated context, for example, when you want to run tests
  * ([example](https://github.com/shunueda/aspectra/blob/main/test/decorators/injection/provide.ts)).
  *
@@ -32,7 +32,7 @@ import type { Class } from '#types'
  *
  * class OutOfContextConsumer {
  *   // this will fail at runtime as the context is different of that of `Provider`
- *   // `@provide` will attempt to resolve from the primary context (and fail)
+ *   // `@provide` will attempt to resolve from the global context (and fail)
  *   @provide(Provider)
  *   public readonly provider!: Provider
  * }

@@ -5,14 +5,14 @@ import type { Class } from '#types'
 export type ContextId = PropertyKey
 
 export class Context {
-  private static readonly contexts = new Map<ContextId, Context>()
+  public static readonly global = new Context()
 
-  public static readonly primary = new Context()
+  private static readonly contexts = new Map<ContextId, Context>()
 
   public static getOrRegister(cls: Class<unknown>): Context {
     const { contextId } = Metadata.fromClass(cls)
     if (!contextId) {
-      return Context.primary
+      return Context.global
     }
     if (!Context.contexts.has(contextId)) {
       const context = new Context()
