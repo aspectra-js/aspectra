@@ -1,7 +1,7 @@
 {
   "name": "aspectra",
   "version": "0.1.5",
-  "description": "The decorator library.",
+  "description": "The decorator framework.",
   "keywords": [
     "aspect oriented",
     "decorator",

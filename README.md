@@ -10,7 +10,7 @@
 <div align='center'><h3>aspectra</h3></div>
 
 
-<div align='center'>The decorator library.</div>
+<div align='center'>The decorator framework.</div>
 
 
 ### Installation
