@@ -1,6 +1,6 @@
 import { equal, notEqual } from 'node:assert'
 import { describe, test } from 'node:test'
-import { Context, contextualize } from 'aspectra'
+import { Context, contextualize } from '#index'
 
 class Uncontextualized {}
 

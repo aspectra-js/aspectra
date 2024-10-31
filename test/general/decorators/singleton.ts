@@ -1,6 +1,6 @@
 import { deepStrictEqual, equal } from 'node:assert'
 import { describe, test } from 'node:test'
-import { singleton } from 'aspectra'
+import { singleton } from '#index'
 
 @singleton
 class Test {

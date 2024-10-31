@@ -1,6 +1,6 @@
 import { equal, ok } from 'node:assert'
 import { describe, test } from 'node:test'
-import { contextualize, provide, provider } from 'aspectra'
+import { contextualize, provide, provider } from '#index'
 
 const contextId = import.meta.filename
 

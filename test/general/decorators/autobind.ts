@@ -1,6 +1,6 @@
 import { equal } from 'node:assert'
 import { describe, test } from 'node:test'
-import { autobind } from 'aspectra'
+import { autobind } from '#index'
 
 @autobind
 class Test {

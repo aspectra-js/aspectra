@@ -1,6 +1,6 @@
 import { equal } from 'node:assert'
 import { afterEach, describe, mock, test } from 'node:test'
-import { main } from 'aspectra'
+import { main } from '#index'
 
 const mockFn = mock.fn()
 

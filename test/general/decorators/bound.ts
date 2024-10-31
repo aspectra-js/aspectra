@@ -1,6 +1,6 @@
 import { equal } from 'node:assert'
 import { describe, test } from 'node:test'
-import { bound } from 'aspectra'
+import { bound } from '#index'
 
 class Test {
   constructor(private value: number) {}

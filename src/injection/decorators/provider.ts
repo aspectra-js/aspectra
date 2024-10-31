@@ -16,7 +16,7 @@ import type { Class } from '#types'
  * ```
  */
 export function provider<T>(
-  target: Class<T>,
+  target: Class<T, []>,
   context: ClassDecoratorContext<typeof target>,
 ) {
   context.addInitializer(function () {
