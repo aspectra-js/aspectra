@@ -31,7 +31,7 @@ Set the following options in your `tsconfig.json`:
 
   | injection | utility |
   | - | - |
-  | [`provide`](#provide)<br>[`provider`](#provider)<br>[`contextualize`](#contextualize)<br>[`transient`](#transient) | [`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoize`](#memoize)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
+  | [`provide`](#provide)<br>[`provider`](#provider)<br>[`contextualize`](#contextualize)<br>[`lazy`](#lazy)<br>[`transient`](#transient) | [`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoize`](#memoize)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
   
 
 
@@ -147,6 +147,22 @@ class OutOfContextConsumer {
   public readonly provider!: Provider
 }
 ```
+
+
+
+
+
+#### `lazy`
+
+
+
+
+
+
+
+
+
+
 
 
 

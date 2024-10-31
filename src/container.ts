@@ -1,5 +1,6 @@
 import { Metadata } from '#metadata'
 import {
+  LazyProvider,
   type Provider,
   ProviderScope,
   SingletonProvider,
@@ -32,6 +33,10 @@ export class Container {
         this.providers.set(id, new TransientProvider(provider))
         break
       }
+      case ProviderScope.LAZY: {
+        this.providers.set(id, new LazyProvider(provider))
+        break
+      }
       default: {
         throw new Error(`Unknown provider scope: ${context.providerScope}`)
       }
@@ -48,6 +53,13 @@ export class Container {
     }
     if (provider instanceof TransientProvider) {
       return new provider.classType() as T
+    }
+    if (provider instanceof LazyProvider) {
+      if (!provider.initialized) {
+        provider.instance = new provider.classType()
+        provider.initialized = true
+      }
+      return provider.instance as T
     }
     throw new Error(`Unknown provider type ${provider} for ${idToString(id)}`)
   }
