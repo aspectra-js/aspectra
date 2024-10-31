@@ -113,36 +113,28 @@ class NamedSampleProvider {
 > Note: Read [`@provider`](#provider) and [`@provide`](#provide) first for
 > better understanding.
 
-Injection is contextualized. This allows a manual control of the context.
+Injection is contextualized. [`@contextualized`] allows a manual control of
+the context.
 
 `provider`s are stored in a `container`, which is registered in a `context`.
 In general, you won't have to worry about this, as by default all `provider`s
-are stored in a 'primary context', however, there might be a case you want to
+are stored in a "primary context", however, there might be a case you want to
 create an isolated context, for example, when you want to run tests
 ([example](https://github.com/shunueda/aspectra/blob/main/test/decorators/injection/provide.ts)).
 
 
-> Use of this decorator is optional, even if you wish to manually control the
-> context; just like the example below, you can simply add a static field
-> `[Aspectra.context]`. However, `@contextualized` will check for the existence
-> of this field at the compile time, thus recommended for better type safety.
 
 
 
 ```typescript
-const context = 'custom_context'
+const contextId = 'custom_context'
 
-@contextualized
+@contextualized(contextId)
 @provider
-class Provider {
-  // lack of this field will cause a compile-time error
-  public static readonly [Aspectra.context] = context
-}
+class Provider {}
 
-@contextualized
+@contextualized(contextId)
 class Consumer {
-  public static readonly [Aspectra.context] = context
-
   // this will be resolved from the same context as `Provider`
   @provide(Provider)
   public readonly provider!: Provider
