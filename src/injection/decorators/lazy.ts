@@ -1,5 +1,6 @@
 import { Metadata } from '#injection/metadata'
 import { type ProviderClassType, ProviderScope } from '#injection/provider'
+import { Contract } from '#internal/contract'
 
 /**
  * Marks a class as lazy-loaded.
@@ -35,10 +36,6 @@ export function lazy(
   context: ClassDecoratorContext<typeof target>,
 ) {
   const metadata = Metadata.fromContext(context)
-  if (metadata.providerScope !== ProviderScope.DEFAULT) {
-    throw new Error(
-      `Provider ${target.name} is already marked as ${metadata.providerScope}.`,
-    )
-  }
+  Contract.MULTIPLE_PROVIDER_SCOPE_MODIFIER.enforce(target, metadata, lazy.name)
   metadata.providerScope = ProviderScope.LAZY
 }

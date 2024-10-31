@@ -1,5 +1,6 @@
 import { Context } from '#injection/context'
 import type { ProviderClassType } from '#injection/provider'
+import { Contract } from '#internal/contract'
 import type { UnknownClass } from '#types'
 
 /**
@@ -34,7 +35,7 @@ export function provide<T extends object, P>(provider: ProviderClassType) {
           return
         }
       }
-      throw new Error(`Provider ${provider.name} not found`)
+      Contract.PROVIDER_NOT_FOUND.enforce(this[name], name, contexts)
     })
   }
 }
