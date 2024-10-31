@@ -1,4 +1,4 @@
-import { Context } from 'aspectra'
+import { Context } from '#index'
 import type { Class } from '#types'
 
 /**

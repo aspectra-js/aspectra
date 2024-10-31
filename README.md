@@ -29,7 +29,7 @@ This library provides **stable (stage 3) decorators**. Set the following options
 
 
 
-  | injection | utility |
+  | injection | general |
   | - | - |
   | [`provider`](#provider)<br>[`provide`](#provide)<br>[`contextualize`](#contextualize)<br>[`lazy`](#lazy)<br>[`transient`](#transient) | [`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoized`](#memoized)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
   
@@ -219,7 +219,7 @@ class Providers {
 ```
 
 
-### utility
+### general
 
 
 

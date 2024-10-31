@@ -1,7 +1,7 @@
 import { equal } from 'node:assert'
 import { describe, mock, test } from 'node:test'
 import { contextualize, provide, provider } from 'aspectra'
-import { lazy } from '#decorators/injection/lazy'
+import { lazy } from '#injection/lazy'
 
 const contextId = import.meta.filename
 
