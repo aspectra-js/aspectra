@@ -1,7 +1,7 @@
 import { Provider, type ProviderClassType } from '#injection/provider'
 
 export class Container {
-  private readonly providers = new Map<ProviderClassType, Provider>()
+  private readonly providers = new WeakMap<ProviderClassType, Provider>()
 
   public register(providerClass: ProviderClassType) {
     const provider = Provider.createFromClass(providerClass)
