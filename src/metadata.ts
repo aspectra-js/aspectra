@@ -1,5 +1,6 @@
 import { name } from 'package.json'
 import type { ContextId } from '#context'
+import { ProviderScope } from '#provider'
 import type { Class } from '#types'
 
 export class Metadata {
@@ -20,4 +21,5 @@ export class Metadata {
   }
 
   public contextId?: ContextId
+  public providerScope = ProviderScope.SINGLETON
 }

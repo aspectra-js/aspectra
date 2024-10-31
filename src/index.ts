@@ -9,6 +9,7 @@ export { main } from '#decorators/utility/main'
 export { memoize } from '#decorators/utility/memoize'
 export { sealed } from '#decorators/utility/sealed'
 export { singleton } from '#decorators/utility/singleton'
+export { transient } from '#decorators/injection/transient'
 export { provide } from '#decorators/injection/provide'
 export { provider } from '#decorators/injection/provider'
 
