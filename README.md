@@ -21,8 +21,6 @@ Set the following options in your `tsconfig.json`:
 
 
 > `"experimentalDecorators": false,` // or remove this line
-> 
-> `"target": "es2022"` // or above
 
 
 

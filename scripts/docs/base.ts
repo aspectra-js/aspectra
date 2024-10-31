@@ -1,13 +1,7 @@
 import { description, name } from 'package.json'
 import { center, comment } from 'scripts/docs/utils'
 import { paths } from 'scripts/paths'
-import {
-  type MarkdownEntryOrPrimitive,
-  blockquote,
-  code,
-  h3,
-  h4,
-} from 'ts-markdown'
+import { type MarkdownEntryOrPrimitive, blockquote, h3 } from 'ts-markdown'
 
 export const base: MarkdownEntryOrPrimitive[] = [
   comment(`
@@ -19,9 +13,5 @@ export const base: MarkdownEntryOrPrimitive[] = [
   center(description),
   h3('Installation'),
   'Set the following options in your `tsconfig.json`:',
-  blockquote([
-    '`"experimentalDecorators": false,` // or remove this line',
-    '',
-    '`"target": "es2022"` // or above',
-  ]),
+  blockquote(['`"experimentalDecorators": false,` // or remove this line']),
 ]
