@@ -1,4 +1,4 @@
-import type { Class, MixinConstructorArgs } from '#types'
+import type { Args, Class, MixinConstructorArgs } from '#types'
 
 /**
  * Seals a class, preventing it from being extended.
@@ -16,7 +16,7 @@ import type { Class, MixinConstructorArgs } from '#types'
  * const instance = new Derived() // throws
  * ```
  */
-export function sealed<T extends Class<object>>(
+export function sealed<T extends Class<object, MixinConstructorArgs>>(
   target: T,
   _: ClassDecoratorContext<T>,
 ) {

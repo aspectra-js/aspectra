@@ -1,16 +1,16 @@
 import { name } from 'package.json'
-import type { ContextId } from '#context'
-import { ProviderScope } from '#provider'
-import type { Class } from '#types'
+import type { ContextId } from '#injection/context'
+import { ProviderScope } from '#injection/provider'
+import type { Args, Class } from '#types'
 
 export class Metadata {
   // namespace for metadata to avoid collisions
   private static readonly namespace = Symbol(`${name}.metadata`)
 
-  public static fromClass<T>(target: Class<T>) {
+  public static fromClass<T>(target: Class<T, Args>) {
     if (!target[Symbol.metadata]) {
       Object.defineProperty(target, Symbol.metadata, {
-        value: {},
+        value: {} satisfies DecoratorMetadataObject,
         writable: false,
         configurable: true,
       })

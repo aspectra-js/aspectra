@@ -23,7 +23,7 @@ import type { Class, MixinConstructorArgs } from '#types'
  * farewell() // 'Goodbye from John'
  * ```
  */
-export function autobind<T extends Class<object>>(
+export function autobind<T extends Class<object, MixinConstructorArgs>>(
   target: T,
   _: ClassDecoratorContext<T>,
 ) {

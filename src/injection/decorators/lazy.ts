@@ -1,5 +1,5 @@
-import { Metadata } from '#metadata'
-import { ProviderScope } from '#provider'
+import { Metadata } from '#injection/metadata'
+import { type ProviderClassType, ProviderScope } from '#injection/provider'
 import type { Class } from '#types'
 
 /**
@@ -31,8 +31,8 @@ import type { Class } from '#types'
  * const providers = new Providers()
  * ```
  */
-export function lazy<T>(
-  target: Class<T>,
+export function lazy(
+  target: ProviderClassType,
   context: ClassDecoratorContext<typeof target>,
 ) {
   const metadata = Metadata.fromContext(context)

@@ -1,5 +1,5 @@
-import { Context } from '#context'
-import type { Class } from '#types'
+import { Context } from '#injection/context'
+import type { ProviderClassType } from '#injection/provider'
 
 /**
  * Inject a [`@provider`](#provider) into a class field.
@@ -21,12 +21,12 @@ import type { Class } from '#types'
  * }
  * ```
  */
-export function provide<T extends object, P>(provider: Class<P>) {
+export function provide<T extends object, P>(provider: ProviderClassType) {
   return (_: unknown, context: ClassFieldDecoratorContext<T, P>) => {
     context.addInitializer(function () {
       this[context.name as keyof T] = Context.getOrRegister(
-        this.constructor as Class<T>,
-      ).container.resolve(provider)
+        this.constructor as ProviderClassType,
+      ).container.resolve(provider) as T[keyof T]
     })
   }
 }

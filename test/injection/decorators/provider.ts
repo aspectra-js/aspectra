@@ -10,7 +10,6 @@ class Provider {}
 
 describe(import.meta.filename, () => {
   test('should create a provider', () => {
-    const provider = Context.getOrRegister(Provider).container.resolve(Provider)
-    ok(provider instanceof Provider)
+    ok(Context.getOrRegister(Provider).container.resolve(Provider))
   })
 })

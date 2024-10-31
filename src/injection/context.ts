@@ -1,6 +1,6 @@
-import { Container } from '#container'
-import { Metadata } from '#metadata'
-import type { Class } from '#types'
+import { Container } from '#injection/container'
+import { Metadata } from '#injection/metadata'
+import type { Args, Class } from '#types'
 
 export type ContextId = PropertyKey
 
@@ -9,7 +9,7 @@ export class Context {
 
   private static readonly contexts = new Map<ContextId, Context>()
 
-  public static getOrRegister(cls: Class<unknown>): Context {
+  public static getOrRegister(cls: Class<unknown, Args>): Context {
     const { contextId } = Metadata.fromClass(cls)
     if (!contextId) {
       return Context.global

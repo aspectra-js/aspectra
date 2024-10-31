@@ -16,7 +16,7 @@ import type { Class, MixinConstructorArgs } from '#types'
  * john.id === jane.id // true
  * ```
  */
-export function singleton<T extends Class<object>>(
+export function singleton<T extends Class<object, MixinConstructorArgs>>(
   target: T,
   _: ClassDecoratorContext<T>,
 ) {

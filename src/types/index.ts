@@ -11,10 +11,8 @@ export type MixinConstructorArgs = any[]
  * Matches the definiction of `class`
  *
  * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes}
- *
- * biome-ignore lint/suspicious/noExplicitAny: Definition
  */
-export interface Class<T, A extends Args = any[]> {
+export interface Class<T, A extends Args> {
   new (...args: A): T
   prototype: Pick<T, keyof T>
 }

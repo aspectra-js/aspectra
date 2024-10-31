@@ -1,5 +1,5 @@
-import { Metadata } from '#metadata'
-import { ProviderScope } from '#provider'
+import { Metadata } from '#injection/metadata'
+import { type ProviderClassType, ProviderScope } from '#injection/provider'
 import type { Class } from '#types'
 
 /**
@@ -38,8 +38,8 @@ import type { Class } from '#types'
  * }
  * ```
  */
-export function transient<T>(
-  target: Class<T>,
+export function transient(
+  target: ProviderClassType,
   context: ClassDecoratorContext<typeof target>,
 ) {
   const metadata = Metadata.fromContext(context)
