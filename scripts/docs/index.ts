@@ -12,9 +12,7 @@ import {
   h3,
   h4,
   hr,
-  link,
   tsMarkdown,
-  ul,
 } from 'ts-markdown'
 
 const docs = readdirSync(paths.src, {
@@ -25,22 +23,20 @@ const docs = readdirSync(paths.src, {
   .flatMap(it => parseDoc(join(it.parentPath, it.name)))
   .sort(sorter)
 
+const grouped = Map.groupBy(docs, doc => doc.category)
+  .entries()
+  .toArray()
+
 const toc: MarkdownEntryOrPrimitive = [
   h3('Features'),
-  ...Map.groupBy(docs, doc => doc.category)
-    .entries()
-    .flatMap(([category, categoryDocs]) => [
-      h4(category),
-      categoryDocs.sort(sorter).map(doc =>
-        ul([
-          link({
-            href: `#${doc.name}`,
-            text: tsMarkdown([code(doc.name)]),
-          }),
-        ]),
-      ),
-    ]),
-].flat()
+  `
+  | ${grouped.map(([category]) => category).join(' | ')} |
+  | - | - |
+  | ${grouped
+    .map(([_, docs]) => docs.map(doc => `\`${doc.name}\``).join('<br>'))
+    .join(' | ')} |
+  `,
+]
 
 const entries: MarkdownEntryOrPrimitive = docs.flatMap((doc, i) => {
   return [
