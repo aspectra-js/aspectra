@@ -8,7 +8,13 @@ export class Metadata {
   private static readonly namespace = Symbol(`${name}.metadata`)
 
   public static fromClass<T>(target: Class<T>) {
-    target[Symbol.metadata] ??= {}
+    if (!target[Symbol.metadata]) {
+      Object.defineProperty(target, Symbol.metadata, {
+        value: {},
+        writable: false,
+        configurable: true,
+      })
+    }
     // biome-ignore lint/style/noNonNullAssertion: Assigned above
     target[Symbol.metadata]![Metadata.namespace] ??= new Metadata()
     // biome-ignore lint/style/noNonNullAssertion: Assigned above
