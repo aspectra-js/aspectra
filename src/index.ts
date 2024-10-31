@@ -12,14 +12,3 @@ export { singleton } from '#decorators/utility/singleton'
 export { transient } from '#decorators/injection/transient'
 export { provide } from '#decorators/injection/provide'
 export { provider } from '#decorators/injection/provider'
-
-// /**
-//  * [Symbol.metadata] polyfill
-//  */
-// declare global {
-//   interface SymbolConstructor {
-//     readonly metadata: unique symbol
-//   }
-// }
-// // biome-ignore lint/suspicious/noExplicitAny: Polyfill
-// ;(Symbol as any).metadata ??= Symbol.for('Symbol.metadata')
