@@ -31,7 +31,7 @@ This library provides **stable (stage 3) decorators**. Set the following options
 
   | injection | general |
   | - | - |
-  | [`provider`](#provider)<br>[`provide`](#provide)<br>[`contextualize`](#contextualize)<br>[`isolated`](#isolated)<br>[`lazy`](#lazy)<br>[`local`](#local)<br>[`scoped`](#scoped)<br>[`transient`](#transient) | [`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoized`](#memoized)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
+  | [`provider`](#provider)<br>[`provide`](#provide)<br>[`contextualize`](#contextualize)<br>[`isolated`](#isolated)<br>[`lazy`](#lazy)<br>[`local`](#local)<br>[`transient`](#transient) | [`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoized`](#memoized)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
   
 
 
@@ -234,22 +234,6 @@ class LocalConsumer {
   private readonly service!: LocalService
 }
 ```
-
-
-
-
-
-#### `scoped`
-
-
-
-access only within the context, same instance. no expose to global
-
-
-
-
-
-
 
 
 
