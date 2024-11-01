@@ -103,15 +103,11 @@ Associates a class with one or more contexts, allowing for contextualized
 dependency injection.
 
 With a combination with other decorators, you can have a fine-grained control
-over the scope of a provider. The following table summarizes the behavior of
-each decorator:
+over the scope of a provider.
 
-| Decorator                 | Scope                  | Description                                                                                      | Global Exposure | Instance Behavior                                      |
-|---------------------------|------------------------|--------------------------------------------------------------------------------------------------|-----------------|--------------------------------------------------------|
-| [`@provider (default)`](#provider) | Global               | Registers the class as a provider accessible in the global context.                              | Yes             | Singleton by default (customizable via [`@transient`](#transient) & [`@lazy`](#lazy)); shared globally                  |
-| [`@contextualize`](#contextualize) | Global + Context     | Exposes the provider in the global context and any specified contexts.                           | Yes             | Singleton across specified contexts and globally       |
-| [`@local`](#local)                 | Context-Specific     | Restricts the provider to specific contexts, inaccessible from the global scope.                 | No              | Singleton within each specified context                |
-| [`@isolated`](#isolated)           | Global + Context     | Creates an independent instance for each context, while also being accessible globally.          | Yes             | Unique instance for each context                       |
+<div align='center'>
+  <img src='assets/context-controlled-provider.svg' alt='context-controlled-provider'>
+</div>
 
 
 
