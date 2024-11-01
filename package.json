@@ -1,6 +1,6 @@
 {
   "name": "aspectra",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "The decorator framework.",
   "keywords": [
     "aspect oriented",
