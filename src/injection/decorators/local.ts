@@ -4,14 +4,8 @@ import type { ProviderClassType } from '#injection/provider'
 
 /**
  * Marks a class as `@local`, restricting its access to specific contexts and
- * preventing it from being exposed globally.
- *
- * This decorator is intended to limit a provider's accessibility to only the
- * contexts specified via `@contextualize`. If a `@local` provider is not
- * associated with any context, it will be inaccessible.
- *
- * When applied, the provider’s `accessScope` is set to `AccessScope.LOCAL`,
- * ensuring it remains isolated from the global scope.
+ * preventing it from being exposed globally. (By default, providers are global
+ * even if [`@contextualize`](#contextualize)d.)
  *
  * @remarks
  * If a [`@local`](#local) provider is not paired with a context using
