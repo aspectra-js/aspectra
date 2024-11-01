@@ -262,12 +262,15 @@ class LocalConsumer {
 
 
 
-Marks a class as transient.
+All providers are by default `singleton`, meaning they are instantiated
+once and reused. However, [`@transient`](#transient) classes will be
+instantiated every time they are requested.
 
 
-> All providers are by default `singleton`, meaning they are instantiated
-> once and reused. However, [`@transient`](#transient) classes will be
-> instantiated every time they are requested.
+> Similar to [`@isolated`](#isolated), but the difference is that
+> [`transient`](#transient) creates a new instance every time while
+> [`isolated`](#isolated) creates a new instance **per context**
+> (meaning "different context, different instance").
 
 
 
