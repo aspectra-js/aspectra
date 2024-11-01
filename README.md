@@ -102,17 +102,18 @@ class Providers {
 Associates a class with one or more contexts, allowing for contextualized
 dependency injection.
 
-| Decorator                 | Scope              | Description                                                                                      | Global Exposure | Instance Behavior                                      |
-|---------------------------|--------------------|--------------------------------------------------------------------------------------------------|-----------------|--------------------------------------------------------|
-| [`@provider (default)`](#provider) | Global             | Registers the class as a provider accessible in the global context.                              | Yes             | Singleton by default; shared globally                  |
-| [`@contextualize`](#contextualize) | Global + Context   | Exposes the provider in the global context and any specified contexts.                           | Yes             | Singleton across specified contexts and globally       |
-| [`@local`](#local)                 | Local Context Only | Restricts the provider to specific contexts, inaccessible from the global scope.                 | No              | Singleton within each specified context                |
-| [`@isolated`](#isolated)           | Context-Scoped     | Creates an independent instance for each context, preventing sharing between contexts.           | No              | Unique instance for each context                       |
-| [`@scoped`](#scoped)               | Context-Only       | Limits access to the specified context, with a single instance reused within that context only.  | No              | Singleton within the specific context, no global scope |
+With a combination with other decorators, you can have a fine-grained control
+over the scope of a provider. The following table summarizes the behavior of
+each decorator:
+
+| Decorator                 | Scope                  | Description                                                                                      | Global Exposure | Instance Behavior                                      |
+|---------------------------|------------------------|--------------------------------------------------------------------------------------------------|-----------------|--------------------------------------------------------|
+| [`@provider (default)`](#provider) | Global               | Registers the class as a provider accessible in the global context.                              | Yes             | Singleton by default; shared globally                  |
+| [`@contextualize`](#contextualize) | Global + Context     | Exposes the provider in the global context and any specified contexts.                           | Yes             | Singleton across specified contexts and globally       |
+| [`@local`](#local)                 | Context-Specific     | Restricts the provider to specific contexts, inaccessible from the global scope.                 | No              | Singleton within each specified context                |
+| [`@isolated`](#isolated)           | Global + Context     | Creates an independent instance for each context, while also being accessible globally.          | Yes             | Unique instance for each context                       |
 
 
-> [Context.global] is the default context, and it is a special context that
-> contains all `providers` that have & have not been explicitly contextualized.
 
 
 
