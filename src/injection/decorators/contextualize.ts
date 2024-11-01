@@ -3,38 +3,42 @@ import { Metadata } from '#injection/metadata'
 import type { Class, UnknownArgs } from '#types'
 
 /**
- * > Note: Read [`@provider`](#provider) and [`@provide`](#provide) first for
- * > better understanding.
+ * Associates a class with one or more contexts, allowing for contextualized
+ * dependency injection.
  *
- * Injection is contextualized. `@contextualize` allows a manual control of
- * the context.
+ * When a class is decorated with `@contextualize`, it registers specified
+ * `contextId`s to the class, ensuring that any dependencies injected into it
+ * will be resolved within the assigned context(s).
  *
- * `provider`s are stored in a `container`, which is registered in a `context`.
- * In general, you won't have to worry about this, as by default all `provider`s
- * are stored in a "global context", however, there might be a case you want to
- * create an isolated context, for example, when you want to run tests
- * ([example](https://github.com/shunueda/aspectra/blob/main/test/decorators/injection/provide.ts)).
+ * This decorator is especially useful for creating isolated instances of
+ * providers across different contexts, such as during unit testing.
+ *
+ * @remarks
+ * [Context.global] is the default context, and it is a special context that
+ * contains all `providers` that have & have not been explicitly contextualized.
  *
  * @example
  * ```typescript
- * const contextId = 'custom_context'
+ * const contextId = 'custom_context';
+ * const otherContextId = 'other_context';
  *
  * @contextualize(contextId)
  * @provider
  * class Provider {}
  *
- * @contextualize(contextId)
+ * // You can also contextualize into multiple contexts
+ * @contextualize(contextId, otherContextId)
  * class Consumer {
- *   // this will be resolved from the same context as `Provider`
+ *   // This provider is resolved within the same context as `Provider`
  *   @provide(Provider)
- *   public readonly provider!: Provider
+ *   public readonly provider!: Provider;
  * }
  *
  * class OutOfContextConsumer {
- *   // this will fail at runtime as the context is different of that of `Provider`
- *   // `@provide` will attempt to resolve from the global context (and fail)
+ *   // This injection will fail at runtime as it defaults to the global context,
+ *   // which does not contain the `Provider` instance from `custom_context`
  *   @provide(Provider)
- *   public readonly provider!: Provider
+ *   public readonly provider!: Provider;
  * }
  * ```
  */
