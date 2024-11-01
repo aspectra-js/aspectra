@@ -74,8 +74,8 @@ class DatabaseProvider {
 Inject a [`@provider`](#provider) into a class field.
 
 
-> This decorator injects a provider into the specified class field. If injected
-> multiple times, **the same** instance will be returned each time.
+> Regardless of how many times it is injected, the same instance will be
+> returned each time.
 
 
 
