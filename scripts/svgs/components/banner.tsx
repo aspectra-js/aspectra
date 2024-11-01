@@ -1,10 +1,6 @@
 import { description, name } from 'package.json'
-import React, { type CSSProperties } from 'react'
-
-const full: CSSProperties = {
-  width: '100%',
-  height: '100%',
-}
+import React from 'react'
+import { full } from 'scripts/svgs/css'
 
 const config = {
   patternFactor: 30,

@@ -1,7 +1,7 @@
 import type { UnknownArgs } from '#types'
 
 interface Detail<A extends UnknownArgs> {
-  readonly title: string
+  readonly error: string
   readonly assertion: (...args: A) => {
     success: boolean
     message?: string
@@ -9,14 +9,14 @@ interface Detail<A extends UnknownArgs> {
 }
 
 export class Base<A extends UnknownArgs> implements Detail<A> {
-  public readonly title: string
+  public readonly error: string
   public readonly assertion: (...args: A) => {
     success: boolean
     message?: string
   }
 
-  public constructor({ title, assertion }: Detail<A>) {
-    this.title = title
+  public constructor({ error, assertion }: Detail<A>) {
+    this.error = error
     this.assertion = assertion
   }
 
@@ -24,7 +24,7 @@ export class Base<A extends UnknownArgs> implements Detail<A> {
     const { success, message } = this.assertion(...args)
     if (!success) {
       const error = new Error(message)
-      error.name = this.title
+      error.name = this.error
       throw error
     }
   }
