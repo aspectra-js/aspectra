@@ -147,13 +147,33 @@ class OutOfContextConsumer {
 
 
 
-different context, different instance
+Marks a provider as `@isolated`, ensuring that a unique instance is created
+for each context.
 
 
 
 
 
+```typescript
+@isolated
+class Logger {
+  public readonly id = generateId()
+}
 
+@contextualize('database')
+@provider
+class Database {
+  @provide(Logger)
+  public logger!: Logger // first instance
+}
+
+@contextualize('printer')
+@provider
+class Printer {
+  @provide(Logger)
+  public logger!: Logger // new instance
+}
+```
 
 
 

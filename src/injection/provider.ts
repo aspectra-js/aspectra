@@ -1,3 +1,4 @@
+import type { ContextId } from '#injection/context'
 import { Metadata } from '#injection/metadata'
 import type { Class } from '#types'
 
@@ -5,6 +6,7 @@ export enum ProviderScope {
   SINGLETON = 'singleton',
   TRANSIENT = 'transient',
   LAZY = 'lazy',
+  ISOALTED = 'isolated',
   DEFAULT = ProviderScope.SINGLETON,
 }
 
@@ -25,10 +27,13 @@ export abstract class Provider {
       case ProviderScope.LAZY: {
         return new LazyProvider(providerClass)
       }
+      case ProviderScope.ISOALTED: {
+        return new IsolatedProvider(providerClass)
+      }
     }
   }
 
-  abstract provide<T>(): T
+  abstract provide<T>(metadata: Metadata): T
 }
 
 export class SingletonProvider extends Provider {
@@ -58,5 +63,18 @@ export class LazyProvider extends Provider {
       this.instance = new this.classType()
     }
     return this.instance as T
+  }
+}
+
+export class IsolatedProvider extends Provider {
+  private readonly providers = new Map<ContextId, unknown>()
+
+  public override provide<T>(metadata: Metadata) {
+    let provider: unknown
+    for (const contextId of metadata.contextIds) {
+      provider = this.providers.get(contextId) || new this.classType()
+      this.providers.set(contextId, provider)
+    }
+    return provider as T
   }
 }

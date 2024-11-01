@@ -1,4 +1,5 @@
 import { Context } from '#injection/context'
+import { Metadata } from '#injection/metadata'
 import type { ProviderClassType } from '#injection/provider'
 import { Contract } from '#internal/contract'
 import type { UnknownClass } from '#types'
@@ -29,7 +30,10 @@ export function provide<T extends object, P>(provider: ProviderClassType) {
     context.addInitializer(function () {
       const contexts = Context.getAllVisible(this.constructor as UnknownClass)
       for (const context of contexts) {
-        const resolved = context.container.resolve(provider)
+        const resolved = context.container.resolve(
+          provider,
+          Metadata.fromClass(this.constructor as UnknownClass),
+        )
         if (resolved) {
           this[name] = resolved as T[keyof T]
           return

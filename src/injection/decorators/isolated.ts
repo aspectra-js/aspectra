@@ -1,13 +1,42 @@
-import { AccessScope } from '#injection/access'
 import { Metadata } from '#injection/metadata'
-import type { ProviderClassType } from '#injection/provider'
+import { type ProviderClassType, ProviderScope } from '#injection/provider'
+import { Contract } from '#internal/contract'
 
 /**
- * different context, different instance
+ * Marks a provider as `@isolated`, ensuring that a unique instance is created
+ * for each context.
+ *
+ * @example
+ * ```typescript
+ * @isolated
+ * class Logger {
+ *   public readonly id = generateId()
+ * }
+ *
+ * @contextualize('database')
+ * @provider
+ * class Database {
+ *   @provide(Logger)
+ *   public logger!: Logger // first instance
+ * }
+ *
+ * @contextualize('printer')
+ * @provider
+ * class Printer {
+ *   @provide(Logger)
+ *   public logger!: Logger // new instance
+ * }
+ * ```
  */
 export function isolated(
   target: ProviderClassType,
   context: ClassDecoratorContext<typeof target>,
 ) {
-  Metadata.fromContext(context).accessScope = AccessScope.ISOLATED
+  const metadata = Metadata.fromContext(context)
+  Contract.MULTIPLE_PROVIDER_SCOPE_MODIFIER.enforce(
+    target,
+    metadata,
+    isolated.name,
+  )
+  metadata.providerScope = ProviderScope.ISOALTED
 }

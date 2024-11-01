@@ -1,4 +1,5 @@
 import type { ContextId } from '#injection/context'
+import type { Metadata } from '#injection/metadata'
 import type { Provider, ProviderClassType } from '#injection/provider'
 import { Contract } from '#internal/contract'
 
@@ -16,8 +17,8 @@ export class Container {
     return provider
   }
 
-  public resolve<T>(providerClass: ProviderClassType) {
-    return this.providers.get(providerClass)?.provide<T>()
+  public resolve<T>(providerClass: ProviderClassType, metadata: Metadata) {
+    return this.providers.get(providerClass)?.provide<T>(metadata)
   }
 
   public constructor(private readonly contextId: ContextId) {}
