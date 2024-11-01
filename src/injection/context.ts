@@ -1,5 +1,7 @@
+import { AccessScope } from '#injection/access'
 import { Container } from '#injection/container'
 import { Metadata } from '#injection/metadata'
+import { Contract } from '#internal/contract'
 import type { UnknownClass } from '#types'
 
 export type ContextId = PropertyKey
@@ -19,6 +21,10 @@ export class Context {
 
   public static getAllVisible(cls: UnknownClass) {
     const metadata = Metadata.fromClass(cls)
+    if (metadata.accessScope === AccessScope.LOCAL) {
+      metadata.contextIds.delete(Context.global.id)
+      Contract.MISSING_CONTEXT.enforce(cls, metadata.contextIds)
+    }
     const contexts = new Set<Context>()
     for (const contextId of metadata.contextIds) {
       if (Context.contexts.has(contextId)) {

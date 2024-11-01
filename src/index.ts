@@ -7,6 +7,7 @@ export { memoized } from '#general/decorators/memoized'
 export { sealed } from '#general/decorators/sealed'
 export { singleton } from '#general/decorators/singleton'
 export { transient } from '#injection/decorators/transient'
+export { local } from '#injection/decorators/local'
 export { provide } from '#injection/decorators/provide'
 export { provider } from '#injection/decorators/provider'
 

@@ -1,3 +1,4 @@
+import { AccessScope } from '#injection/access'
 import { Context, type ContextId } from '#injection/context'
 import { ProviderScope } from '#injection/provider'
 import type { Class, UnknownArgs } from '#types'
@@ -26,4 +27,5 @@ export class Metadata {
 
   public readonly contextIds = new Set<ContextId>([Context.global.id])
   public providerScope = ProviderScope.SINGLETON
+  public accessScope = AccessScope.DEFAULT
 }
