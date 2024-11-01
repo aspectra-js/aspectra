@@ -39,7 +39,7 @@ export function provide<T extends object, P>(provider: ProviderClassType) {
           return
         }
       }
-      Contract.PROVIDER_NOT_FOUND.enforce(this[name], name, contexts)
+      Contract.PROVIDER_NOT_FOUND.check(this[name], name, contexts)
     })
   }
 }

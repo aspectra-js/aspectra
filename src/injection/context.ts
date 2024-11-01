@@ -23,7 +23,7 @@ export class Context {
     const metadata = Metadata.fromClass(cls)
     if (metadata.accessScope === AccessScope.LOCAL) {
       metadata.contextIds.delete(Context.global.id)
-      Contract.MISSING_CONTEXT.enforce(cls, metadata.contextIds)
+      Contract.MISSING_CONTEXT.check(cls, metadata.contextIds)
     }
     const contexts = new Set<Context>()
     for (const contextId of metadata.contextIds) {

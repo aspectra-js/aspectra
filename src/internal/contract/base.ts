@@ -20,7 +20,7 @@ export class Base<A extends UnknownArgs> implements Detail<A> {
     this.assertion = assertion
   }
 
-  public enforce(...args: A) {
+  public check(...args: A) {
     const { success, message } = this.assertion(...args)
     if (!success) {
       const error = new Error(message)

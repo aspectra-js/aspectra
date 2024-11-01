@@ -43,7 +43,7 @@ export function transient(
   context: ClassDecoratorContext<typeof target>,
 ) {
   const metadata = Metadata.fromContext(context)
-  Contract.MULTIPLE_PROVIDER_SCOPE_MODIFIER.enforce(
+  Contract.MULTIPLE_PROVIDER_SCOPE_MODIFIER.check(
     target,
     metadata,
     transient.name,

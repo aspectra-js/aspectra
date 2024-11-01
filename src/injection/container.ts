@@ -8,11 +8,7 @@ export class Container {
 
   public register(provider: Provider) {
     const { classType } = provider
-    Contract.DUPLICATE_PROVIDER.enforce(
-      this.providers,
-      classType,
-      this.contextId,
-    )
+    Contract.DUPLICATE_PROVIDER.check(this.providers, classType, this.contextId)
     this.providers.set(classType, provider)
     return provider
   }

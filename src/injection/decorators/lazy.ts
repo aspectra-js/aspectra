@@ -36,6 +36,6 @@ export function lazy(
   context: ClassDecoratorContext<typeof target>,
 ) {
   const metadata = Metadata.fromContext(context)
-  Contract.MULTIPLE_PROVIDER_SCOPE_MODIFIER.enforce(target, metadata, lazy.name)
+  Contract.MULTIPLE_PROVIDER_SCOPE_MODIFIER.check(target, metadata, lazy.name)
   metadata.providerScope = ProviderScope.LAZY
 }
