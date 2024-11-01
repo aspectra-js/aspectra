@@ -106,7 +106,7 @@ With a combination with other decorators, you can have a fine-grained control
 over the scope of a provider.
 
 <div align='center'>
-  <img src='assets/context-controlled-provider.svg' alt='context-controlled-provider'>
+  <img src='assets/context-control.png' alt='context-controlled-provider'>
 </div>
 
 
