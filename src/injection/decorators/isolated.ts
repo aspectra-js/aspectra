@@ -9,6 +9,7 @@ import { Contract } from '#internal/contract'
  * @example
  * ```typescript
  * @isolated
+ * @provider
  * class Logger {
  *   public readonly id = generateId()
  * }

@@ -158,6 +158,7 @@ for each context.
 
 ```typescript
 @isolated
+@provider
 class Logger {
   public readonly id = generateId()
 }
