@@ -35,4 +35,8 @@ export class Context {
       Context.contexts.set(contextId, new Context(contextId))
     }
   }
+
+  public static getFromId(contextId: ContextId) {
+    return Context.contexts.get(contextId)
+  }
 }
