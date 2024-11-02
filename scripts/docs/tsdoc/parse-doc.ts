@@ -1,7 +1,9 @@
 import { EOL } from 'node:os'
 import { dirname, sep } from 'node:path'
+import { join } from 'node:path'
 import { TSDocParser } from '@microsoft/tsdoc'
 import { Project } from 'ts-morph'
+import { name } from '../../../package.json'
 import type { Documentation } from '../documentation'
 import { render } from './render'
 import { Tag } from './tag'
@@ -49,5 +51,5 @@ export function parseDoc(path: string): Documentation[] {
 
 function categorize(path: string): string {
   const segs = dirname(path).split(sep)
-  return segs.join(sep)
+  return segs[1].replace('decorators', '').trim()
 }

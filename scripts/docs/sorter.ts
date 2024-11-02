@@ -2,13 +2,13 @@ import type { Documentation } from 'scripts/docs/documentation'
 import { provide } from '../../src'
 import { provider } from '../../src'
 
-const injection = 'injection'
+const empty = ''
 
 export function sorter(a: Documentation, b: Documentation) {
-  if (a.category === injection && b.category !== injection) {
+  if (a.category === empty && b.category !== empty) {
     return -1
   }
-  if (a.category !== injection && b.category === injection) {
+  if (a.category !== empty && b.category === empty) {
     return 1
   }
 
@@ -16,7 +16,7 @@ export function sorter(a: Documentation, b: Documentation) {
     return a.category.localeCompare(b.category)
   }
 
-  if (a.category === 'injection') {
+  if (a.category === empty) {
     if (a.name === provider.name && b.name === provide.name) {
       return -1
     }

@@ -29,9 +29,9 @@ This library provides **stable (stage 3) decorators**. Set the following options
 
 
 
-  | src/decorators | src/utils/decorators |
+  |  | utils |
   | - | - |
-  | [`contextualize`](#contextualize)<br>[`isolated`](#isolated)<br>[`lazy`](#lazy)<br>[`local`](#local)<br>[`provide`](#provide)<br>[`provider`](#provider)<br>[`transient`](#transient) | [`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoized`](#memoized)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
+  | [`provider`](#provider)<br>[`provide`](#provide)<br>[`contextualize`](#contextualize)<br>[`isolated`](#isolated)<br>[`lazy`](#lazy)<br>[`local`](#local)<br>[`transient`](#transient) | [`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoized`](#memoized)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
   
 
 
@@ -39,7 +39,59 @@ This library provides **stable (stage 3) decorators**. Set the following options
 
 
 
-### src/decorators
+### 
+
+
+
+#### `provider`
+
+
+
+Registers a class as a provider, allowing it to be injected via
+[`@provide`](#provide).
+
+
+
+
+
+```typescript
+@provider
+class DatabaseProvider {
+  public getAll() {
+    // ...
+  }
+}
+```
+
+
+
+
+
+#### `provide`
+
+
+
+Inject a [`@provider`](#provider) into a class field.
+
+
+> Regardless of how many times it is injected, the same instance will be
+> returned each time.
+
+
+
+```typescript
+class Providers {
+  @provide(SampleProvider)
+  // notice the `!` for definite assignment
+  private readonly provider!: SampleProvider;
+
+  // this will be the same instance as the `provider` above
+  @provide(SampleProvider)
+  private readonly second_provider!: SampleProvider;
+}
+```
+
+
 
 
 
@@ -206,58 +258,6 @@ class LocalConsumer {
 
 
 
-#### `provide`
-
-
-
-Inject a [`@provider`](#provider) into a class field.
-
-
-> Regardless of how many times it is injected, the same instance will be
-> returned each time.
-
-
-
-```typescript
-class Providers {
-  @provide(SampleProvider)
-  // notice the `!` for definite assignment
-  private readonly provider!: SampleProvider;
-
-  // this will be the same instance as the `provider` above
-  @provide(SampleProvider)
-  private readonly second_provider!: SampleProvider;
-}
-```
-
-
-
-
-
-#### `provider`
-
-
-
-Registers a class as a provider, allowing it to be injected via
-[`@provide`](#provide).
-
-
-
-
-
-```typescript
-@provider
-class DatabaseProvider {
-  public getAll() {
-    // ...
-  }
-}
-```
-
-
-
-
-
 #### `transient`
 
 
@@ -302,7 +302,7 @@ class Providers {
 ```
 
 
-### src/utils/decorators
+### utils
 
 
 
