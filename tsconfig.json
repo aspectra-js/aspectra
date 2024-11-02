@@ -10,10 +10,7 @@
     "moduleResolution": "bundler",
     "noEmit": true,
     "paths": {
-      "aspectra": ["src"],
-      "#*": ["src/*"],
-      "test/*": ["test/*"],
-      "package.json": ["package.json"]
+      "aspectra": ["dist"]
     },
     "skipLibCheck": true,
     "strict": true,

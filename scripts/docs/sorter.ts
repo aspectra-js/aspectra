@@ -1,6 +1,6 @@
 import type { Documentation } from 'scripts/docs/documentation'
-import { provide } from '#injection/decorators/provide'
-import { provider } from '#injection/decorators/provider'
+import { provide } from '../../src'
+import { provider } from '../../src'
 
 const injection = 'injection'
 

@@ -49,9 +49,5 @@ export function parseDoc(path: string): Documentation[] {
 
 function categorize(path: string): string {
   const segs = dirname(path).split(sep)
-  const last = segs.at(-1)
-  if (last === 'decorators') {
-    return segs[segs.length - 2]
-  }
-  return last || ''
+  return segs.join(sep)
 }
