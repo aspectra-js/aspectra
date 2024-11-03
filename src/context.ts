@@ -18,7 +18,7 @@ export class Context {
     this.container = new Container(this.id)
   }
 
-  public static getAllVisible(cls: UnknownClass) {
+  public static getRegistered(cls: UnknownClass) {
     const metadata = Metadata.fromClass(cls)
     const contexts = new Set<Context>()
     for (const contextId of metadata.contextIds) {

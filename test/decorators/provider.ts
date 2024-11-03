@@ -12,7 +12,7 @@ class Provider {}
 describe(import.meta.filename, () => {
   test('should create a provider', () => {
     ok(
-      [...Context.getAllVisible(Provider)].some(context =>
+      [...Context.getRegistered(Provider)].some(context =>
         context.container.resolve(Provider, new Metadata()),
       ),
     )
