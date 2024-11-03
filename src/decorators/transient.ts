@@ -1,4 +1,4 @@
-import { MultipleScopeModifierError } from '../error'
+import { MultipleScopeModifierError } from '../lib/error'
 import { Strategy } from '../lib/strategy'
 import { Metadata } from '../metadata'
 import type { ProviderClassType } from '../provider'

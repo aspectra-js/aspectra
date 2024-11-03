@@ -1,5 +1,5 @@
 import type { ContextId } from './context'
-import { DuplicateProviderError } from './error'
+import { DuplicateProviderError } from './lib/error'
 import type { Metadata } from './metadata'
 import type { Provider, ProviderClassType } from './provider'
 

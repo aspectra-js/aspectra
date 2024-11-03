@@ -1,4 +1,4 @@
-import { SealedClassExtentionError } from '../../error'
+import { SealedClassExtentionError } from '../../lib/error'
 import type { Class, MixinConstructorArgs } from '../../types'
 
 /**

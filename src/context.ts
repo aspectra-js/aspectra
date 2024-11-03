@@ -1,6 +1,6 @@
 import { Aspectra } from './aspectra'
 import { Container } from './container'
-import { ContextIsolationError } from './error'
+import { ContextIsolationError } from './lib/error'
 import { Scope } from './lib/scope'
 import { Metadata } from './metadata'
 import type { UnknownClass } from './types'

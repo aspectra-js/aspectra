@@ -1,5 +1,5 @@
-import type { ContextId } from './context'
-import type { Context } from './context'
+import type { ContextId } from '../context'
+import type { Context } from '../context'
 
 abstract class AspectraError extends Error {
   protected constructor(message: string) {

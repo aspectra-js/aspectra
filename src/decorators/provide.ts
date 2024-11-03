@@ -1,5 +1,5 @@
 import { Context } from '../context'
-import { ProviderNotFoundError } from '../error'
+import { ProviderNotFoundError } from '../lib/error'
 import { Metadata } from '../metadata'
 import type { ProviderClassType } from '../provider'
 import type { UnknownClass } from '../types'
