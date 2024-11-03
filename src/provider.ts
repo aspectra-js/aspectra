@@ -10,7 +10,6 @@ export abstract class Provider {
 
   public static createFromClass(providerClass: ProviderClassType): Provider {
     const metadata = Metadata.fromClass(providerClass)
-    console.log(metadata)
     switch (metadata.strategy) {
       case Strategy.SINGLETON: {
         return new SingletonProvider(providerClass)
