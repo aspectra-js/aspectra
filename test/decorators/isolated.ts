@@ -2,10 +2,10 @@ import { deepStrictEqual, notEqual } from 'node:assert'
 import { describe, test } from 'node:test'
 import { contextualize, isolated, provide, provider } from 'aspectra'
 
-const contextId1 = `${import.meta.filename}-context1`
-const contextId2 = `${import.meta.filename}-context2`
+const contextId1 = `${import.meta.filename}-context-1`
+const contextId2 = `${import.meta.filename}-context-2`
 
-@contextualize(contextId1)
+@contextualize(contextId1, contextId2)
 @isolated
 @provider
 class IsolatedProvider {}
@@ -13,13 +13,13 @@ class IsolatedProvider {}
 @contextualize(contextId1)
 class Consumer1 {
   @provide(IsolatedProvider)
-  public provider!: IsolatedProvider
+  public readonly provider!: IsolatedProvider
 }
 
 @contextualize(contextId2)
 class Consumer2 {
   @provide(IsolatedProvider)
-  public provider!: IsolatedProvider
+  public readonly provider!: IsolatedProvider
 }
 
 describe(import.meta.filename, () => {

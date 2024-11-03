@@ -44,6 +44,7 @@ export function contextualize(...contextIds: ContextId[]) {
     context: ClassDecoratorContext<typeof target>,
   ) => {
     const metadata = Metadata.fromContext(context)
+    metadata.contextIds.clear()
     for (const contextId of contextIds) {
       metadata.contextIds.add(contextId)
       Context.registerIfMissing(contextId)
