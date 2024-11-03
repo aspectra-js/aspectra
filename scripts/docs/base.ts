@@ -1,4 +1,5 @@
-import { type MarkdownEntryOrPrimitive, blockquote, h3 } from 'ts-markdown'
+import { type MarkdownEntryOrPrimitive, h3 } from 'ts-markdown'
+import { codeblock } from 'ts-markdown'
 import { description, name } from '../../package.json'
 import { paths } from '../paths'
 import { center, comment } from './utils'
@@ -14,9 +15,15 @@ export const base: MarkdownEntryOrPrimitive[] = [
   h3('Installation'),
   'This library provides **stable (stage 3) decorators**. ' +
     'Set the following options in your `tsconfig.json`:',
-  blockquote([
-    '`"experimentalDecorators": false, // or remove this line`',
-    '',
-    '`"target": "es2022" // or above`',
-  ]),
+  codeblock(
+    [
+      '{',
+      '  "experimentalDecorators": false, // or remove this line',
+      '  "target": "es2022" // or above',
+      '}',
+    ],
+    {
+      language: 'json',
+    },
+  ),
 ]

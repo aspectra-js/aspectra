@@ -20,9 +20,10 @@
 This library provides **stable (stage 3) decorators**. Set the following options in your `tsconfig.json`:
 
 
-> `"experimentalDecorators": false, // or remove this line`
-> 
-> `"target": "es2022" // or above`
+    {
+      "experimentalDecorators": false, // or remove this line
+      "target": "es2022" // or above
+    }
 
 
 
