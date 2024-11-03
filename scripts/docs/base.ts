@@ -14,5 +14,9 @@ export const base: MarkdownEntryOrPrimitive[] = [
   h3('Installation'),
   'This library provides **stable (stage 3) decorators**. ' +
     'Set the following options in your `tsconfig.json`:',
-  blockquote(['`"experimentalDecorators": false` // or remove this line']),
+  blockquote([
+    '`"experimentalDecorators": false,` // or remove this line',
+    '',
+    '`"target": "es2022"` // or above',
+  ]),
 ]

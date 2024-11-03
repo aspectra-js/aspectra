@@ -1,7 +1,7 @@
 import type { ContextId } from '../context'
 import type { Context } from '../context'
 
-abstract class AspectraError extends Error {
+abstract class CustomError extends Error {
   protected constructor(message: string) {
     super()
     this.name = this.constructor.name
@@ -9,7 +9,7 @@ abstract class AspectraError extends Error {
   }
 }
 
-export class MultipleScopeModifierError extends AspectraError {
+export class MultipleScopeModifierError extends CustomError {
   public constructor(name: string, strategy: string, scope: string) {
     super(
       `Provider [${name}] is already marked as [${strategy}], and you attemped mark as [${scope}]`,
@@ -17,7 +17,7 @@ export class MultipleScopeModifierError extends AspectraError {
   }
 }
 
-export class DuplicateProviderError extends AspectraError {
+export class DuplicateProviderError extends CustomError {
   public constructor(name: string, contextId: ContextId) {
     super(
       `Provider [${name}] already exists in context: [${String(contextId)}]`,
@@ -25,7 +25,7 @@ export class DuplicateProviderError extends AspectraError {
   }
 }
 
-export class ProviderNotFoundError extends AspectraError {
+export class ProviderNotFoundError extends CustomError {
   public constructor(name: string, contexts: Set<Context>) {
     super(
       `Provider [${name}] not found in contexts: [${[...contexts].map(context => context.id.toString()).join(', ')}]`,
@@ -33,15 +33,15 @@ export class ProviderNotFoundError extends AspectraError {
   }
 }
 
-export class ContextIsolationError extends AspectraError {
+export class ContextIsolationError extends CustomError {
   public constructor(target: string) {
     super(
-      `Provider [${target}] is not accessible from any context because it is marked @local, but has no associated context - did you forget to @contextualize?`,
+      `Provider [${target}] is not accessible from any context because it is @local, but has no associated context - did you forget to @contextualize?`,
     )
   }
 }
 
-export class SealedClassExtentionError extends AspectraError {
+export class SealedClassExtentionError extends CustomError {
   public constructor(target: string, newtarget: string) {
     super(`Class [${target}] is sealed but extended by [${newtarget}].`)
   }

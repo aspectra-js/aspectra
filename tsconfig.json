@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "experimentalDecorators": false,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -10,7 +9,8 @@
     "moduleResolution": "bundler",
     "noEmit": true,
     "paths": {
-      "aspectra": ["src"]
+      "aspectra": ["./src"],
+      "aspectra/*": ["./src/*"]
     },
     "strict": true,
     "skipLibCheck": true,
