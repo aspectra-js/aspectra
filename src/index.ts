@@ -3,7 +3,6 @@ export { contextualize } from './decorators/contextualize'
 export { isolated } from './decorators/isolated'
 export { transient } from './decorators/transient'
 export { lazy } from './decorators/lazy'
-export { local } from './decorators/local'
 export { provide } from './decorators/provide'
 export { provider } from './decorators/provider'
 

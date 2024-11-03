@@ -1,7 +1,5 @@
 import { Aspectra } from './aspectra'
 import { Container } from './container'
-import { ContextIsolationError } from './lib/error'
-import { Scope } from './lib/scope'
 import { Metadata } from './metadata'
 import type { UnknownClass } from './types'
 
@@ -22,12 +20,6 @@ export class Context {
 
   public static getAllVisible(cls: UnknownClass) {
     const metadata = Metadata.fromClass(cls)
-    if (metadata.scope === Scope.LOCAL) {
-      metadata.contextIds.delete(Context.global.id)
-      if (metadata.contextIds.size === 0) {
-        throw new ContextIsolationError(cls.name)
-      }
-    }
     const contexts = new Set<Context>()
     for (const contextId of metadata.contextIds) {
       if (Context.contexts.has(contextId)) {
@@ -45,7 +37,7 @@ export class Context {
     }
   }
 
-  public static getFromId(contextId: ContextId) {
+  public static getById(contextId: ContextId) {
     return Context.contexts.get(contextId)
   }
 }

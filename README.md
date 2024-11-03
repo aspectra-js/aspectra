@@ -34,7 +34,7 @@ This library provides **stable (stage 3) decorators**. Set the following options
 
   |  | utils |
   | - | - |
-  | [`provider`](#provider)<br>[`provide`](#provide)<br>[`contextualize`](#contextualize)<br>[`isolated`](#isolated)<br>[`lazy`](#lazy)<br>[`local`](#local)<br>[`transient`](#transient) | [`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoized`](#memoized)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
+  | [`provider`](#provider)<br>[`provide`](#provide)<br>[`contextualize`](#contextualize)<br>[`isolated`](#isolated)<br>[`lazy`](#lazy)<br>[`transient`](#transient) | [`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoized`](#memoized)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
   
 
 
@@ -212,49 +212,6 @@ class Providers {
 
 // `LazyProvider` will be instantiated here
 const providers = new Providers()
-```
-
-
-
-
-
-#### `local`
-
-
-
-Marks a class as `@local`, restricting its access to specific contexts and
-preventing it from being exposed globally. (By default, providers are global
-even if [`@contextualize`](#contextualize)d.)
-
-
-> If a [`@local`](#local) provider is not paired with a context using
-> [`@contextualize`](#contextualize), it will trigger a runtime error as it
-> cannot be accessed by any consumers.
-
-
-
-```typescript
-@local
-@contextualize('custom_context')
-@provider
-class LocalService {
-  // This service will only be accessible within 'custom_context'
-}
-
-@contextualize('custom_context')
-@provider
-class CustomContext {
-  // This service will be accessible in both 'custom_context' & global context
-}
-
-@contextualize('custom_context')
-@local
-class LocalConsumer {
-  // This consumer will only be able to access 'LocalService' within 'custom_context'
-  // will not look up in global context
-  @provide(LocalService)
-  private readonly service!: LocalService
-}
 ```
 
 

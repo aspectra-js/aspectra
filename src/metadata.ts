@@ -1,6 +1,5 @@
 import { Aspectra } from './aspectra'
 import type { ContextId } from './context'
-import { Scope } from './lib/scope'
 import { Strategy } from './lib/strategy'
 import type { Class, UnknownArgs } from './types'
 
@@ -28,5 +27,4 @@ export class Metadata {
 
   public readonly contextIds = new Set<ContextId>([Aspectra.GLOBAL_CONTEXT_ID])
   public strategy = Strategy.DEFAULT
-  public scope = Scope.DEFAULT
 }
