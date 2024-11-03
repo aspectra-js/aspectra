@@ -1,6 +1,6 @@
-import type { Documentation } from 'scripts/docs/documentation'
-import { provide } from '../../src'
-import { provider } from '../../src'
+import { provide } from 'aspectra'
+import { provider } from 'aspectra'
+import type { Documentation } from './documentation'
 
 const empty = ''
 

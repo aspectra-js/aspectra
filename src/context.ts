@@ -1,6 +1,5 @@
 import { Aspectra } from './aspectra'
 import { Container } from './container'
-import { Contract } from './contract'
 import { ContextIsolationError } from './error'
 import { Scope } from './lib/scope'
 import { Metadata } from './metadata'

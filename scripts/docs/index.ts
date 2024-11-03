@@ -1,10 +1,6 @@
 import { readdirSync } from 'node:fs'
 import { writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
-import { base } from 'scripts/docs/base'
-import { sorter } from 'scripts/docs/sorter'
-import { parseDoc } from 'scripts/docs/tsdoc/parse-doc'
-import { paths } from 'scripts/paths'
 import {
   type MarkdownEntryOrPrimitive,
   blockquote,
@@ -14,6 +10,10 @@ import {
   hr,
   tsMarkdown,
 } from 'ts-markdown'
+import { paths } from '../paths'
+import { base } from './base'
+import { sorter } from './sorter'
+import { parseDoc } from './tsdoc/parse-doc'
 
 const docs = readdirSync(paths.src, {
   recursive: true,

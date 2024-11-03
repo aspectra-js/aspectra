@@ -2,8 +2,8 @@ import { writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { createElement } from 'react'
 import satori from 'satori'
-import { paths } from 'scripts/paths'
-import { Banner } from 'scripts/svgs/components/banner'
+import { paths } from '../paths'
+import { Banner } from './components/banner'
 import { fonts } from './fonts'
 
 const svgs = [

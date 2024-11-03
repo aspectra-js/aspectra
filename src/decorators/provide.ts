@@ -1,5 +1,4 @@
 import { Context } from '../context'
-import { Contract } from '../contract'
 import { ProviderNotFoundError } from '../error'
 import { Metadata } from '../metadata'
 import type { ProviderClassType } from '../provider'

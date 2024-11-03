@@ -1,5 +1,4 @@
 import { Context } from '../context'
-import { Metadata } from '../metadata'
 import { Provider } from '../provider'
 import type { Class } from '../types'
 

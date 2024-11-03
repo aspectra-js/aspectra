@@ -1,6 +1,7 @@
-import { description, name } from 'package.json'
+// biome-ignore lint/correctness/noUnusedImports: required
 import React from 'react'
-import { full } from 'scripts/svgs/css'
+import { description, name } from '../../../package.json'
+import { full } from '../css'
 
 const config = {
   patternFactor: 30,

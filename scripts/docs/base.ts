@@ -1,7 +1,7 @@
-import { description, name } from 'package.json'
-import { center, comment } from 'scripts/docs/utils'
-import { paths } from 'scripts/paths'
 import { type MarkdownEntryOrPrimitive, blockquote, h3 } from 'ts-markdown'
+import { description, name } from '../../package.json'
+import { paths } from '../paths'
+import { center, comment } from './utils'
 
 export const base: MarkdownEntryOrPrimitive[] = [
   comment(`
