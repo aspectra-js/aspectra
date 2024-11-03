@@ -1,4 +1,4 @@
-import { Contract } from '../contract'
+import { MultipleScopeModifierError } from '../error'
 import { Strategy } from '../lib/strategy'
 import { Metadata } from '../metadata'
 import type { ProviderClassType } from '../provider'
@@ -35,10 +35,12 @@ export function isolated(
   context: ClassDecoratorContext<typeof target>,
 ) {
   const metadata = Metadata.fromContext(context)
-  Contract.MULTIPLE_PROVIDER_SCOPE_MODIFIER.check(
-    target,
-    metadata,
-    isolated.name,
-  )
+  if (metadata.strategy !== Strategy.DEFAULT) {
+    throw new MultipleScopeModifierError(
+      target.name,
+      metadata.strategy,
+      isolated.name,
+    )
+  }
   metadata.strategy = Strategy.ISOALTED
 }

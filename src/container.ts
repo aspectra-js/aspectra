@@ -1,5 +1,5 @@
 import type { ContextId } from './context'
-import { Contract } from './contract'
+import { DuplicateProviderError } from './error'
 import type { Metadata } from './metadata'
 import type { Provider, ProviderClassType } from './provider'
 
@@ -8,7 +8,9 @@ export class Container {
 
   public register(provider: Provider) {
     const { classType } = provider
-    Contract.DUPLICATE_PROVIDER.check(this.providers, classType, this.contextId)
+    if (this.providers.has(classType)) {
+      throw new DuplicateProviderError(classType.name, this.contextId)
+    }
     this.providers.set(classType, provider)
     return provider
   }

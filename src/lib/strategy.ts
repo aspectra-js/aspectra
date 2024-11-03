@@ -3,4 +3,5 @@ export enum Strategy {
   TRANSIENT = 'transient',
   LAZY = 'lazy',
   ISOALTED = 'isolated',
+  DEFAULT = Strategy.SINGLETON,
 }

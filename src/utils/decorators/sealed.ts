@@ -1,4 +1,4 @@
-import { Contract } from '../../contract'
+import { SealedClassExtentionError } from '../../error'
 import type { Class, MixinConstructorArgs } from '../../types'
 
 /**
@@ -23,8 +23,8 @@ export function sealed<T extends Class<object, MixinConstructorArgs>>(
 ) {
   return class extends target {
     constructor(...args: MixinConstructorArgs) {
-      Contract.SEALED_CLASS_EXTENTION.check(new.target, target)
-      super(...args)
+      super()
+      throw new SealedClassExtentionError(target.name, this.constructor.name)
     }
   }
 }

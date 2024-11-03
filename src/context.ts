@@ -1,6 +1,7 @@
 import { Aspectra } from './aspectra'
 import { Container } from './container'
 import { Contract } from './contract'
+import { ContextIsolationError } from './error'
 import { Scope } from './lib/scope'
 import { Metadata } from './metadata'
 import type { UnknownClass } from './types'
@@ -24,7 +25,9 @@ export class Context {
     const metadata = Metadata.fromClass(cls)
     if (metadata.scope === Scope.LOCAL) {
       metadata.contextIds.delete(Context.global.id)
-      Contract.MISSING_CONTEXT.check(cls, metadata.contextIds)
+      if (metadata.contextIds.size === 0) {
+        throw new ContextIsolationError(cls.name)
+      }
     }
     const contexts = new Set<Context>()
     for (const contextId of metadata.contextIds) {

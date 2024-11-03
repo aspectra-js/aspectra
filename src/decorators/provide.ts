@@ -1,5 +1,6 @@
 import { Context } from '../context'
 import { Contract } from '../contract'
+import { ProviderNotFoundError } from '../error'
 import { Metadata } from '../metadata'
 import type { ProviderClassType } from '../provider'
 import type { UnknownClass } from '../types'
@@ -39,7 +40,7 @@ export function provide<T extends object, P>(provider: ProviderClassType) {
           return
         }
       }
-      Contract.PROVIDER_NOT_FOUND.check(this[name], name, contexts)
+      throw new ProviderNotFoundError(provider.name, contexts)
     })
   }
 }

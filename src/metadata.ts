@@ -27,6 +27,6 @@ export class Metadata {
   }
 
   public readonly contextIds = new Set<ContextId>([Aspectra.GLOBAL_CONTEXT_ID])
-  public strategy = Strategy.SINGLETON
+  public strategy = Strategy.DEFAULT
   public scope = Scope.DEFAULT
 }
