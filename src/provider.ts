@@ -17,9 +17,6 @@ export abstract class Provider {
       case Strategy.TRANSIENT: {
         return new TransientProvider(providerClass)
       }
-      case Strategy.LAZY: {
-        return new LazyProvider(providerClass)
-      }
       case Strategy.ISOALTED: {
         return new IsolatedProvider(providerClass)
       }
@@ -45,17 +42,6 @@ export class SingletonProvider extends Provider {
 export class TransientProvider extends Provider {
   public override provide<T>() {
     return new this.classType() as T
-  }
-}
-
-export class LazyProvider extends Provider {
-  private instance: unknown
-
-  public override provide<T>() {
-    if (!this.instance) {
-      this.instance = new this.classType()
-    }
-    return this.instance as T
   }
 }
 

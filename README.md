@@ -34,7 +34,7 @@ This library provides **stable (stage 3) decorators**. Set the following options
 
   |  | utils |
   | - | - |
-  | [`provider`](#provider)<br>[`provide`](#provide)<br>[`contextualize`](#contextualize)<br>[`isolated`](#isolated)<br>[`lazy`](#lazy)<br>[`transient`](#transient) | [`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoized`](#memoized)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
+  | [`provider`](#provider)<br>[`provide`](#provide)<br>[`contextualize`](#contextualize)<br>[`isolated`](#isolated)<br>[`transient`](#transient) | [`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoized`](#memoized)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
   
 
 
@@ -175,43 +175,6 @@ class Printer {
   @provide(Logger)
   public logger!: Logger // new instance
 }
-```
-
-
-
-
-
-#### `lazy`
-
-
-
-Marks a class as lazy-loaded.
-
-
-> All providers are by default instantiated when [`@provide`](#provide)d. When a class is
-> marked [`@lazy`](#lazy), it will only be instantiated when it is first requested.
-
-
-
-```typescript
-@provider
-class Provider {}
-
-@lazy
-@provider
-class LazyProvider {}
-
-class Providers {
-  // `Provider` will be instantiated immediately
-  @provide(Provider)
-  private readonly provider!: Provider
-
-  @provide(LazyProvider)
-  private readonly lazyProvider!: LazyProvider
-}
-
-// `LazyProvider` will be instantiated here
-const providers = new Providers()
 ```
 
 
