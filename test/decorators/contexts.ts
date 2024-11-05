@@ -6,7 +6,7 @@ import { contextualize } from 'aspectra'
 import { isolated } from 'aspectra'
 import { Aspectra } from '../../src/aspectra'
 
-const customContexts = ['a', 'b']
+const customContexts = ['a', 'b'] as const
 
 class Global {
   @contexts

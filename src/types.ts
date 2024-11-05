@@ -1,3 +1,5 @@
+export type NonEmptyArray<T> = [T, ...T[]]
+
 export type UnknownArgs = unknown[]
 
 export type UnknownClass = Class<unknown, UnknownArgs>

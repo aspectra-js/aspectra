@@ -1,6 +1,7 @@
 import { Context, type ContextId } from '../context'
 import { Metadata } from '../metadata'
 import type { Class, UnknownArgs } from '../types'
+import type { NonEmptyArray } from '../types'
 
 /**
  * Associates a class with one or more contexts, allowing for contextualized
@@ -38,7 +39,7 @@ import type { Class, UnknownArgs } from '../types'
  * }
  * ```
  */
-export function contextualize(...contexts: (Context | ContextId)[]) {
+export function contextualize(...contexts: NonEmptyArray<Context | ContextId>) {
   return (
     target: Class<object, UnknownArgs>,
     context: ClassDecoratorContext<typeof target>,
