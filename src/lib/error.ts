@@ -33,11 +33,9 @@ export class ProviderNotFoundError extends CustomError {
   }
 }
 
-export class ContextIsolationError extends CustomError {
-  public constructor(target: string) {
-    super(
-      `Provider [${target}] is not accessible from any context because it is @local, but has no associated context - did you forget to @contextualize?`,
-    )
+export class DuplicateContextError extends CustomError {
+  public constructor(id: ContextId) {
+    super(`Context with id [${id.toString}] already exists`)
   }
 }
 

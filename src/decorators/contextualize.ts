@@ -38,16 +38,20 @@ import type { Class, UnknownArgs } from '../types'
  * }
  * ```
  */
-export function contextualize(...contextIds: ContextId[]) {
+export function contextualize(...contexts: (Context | ContextId)[]) {
   return (
     target: Class<object, UnknownArgs>,
     context: ClassDecoratorContext<typeof target>,
   ) => {
     const metadata = Metadata.fromContext(context)
     metadata.contextIds.clear()
-    for (const contextId of contextIds) {
-      metadata.contextIds.add(contextId)
-      Context.registerIfMissing(contextId)
+    for (const context of contexts) {
+      if (context instanceof Context) {
+        metadata.contextIds.add(context.id)
+      } else {
+        metadata.contextIds.add(context)
+        Context.registerIfMissing(context)
+      }
     }
   }
 }

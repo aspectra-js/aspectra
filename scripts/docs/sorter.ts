@@ -23,6 +23,14 @@ export function sorter(a: Documentation, b: Documentation) {
     if (a.name === provide.name && b.name === provider.name) {
       return 1
     }
+
+    if (a.name === 'provide' && b.name === 'contextualize') {
+      return -1
+    }
+    if (a.name === 'contextualize' && b.name === 'provide') {
+      return 1
+    }
+
     if (
       (a.name === provide.name || a.name === provider.name) &&
       !(b.name === provide.name || b.name === provider.name)

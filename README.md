@@ -34,7 +34,7 @@ This library provides **stable (stage 3) decorators**. Set the following options
 
   |  | utils |
   | - | - |
-  | [`provider`](#provider)<br>[`provide`](#provide)<br>[`contextualize`](#contextualize)<br>[`isolated`](#isolated)<br>[`transient`](#transient) | [`application`](#application)<br>[`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoized`](#memoized)<br>[`postconstruct`](#postconstruct)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
+  | [`provider`](#provider)<br>[`provide`](#provide)<br>[`contextualize`](#contextualize)<br>[`contexts`](#contexts)<br>[`isolated`](#isolated)<br>[`transient`](#transient) | [`application`](#application)<br>[`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoized`](#memoized)<br>[`postconstruct`](#postconstruct)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
   
 
 
@@ -137,6 +137,33 @@ class OutOfContextConsumer {
   // which does not contain the `Provider` instance from `custom_context`
   @provide(Provider)
   public readonly provider!: Provider;
+}
+```
+
+
+
+
+
+#### `contexts`
+
+
+
+Retrieve current contexts and injects them.
+
+
+
+
+
+```typescript
+class Global {
+  @contexts
+  public readonly contexts!: ReadonlySet<Context> // Global context
+}
+
+@contextualize('a', 'b')
+class Contextualized {
+  @contexts
+  public readonly contexts!: ReadonlySet<Context> // Context with ids 'a' and 'b'
 }
 ```
 

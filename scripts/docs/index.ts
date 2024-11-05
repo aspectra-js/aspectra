@@ -1,6 +1,4 @@
-import { readdirSync } from 'node:fs'
 import { writeFile } from 'node:fs/promises'
-import { join } from 'node:path'
 import {
   type MarkdownEntryOrPrimitive,
   blockquote,
@@ -12,16 +10,31 @@ import {
 } from 'ts-markdown'
 import { paths } from '../paths'
 import { base } from './base'
-import { sorter } from './sorter'
 import { parseDoc } from './tsdoc/parse-doc'
 
-const docs = readdirSync(paths.src, {
-  recursive: true,
-  withFileTypes: true,
-})
-  .filter(it => it.isFile())
-  .flatMap(it => parseDoc(join(it.parentPath, it.name)))
-  .sort(sorter)
+const docs = [
+  [
+    'src/decorators/provider.ts',
+    'src/decorators/provide.ts',
+    'src/decorators/contextualize.ts',
+    'src/context.ts',
+    'src/decorators/contexts.ts',
+    'src/decorators/isolated.ts',
+    'src/decorators/transient.ts',
+  ],
+  [
+    'src/utils/decorators/application.ts',
+    'src/utils/decorators/autobind.ts',
+    'src/utils/decorators/bound.ts',
+    'src/utils/decorators/main.ts',
+    'src/utils/decorators/memoized.ts',
+    'src/utils/decorators/postconstruct.ts',
+    'src/utils/decorators/sealed.ts',
+    'src/utils/decorators/singleton.ts',
+  ],
+]
+  .flat()
+  .flatMap(parseDoc)
 
 const grouped = Map.groupBy(docs, doc => doc.category)
   .entries()
