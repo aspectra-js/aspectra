@@ -52,7 +52,7 @@
   "scripts": {
     "build:svgs": "tsx scripts/svgs",
     "build:docs": "tsx scripts/docs",
-    "build": "run-p build:* & pkgroll --minify --sourcemap",
+    "build": "run-p build:* & pkgroll --minify --sourcemap --clean-dist",
     "check": "pnpm format && biome check --write",
     "commit": "pnpm build && git add --all && cz",
     "format:json": "sort-package-json",

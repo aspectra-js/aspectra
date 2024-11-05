@@ -10,7 +10,7 @@ import type { Class, UnknownArgs } from '../types'
  * over the scope of a provider.
  *
  * <div align='center'>
- *   <img src='assets/context-control.png' alt='context-controlled-provider'>
+ *   <img src='assets/context-control.svg' alt='context-controlled-provider'>
  * </div>
  *
  * @example
