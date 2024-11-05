@@ -34,7 +34,7 @@ This library provides **stable (stage 3) decorators**. Set the following options
 
   |  | utils |
   | - | - |
-  | [`provider`](#provider)<br>[`provide`](#provide)<br>[`contextualize`](#contextualize)<br>[`isolated`](#isolated)<br>[`transient`](#transient) | [`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoized`](#memoized)<br>[`postconstruct`](#postconstruct)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
+  | [`provider`](#provider)<br>[`provide`](#provide)<br>[`contextualize`](#contextualize)<br>[`isolated`](#isolated)<br>[`transient`](#transient) | [`application`](#application)<br>[`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoized`](#memoized)<br>[`postconstruct`](#postconstruct)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
   
 
 
@@ -226,6 +226,30 @@ class Providers {
 
 
 ### utils
+
+
+
+#### `application`
+
+
+
+Entry point of the application. Will instantiate the class and calls the
+`start` method.
+
+
+
+
+
+```typescript
+@application
+class Application {
+  public start() {
+    // ...
+  }
+}
+```
+
+
 
 
 
