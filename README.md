@@ -34,7 +34,7 @@ This library provides **stable (stage 3) decorators**. Set the following options
 
   |  | utils |
   | - | - |
-  | [`provider`](#provider)<br>[`provide`](#provide)<br>[`contextualize`](#contextualize)<br>[`isolated`](#isolated)<br>[`transient`](#transient) | [`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoized`](#memoized)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
+  | [`provider`](#provider)<br>[`provide`](#provide)<br>[`contextualize`](#contextualize)<br>[`isolated`](#isolated)<br>[`transient`](#transient) | [`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoized`](#memoized)<br>[`postconstruct`](#postconstruct)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
   
 
 
@@ -334,6 +334,27 @@ class Calculator {
 const calculator = new Calculator()
 console.log(calculator.square(2)) // Calculating... 4
 console.log(calculator.square(2)) // 4
+```
+
+
+
+
+
+#### `postconstruct`
+
+
+
+Decorated method is automatically invoked after the class is constructed.
+
+
+
+
+
+```typescript
+class Test {
+  @postconstruct public init() {
+  console.log('PostConstruct')
+}
 ```
 
 
