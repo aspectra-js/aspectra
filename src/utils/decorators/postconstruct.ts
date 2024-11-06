@@ -7,7 +7,8 @@ import type { Fun } from '../../types'
  * ```typescript
  * class Test {
  *   @postconstruct public init() {
- *   console.log('PostConstruct')
+ *     console.log('PostConstruct')
+ *   }
  * }
  * ```
  */

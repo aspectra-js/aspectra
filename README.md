@@ -430,7 +430,8 @@ Decorated method is automatically invoked after the class is constructed.
 ```typescript
 class Test {
   @postconstruct public init() {
-  console.log('PostConstruct')
+    console.log('PostConstruct')
+  }
 }
 ```
 
