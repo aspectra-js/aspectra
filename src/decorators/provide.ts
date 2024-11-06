@@ -29,7 +29,7 @@ export function provide<T extends object, P>(provider: ProviderClassType) {
     context.addInitializer(function () {
       const contexts = Context.getRegistered(this.constructor as UnknownClass)
       for (const context of contexts) {
-        const resolved = context.container.resolve(provider)
+        const resolved = context.container.resolve(provider, context)
         if (resolved) {
           this[name] = resolved as T[keyof T]
           return

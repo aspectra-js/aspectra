@@ -23,7 +23,7 @@ export function provider<T>(
   context.addInitializer(function () {
     const provider = Provider.createFromClass(target)
     for (const context of Context.getRegistered(this)) {
-      context.container.register(provider)
+      context.container.register(provider, context)
     }
   })
 }

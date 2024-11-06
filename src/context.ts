@@ -12,11 +12,9 @@ export class Context {
     [Context.global.id, Context.global],
   ])
 
-  public readonly container: Container
+  public readonly container = new Container()
 
-  private constructor(public readonly id: ContextId) {
-    this.container = new Container(this)
-  }
+  private constructor(public readonly id: ContextId) {}
 
   public static getRegistered(cls: UnknownClass) {
     const metadata = Metadata.fromClass(cls)
@@ -37,7 +35,7 @@ export class Context {
     }
   }
 
-  public static getById(contextId: ContextId) {
-    return Context.contexts.get(contextId)
+  public static get(id: ContextId) {
+    return Context.contexts.get(id)
   }
 }

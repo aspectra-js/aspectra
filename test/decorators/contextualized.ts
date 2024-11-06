@@ -29,7 +29,7 @@ describe(import.meta.filename, () => {
   test('should register same context', () => {
     deepStrictEqual(
       Context.getRegistered(A1).intersection(Context.getRegistered(A2)),
-      new Set([Context.getById(context)]),
+      new Set([Context.get(context)]),
     )
   })
   test('should register new contexts', () => {
@@ -41,13 +41,13 @@ describe(import.meta.filename, () => {
   test('should register multiple contexts', () => {
     deepStrictEqual(
       Context.getRegistered(A1).intersection(Context.getRegistered(C)),
-      new Set([Context.getById(context)]),
+      new Set([Context.get(context)]),
     )
   })
   test('should register multiple contexts in different order', () => {
     deepStrictEqual(
       Context.getRegistered(C).intersection(Context.getRegistered(A1)),
-      new Set([Context.getById(context)]),
+      new Set([Context.get(context)]),
     )
   })
 })

@@ -12,7 +12,7 @@ describe(import.meta.filename, () => {
   test('should create a provider', () => {
     ok(
       Array.from(Context.getRegistered(Provider)).some(context =>
-        context.container.resolve(Provider),
+        context.container.resolve(Provider, context),
       ),
     )
   })
