@@ -13,8 +13,11 @@
 <div align='center'>The decorator framework.</div>
 
 
-### Installation
+### Introduction
 
+
+
+Recommended to run with [`tsx`](https://github.com/privatenumber/tsx).
 
 
 This library provides **stable (stage 3) decorators**. Set the following options in your `tsconfig.json`:
