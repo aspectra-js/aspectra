@@ -18,9 +18,10 @@ const docs = [
     'src/decorators/provide.ts',
     'src/decorators/contextualize.ts',
     'src/context.ts',
-    'src/decorators/contexts.ts',
     'src/decorators/isolated.ts',
     'src/decorators/transient.ts',
+    'src/decorators/origin.ts',
+    'src/decorators/contexts.ts',
   ],
   [
     'src/utils/decorators/application.ts',
