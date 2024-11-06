@@ -13,7 +13,6 @@ export const base: MarkdownEntryOrPrimitive[] = [
   center(`<h3>${name}</h3>`),
   center(description),
   h3('Introduction'),
-  'Recommended to run with [`tsx`](https://github.com/privatenumber/tsx).',
   'This library provides **stable (stage 3) decorators**. ' +
     'Set the following options in your `tsconfig.json`:',
   codeblock(
