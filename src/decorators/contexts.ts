@@ -2,7 +2,7 @@ import { Context } from '../context'
 import type { UnknownClass } from '../types'
 
 /**
- * Retrieve current contexts and injects them.
+ * Injects the current set of registered contexts into the decorated class field.
  *
  * @example
  * ```typescript
@@ -14,7 +14,7 @@ import type { UnknownClass } from '../types'
  * @contextualize('a', 'b')
  * class Contextualized {
  *   @contexts
- *   public readonly contexts!: ReadonlySet<Context> // Context with ids 'a' and 'b'
+ *   public readonly contexts!: ReadonlySet<Context> // 'a' and 'b'
  * }
  * ```
  */

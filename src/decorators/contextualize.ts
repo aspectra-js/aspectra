@@ -4,10 +4,10 @@ import type { Class, UnknownArgs } from '../types'
 import type { NonEmptyArray } from '../types'
 
 /**
- * Associates a class with one or more contexts, allowing for contextualized
+ * Associates a class with one or more specific contexts, enabling contextualized
  * dependency injection.
  *
- * With a combination with other decorators, you can have a fine-grained control
+ * When combined with other decorators, this allows for fine-grained control
  * over the scope of a provider.
  *
  * <div align='center'>
@@ -16,26 +16,26 @@ import type { NonEmptyArray } from '../types'
  *
  * @example
  * ```typescript
- * const contextId = 'custom_context';
- * const otherContextId = 'other_context';
+ * const contextId = 'custom_context'
+ * const otherContextId = 'other_context'
  *
  * @contextualize(contextId)
  * @provider
  * class Provider {}
  *
- * // You can also contextualize into multiple contexts
+ * // Multiple context associations
  * @contextualize(contextId, otherContextId)
  * class Consumer {
  *   // This provider is resolved within the same context as `Provider`
  *   @provide(Provider)
- *   public readonly provider!: Provider;
+ *   public readonly provider!: Provider
  * }
  *
  * class OutOfContextConsumer {
- *   // This injection will fail at runtime as it defaults to the global context,
- *   // which does not contain the `Provider` instance from `custom_context`
+ *   // Fails at runtime as it defaults to the global context,
+ *   // which lacks the `Provider` instance from `custom_context`
  *   @provide(Provider)
- *   public readonly provider!: Provider;
+ *   public readonly provider!: Provider
  * }
  * ```
  */

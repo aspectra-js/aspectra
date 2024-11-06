@@ -4,15 +4,18 @@ import { Metadata } from '../metadata'
 import type { ProviderClassType } from '../provider'
 
 /**
- * All providers are by default `singleton`, meaning they are instantiated
- * once and reused. However, [`@transient`](#transient) classes will be
- * instantiated every time they are requested.
+ * Defines a provider as `@transient`, ensuring a new instance is created
+ * each time the provider is injected.
+ *
+ * By default, providers are singletons, meaning a single instance is reused.
+ * With `@transient`, a new instance is created upon each injection, which is
+ * useful for stateless or temporary dependencies.
  *
  * @remarks
- * Similar to [`@isolated`](#isolated), but the difference is that
- * [`transient`](#transient) creates a new instance every time while
- * [`isolated`](#isolated) creates a new instance **per context**
- * (meaning "different context, different instance").
+ * The `@transient` decorator differs from `@isolated`:
+ * - `@transient` creates a new instance each time it’s requested.
+ * - `@isolated` creates one instance per context, providing the same instance
+ *   within a given context but different instances across different contexts.
  *
  * @example
  * ```typescript
@@ -23,22 +26,12 @@ import type { ProviderClassType } from '../provider'
  * @provider
  * class TransientProvider {}
  *
- * class Providers {
+ * class Consumer {
  *   @provide(Provider)
- *   private readonly provider!: Provider
- *
- *   @provide(Provider)
- *   private readonly otherProvider!: Provider
- *
- *   // ^ These will be the same instance (`singleton`)
+ *   private readonly provider!: Provider // Singleton instance
  *
  *   @provide(TransientProvider)
- *   private readonly transientProvider!: TransientProvider
- *
- *   @provide(TransientProvider)
- *   private readonly otherTransientProvider!: TransientProvider
- *
- *   // ^ These will be different instances (`transient`)
+ *   private readonly transientProvider!: TransientProvider // New instance
  * }
  * ```
  */

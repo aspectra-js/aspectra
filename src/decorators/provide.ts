@@ -15,11 +15,11 @@ import type { UnknownClass } from '../types'
  * class Providers {
  *   @provide(SampleProvider)
  *   // notice the `!` for definite assignment
- *   private readonly provider!: SampleProvider;
+ *   private readonly provider!: SampleProvider
  *
  *   // this will be the same instance as the `provider` above
  *   @provide(SampleProvider)
- *   private readonly second_provider!: SampleProvider;
+ *   private readonly second_provider!: SampleProvider
  * }
  * ```
  */

@@ -86,11 +86,11 @@ Inject a [`@provider`](#provider) into a class field.
 class Providers {
   @provide(SampleProvider)
   // notice the `!` for definite assignment
-  private readonly provider!: SampleProvider;
+  private readonly provider!: SampleProvider
 
   // this will be the same instance as the `provider` above
   @provide(SampleProvider)
-  private readonly second_provider!: SampleProvider;
+  private readonly second_provider!: SampleProvider
 }
 ```
 
@@ -102,10 +102,10 @@ class Providers {
 
 
 
-Associates a class with one or more contexts, allowing for contextualized
+Associates a class with one or more specific contexts, enabling contextualized
 dependency injection.
 
-With a combination with other decorators, you can have a fine-grained control
+When combined with other decorators, this allows for fine-grained control
 over the scope of a provider.
 
 <div align='center'>
@@ -117,26 +117,26 @@ over the scope of a provider.
 
 
 ```typescript
-const contextId = 'custom_context';
-const otherContextId = 'other_context';
+const contextId = 'custom_context'
+const otherContextId = 'other_context'
 
 @contextualize(contextId)
 @provider
 class Provider {}
 
-// You can also contextualize into multiple contexts
+// Multiple context associations
 @contextualize(contextId, otherContextId)
 class Consumer {
   // This provider is resolved within the same context as `Provider`
   @provide(Provider)
-  public readonly provider!: Provider;
+  public readonly provider!: Provider
 }
 
 class OutOfContextConsumer {
-  // This injection will fail at runtime as it defaults to the global context,
-  // which does not contain the `Provider` instance from `custom_context`
+  // Fails at runtime as it defaults to the global context,
+  // which lacks the `Provider` instance from `custom_context`
   @provide(Provider)
-  public readonly provider!: Provider;
+  public readonly provider!: Provider
 }
 ```
 
@@ -148,8 +148,11 @@ class OutOfContextConsumer {
 
 
 
-Marks a provider as `@isolated`, ensuring that a unique instance is created
-for each context.
+Marks a provider as `@isolated`, ensuring a unique instance of the provider
+is created for each associated context.
+
+Useful for scenarios where the same provider class must yield distinct
+instances based on different contexts.
 
 
 
@@ -166,14 +169,14 @@ class Logger {
 @provider
 class Database {
   @provide(Logger)
-  public logger!: Logger // first instance
+  public logger!: Logger // Unique instance for 'database' context
 }
 
 @contextualize('printer')
 @provider
 class Printer {
   @provide(Logger)
-  public logger!: Logger // new instance
+  public logger!: Logger // New unique instance for 'printer' context
 }
 ```
 
@@ -185,15 +188,18 @@ class Printer {
 
 
 
-All providers are by default `singleton`, meaning they are instantiated
-once and reused. However, [`@transient`](#transient) classes will be
-instantiated every time they are requested.
+Defines a provider as `@transient`, ensuring a new instance is created
+each time the provider is injected.
+
+By default, providers are singletons, meaning a single instance is reused.
+With `@transient`, a new instance is created upon each injection, which is
+useful for stateless or temporary dependencies.
 
 
-> Similar to [`@isolated`](#isolated), but the difference is that
-> [`transient`](#transient) creates a new instance every time while
-> [`isolated`](#isolated) creates a new instance **per context**
-> (meaning "different context, different instance").
+> The `@transient` decorator differs from `@isolated`:
+> - `@transient` creates a new instance each time it’s requested.
+> - `@isolated` creates one instance per context, providing the same instance
+>   within a given context but different instances across different contexts.
 
 
 
@@ -205,22 +211,12 @@ class Provider {}
 @provider
 class TransientProvider {}
 
-class Providers {
+class Consumer {
   @provide(Provider)
-  private readonly provider!: Provider
-
-  @provide(Provider)
-  private readonly otherProvider!: Provider
-
-  // ^ These will be the same instance (`singleton`)
+  private readonly provider!: Provider // Singleton instance
 
   @provide(TransientProvider)
-  private readonly transientProvider!: TransientProvider
-
-  @provide(TransientProvider)
-  private readonly otherTransientProvider!: TransientProvider
-
-  // ^ These will be different instances (`transient`)
+  private readonly transientProvider!: TransientProvider // New instance
 }
 ```
 
@@ -232,13 +228,27 @@ class Providers {
 
 
 
+Injects the context in which the provider was instantiated into the decorated field.
+
+This decorator allows access to the origin context directly from within the
+provider, making it possible to tailor behavior based on the instantiation context.
 
 
 
 
 
+```typescript
+@provider
+class Service {
+  @origin
+  public originContext!: Context
 
-
+  @postconstruct
+  public logOrigin() {
+    console.log(`Instantiated in context: ${this.originContext.id}`)
+  }
+}
+```
 
 
 
@@ -248,7 +258,7 @@ class Providers {
 
 
 
-Retrieve current contexts and injects them.
+Injects the current set of registered contexts into the decorated class field.
 
 
 
@@ -263,7 +273,7 @@ class Global {
 @contextualize('a', 'b')
 class Contextualized {
   @contexts
-  public readonly contexts!: ReadonlySet<Context> // Context with ids 'a' and 'b'
+  public readonly contexts!: ReadonlySet<Context> // 'a' and 'b'
 }
 ```
 

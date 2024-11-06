@@ -4,8 +4,11 @@ import { Metadata } from '../metadata'
 import type { ProviderClassType } from '../provider'
 
 /**
- * Marks a provider as `@isolated`, ensuring that a unique instance is created
- * for each context.
+ * Marks a provider as `@isolated`, ensuring a unique instance of the provider
+ * is created for each associated context.
+ *
+ * Useful for scenarios where the same provider class must yield distinct
+ * instances based on different contexts.
  *
  * @example
  * ```typescript
@@ -19,14 +22,14 @@ import type { ProviderClassType } from '../provider'
  * @provider
  * class Database {
  *   @provide(Logger)
- *   public logger!: Logger // first instance
+ *   public logger!: Logger // Unique instance for 'database' context
  * }
  *
  * @contextualize('printer')
  * @provider
  * class Printer {
  *   @provide(Logger)
- *   public logger!: Logger // new instance
+ *   public logger!: Logger // New unique instance for 'printer' context
  * }
  * ```
  */
