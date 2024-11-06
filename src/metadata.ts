@@ -5,6 +5,9 @@ import type { Class, UnknownArgs } from './types'
 
 export class Metadata {
   private static readonly namespace = Aspectra.METADATA_NAMESPACE
+  public readonly contextIds = new Set<ContextId>([Aspectra.GLOBAL_CONTEXT_ID])
+  public strategy = Strategy.DEFAULT
+  public originKey?: PropertyKey
 
   public static fromClass<T>(target: Class<T, UnknownArgs>) {
     if (!target[Symbol.metadata]) {
@@ -24,7 +27,4 @@ export class Metadata {
     context.metadata[Metadata.namespace] ??= new Metadata()
     return context.metadata[Metadata.namespace] as Metadata
   }
-
-  public readonly contextIds = new Set<ContextId>([Aspectra.GLOBAL_CONTEXT_ID])
-  public strategy = Strategy.DEFAULT
 }

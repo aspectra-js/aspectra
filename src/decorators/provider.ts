@@ -22,8 +22,8 @@ export function provider<T>(
 ) {
   context.addInitializer(function () {
     const provider = Provider.createFromClass(target)
-    Context.getRegistered(this).forEach(context => {
+    for (const context of Context.getRegistered(this)) {
       context.container.register(provider)
-    })
+    }
   })
 }

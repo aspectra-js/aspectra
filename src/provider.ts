@@ -1,4 +1,5 @@
 import type { ContextId } from './context'
+import type { Context } from './context'
 import { Strategy } from './lib/strategy'
 import { Metadata } from './metadata'
 import type { Class } from './types'
@@ -6,54 +7,63 @@ import type { Class } from './types'
 export type ProviderClassType = Class<unknown, []>
 
 export abstract class Provider {
-  protected constructor(public readonly classType: ProviderClassType) {}
+  protected readonly metadata: Metadata
 
-  public static createFromClass(providerClass: ProviderClassType): Provider {
-    const metadata = Metadata.fromClass(providerClass)
+  protected constructor(public readonly classType: ProviderClassType) {
+    this.metadata = Metadata.fromClass(classType)
+  }
+
+  public static createFromClass(classType: ProviderClassType): Provider {
+    const metadata = Metadata.fromClass(classType)
     switch (metadata.strategy) {
       case Strategy.SINGLETON: {
-        return new SingletonProvider(providerClass)
+        return new SingletonProvider(classType)
       }
       case Strategy.TRANSIENT: {
-        return new TransientProvider(providerClass)
+        return new TransientProvider(classType)
       }
       case Strategy.ISOALTED: {
-        return new IsolatedProvider(providerClass)
+        return new IsolatedProvider(classType)
       }
     }
   }
 
-  abstract provide<T>(metadata: Metadata): T
+  abstract provide<T>(context: Context): T
+
+  protected createInstance<T>(context: Context) {
+    const instance = Reflect.construct(this.classType, []) as T
+    if (this.metadata.originKey) {
+      instance[this.metadata.originKey as keyof T] = context as T[keyof T]
+    }
+    return instance
+  }
 }
 
 export class SingletonProvider extends Provider {
-  private readonly instance: unknown
+  private instance: unknown
 
-  public constructor(providerClass: ProviderClassType) {
-    super(providerClass)
-    this.instance = new this.classType()
-  }
-
-  public override provide<T>() {
+  public override provide<T>(context: Context) {
+    if (!this.instance) {
+      this.instance = this.createInstance(context)
+    }
     return this.instance as T
   }
 }
 
 export class TransientProvider extends Provider {
-  public override provide<T>() {
-    return new this.classType() as T
+  public override provide<T>(context: Context) {
+    return this.createInstance<T>(context)
   }
 }
 
 export class IsolatedProvider extends Provider {
   private readonly providers = new Map<ContextId, unknown>()
 
-  public override provide<T>(metadata: Metadata) {
-    let provider: unknown
-    for (const contextId of metadata.contextIds) {
-      provider = this.providers.get(contextId) || new this.classType()
-      this.providers.set(contextId, provider)
+  public override provide<T>(context: Context): T {
+    if (!this.providers.has(context.id)) {
+      const instance = this.createInstance<T>(context)
+      this.providers.set(context.id, instance)
     }
-    return provider as T
+    return this.providers.get(context.id) as T
   }
 }

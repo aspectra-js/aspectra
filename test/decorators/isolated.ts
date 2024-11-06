@@ -1,4 +1,5 @@
-import { deepStrictEqual, notEqual } from 'node:assert'
+import { notEqual } from 'node:assert'
+import { equal } from 'node:assert'
 import { describe, test } from 'node:test'
 import { contextualize, isolated, provide, provider } from 'aspectra'
 
@@ -16,24 +17,28 @@ class Consumer1 {
   public readonly provider!: IsolatedProvider
 }
 
-@contextualize(contextId2)
+@contextualize(contextId1)
 class Consumer2 {
   @provide(IsolatedProvider)
   public readonly provider!: IsolatedProvider
 }
 
-describe(import.meta.filename, () => {
-  test('should create a new instance for each context', () => {
-    const consumer1 = new Consumer1()
-    const consumer2 = new Consumer2()
+@contextualize(contextId2)
+class Consumer3 {
+  @provide(IsolatedProvider)
+  public readonly provider!: IsolatedProvider
+}
 
-    notEqual(consumer1.provider, consumer2.provider)
+describe(import.meta.filename, () => {
+  test('should use the same instance within the same context (same class)', () => {
+    equal(new Consumer1().provider, new Consumer1().provider)
   })
 
-  test('should use the same instance within the same context', () => {
-    const consumer1a = new Consumer1()
-    const consumer1b = new Consumer1()
+  test('should use the same instance within the same context (different class)', () => {
+    equal(new Consumer1().provider, new Consumer2().provider)
+  })
 
-    deepStrictEqual(consumer1a.provider, consumer1b.provider)
+  test('should create a new instance for each context', () => {
+    notEqual(new Consumer1().provider, new Consumer3().provider)
   })
 })

@@ -1,6 +1,5 @@
 import { Context } from '../context'
 import { ProviderNotFoundError } from '../lib/error'
-import { Metadata } from '../metadata'
 import type { ProviderClassType } from '../provider'
 import type { UnknownClass } from '../types'
 
@@ -30,10 +29,7 @@ export function provide<T extends object, P>(provider: ProviderClassType) {
     context.addInitializer(function () {
       const contexts = Context.getRegistered(this.constructor as UnknownClass)
       for (const context of contexts) {
-        const resolved = context.container.resolve(
-          provider,
-          Metadata.fromClass(this.constructor as UnknownClass),
-        )
+        const resolved = context.container.resolve(provider)
         if (resolved) {
           this[name] = resolved as T[keyof T]
           return

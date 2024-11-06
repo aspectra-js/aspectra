@@ -3,6 +3,7 @@ export { contexts } from './decorators/contexts'
 export { contextualize } from './decorators/contextualize'
 export { isolated } from './decorators/isolated'
 export { transient } from './decorators/transient'
+export { origin } from './decorators/origin'
 export { provide } from './decorators/provide'
 export { provider } from './decorators/provider'
 

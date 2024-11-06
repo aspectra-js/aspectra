@@ -15,7 +15,7 @@ export class Context {
   public readonly container: Container
 
   private constructor(public readonly id: ContextId) {
-    this.container = new Container(this.id)
+    this.container = new Container(this)
   }
 
   public static getRegistered(cls: UnknownClass) {
