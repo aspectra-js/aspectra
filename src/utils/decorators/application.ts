@@ -19,5 +19,5 @@ export function application<
     start(): void
   },
 >(target: Class<T, []>, context: ClassDecoratorContext<typeof target>) {
-  Reflect.construct(target, []).start()
+  queueMicrotask(() => Reflect.construct(target, []).start())
 }

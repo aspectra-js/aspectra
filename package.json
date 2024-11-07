@@ -50,6 +50,7 @@
   "types": "./dist/index.d.cts",
   "files": ["dist"],
   "scripts": {
+    "example:basic": "tsx examples/basic",
     "build:svgs": "tsx scripts/svgs",
     "build:docs": "tsx scripts/docs",
     "build": "run-p build:* & pkgroll --minify --sourcemap --clean-dist",

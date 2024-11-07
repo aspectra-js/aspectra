@@ -34,7 +34,7 @@ This library provides **stable (stage 3) decorators**. Set the following options
 
   |  | utils |
   | - | - |
-  | [`provider`](#provider)<br>[`provide`](#provide)<br>[`contextualize`](#contextualize)<br>[`isolated`](#isolated)<br>[`transient`](#transient)<br>[`origin`](#origin)<br>[`contexts`](#contexts) | [`application`](#application)<br>[`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoized`](#memoized)<br>[`postconstruct`](#postconstruct)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
+  | [`provider`](#provider)<br>[`provide`](#provide)<br>[`contextualize`](#contextualize)<br>[`isolated`](#isolated)<br>[`transient`](#transient)<br>[`contexts`](#contexts) | [`application`](#application)<br>[`autobind`](#autobind)<br>[`bound`](#bound)<br>[`main`](#main)<br>[`memoized`](#memoized)<br>[`postconstruct`](#postconstruct)<br>[`sealed`](#sealed)<br>[`singleton`](#singleton) |
   
 
 
@@ -217,36 +217,6 @@ class Consumer {
 
   @provide(TransientProvider)
   private readonly transientProvider!: TransientProvider // New instance
-}
-```
-
-
-
-
-
-#### `origin`
-
-
-
-Injects the context in which the provider was instantiated into the decorated field.
-
-This decorator allows access to the origin context directly from within the
-provider, making it possible to tailor behavior based on the instantiation context.
-
-
-
-
-
-```typescript
-@provider
-class Service {
-  @origin
-  public originContext!: Context
-
-  @postconstruct
-  public logOrigin() {
-    console.log(`Instantiated in context: ${this.originContext.id}`)
-  }
 }
 ```
 

@@ -20,7 +20,6 @@ const docs = [
     'src/context.ts',
     'src/decorators/isolated.ts',
     'src/decorators/transient.ts',
-    'src/decorators/origin.ts',
     'src/decorators/contexts.ts',
   ],
   [

@@ -1,4 +1,3 @@
-import type { ContextId } from './context'
 import type { Context } from './context'
 import { Strategy } from './lib/strategy'
 import { Metadata } from './metadata'
@@ -30,40 +29,36 @@ export abstract class Provider {
 
   abstract provide<T>(context: Context): T
 
-  protected createInstance<T>(context: Context) {
-    const instance = Reflect.construct(this.classType, []) as T
-    if (this.metadata.originKey) {
-      instance[this.metadata.originKey as keyof T] = context as T[keyof T]
-    }
-    return instance
+  protected createInstance<T>() {
+    return Reflect.construct(this.classType, []) as T
   }
 }
 
 export class SingletonProvider extends Provider {
   private instance: unknown
 
-  public override provide<T>(context: Context) {
+  public override provide<T>() {
     if (!this.instance) {
-      this.instance = this.createInstance(context)
+      this.instance = this.createInstance()
     }
     return this.instance as T
   }
 }
 
 export class TransientProvider extends Provider {
-  public override provide<T>(context: Context) {
-    return this.createInstance<T>(context)
+  public override provide<T>() {
+    return this.createInstance<T>()
   }
 }
 
 export class IsolatedProvider extends Provider {
-  private readonly providers = new Map<ContextId, unknown>()
+  private readonly providers = new WeakMap<Context, unknown>()
 
   public override provide<T>(context: Context): T {
-    if (!this.providers.has(context.id)) {
-      const instance = this.createInstance<T>(context)
-      this.providers.set(context.id, instance)
+    if (!this.providers.has(context)) {
+      const instance = this.createInstance<T>()
+      this.providers.set(context, instance)
     }
-    return this.providers.get(context.id) as T
+    return this.providers.get(context) as T
   }
 }
