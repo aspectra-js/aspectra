@@ -17,14 +17,11 @@
 
 
 
-Examples:
+**Examples:**
 
 
 - [Basic](https://github.com/shunueda/aspectra/blob/main/examples/basic/index.ts)
 
-
-
-<br />
 
 
 This library provides **stable (stage 3) decorators**. Set the following options in your `tsconfig.json`:
