@@ -7,17 +7,20 @@ import { Logger } from './providers/logger'
 /**
  * `@application` defines the main application class.
  *
+ * In this example, we will use the `Logger` and `Database` providers to query
+ * the database, and log the output.
+ *
  * `@contextualize` is used to specify which context we want to associate with.
  * Think of it as a permission system. In this case, we want the permission to
  * use the database.
  *
  * (`Logger` is automatically available because it's in the global context.
- * Read `providers/logger.ts` for more information.)
+ * Read `providers/logger.ts` for more info.)
  */
 @application
 @contextualize(ContextId.DATABASE)
 class Application {
-  // We use the `@provide` decorator to inject the `Logger` and `Database`
+  // We use the `@provide` to inject the provider
   @provide(Logger)
   private readonly logger!: Logger
 
@@ -25,12 +28,13 @@ class Application {
   @provide(Database)
   private readonly database!: Database
 
-  // This method is automatically called by [@application] on load
+  // This method is automatically called by `@application` on load
   public start() {
     this.logger.info('Application started!')
     this.database.connect()
     const users = this.database.queryAll()
     console.log(users)
+
     /**
      * Output:
      * [aspectra]: Application started!

@@ -1,5 +1,7 @@
 import { type MarkdownEntryOrPrimitive, h3 } from 'ts-markdown'
 import { codeblock } from 'ts-markdown'
+import { link } from 'ts-markdown'
+import { ul } from 'ts-markdown'
 import { description, name } from '../../package.json'
 import { paths } from '../paths'
 import { center, comment } from './utils'
@@ -13,6 +15,14 @@ export const base: MarkdownEntryOrPrimitive[] = [
   center(`<h3>${name}</h3>`),
   center(description),
   h3('Introduction'),
+  'Examples:',
+  ul([
+    link({
+      text: 'Basic',
+      href: 'https://github.com/shunueda/aspectra/blob/main/examples/basic/index.ts',
+    }),
+  ]),
+  '<br />',
   'This library provides **stable (stage 3) decorators**. ' +
     'Set the following options in your `tsconfig.json`:',
   codeblock(

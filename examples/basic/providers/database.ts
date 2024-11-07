@@ -10,8 +10,7 @@ import { Logger } from './logger'
  * We want to contextualize with `ContextId.DATABASE` so that we can limit the
  * usage of this provider to only the contexts that have access to it.
  *
- * Also, we want to use config, so we will contextualize with `ContextId.CONFIG`
- * too.
+ * We also want to use config, so we will contextualize with `ContextId.CONFIG`.
  */
 @contextualize(ContextId.DATABASE, ContextId.CONFIG)
 @provider
@@ -33,7 +32,7 @@ export class Database {
    * `@memoized` is one of the useful decorators provided by `aspectra/utils`.
    * It caches the result of the method, so it's only called once.
    *
-   * For more, read the docs.
+   * For more, read the [docs](https://github.com/shunueda/aspectra/tree/main).
    */
   @memoized public queryAll() {
     this.logger.info('Querying all users...')
@@ -50,6 +49,6 @@ export class Database {
         id: 2,
         name: 'Richard Roe',
       },
-    ] as const
+    ]
   }
 }
