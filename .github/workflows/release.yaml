@@ -16,6 +16,9 @@ jobs:
       id-token: write
       pull-requests: write
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: ./.github/actions/setup
       - uses: changesets/action@v1
         with:

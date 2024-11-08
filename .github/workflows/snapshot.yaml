@@ -1,4 +1,4 @@
-name: Release Preview
+name: Snapshot
 
 on:
   - push
@@ -8,6 +8,9 @@ jobs:
   release-preview:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: ./.github/actions/setup
       - run: pnpm test
       - run: pnpm build
