@@ -1,3 +1,4 @@
+#!/usr/bin/env tsx
 const option = process.argv.at(2)
 
 switch (option) {
