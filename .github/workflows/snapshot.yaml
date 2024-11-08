@@ -1,4 +1,5 @@
 name: Release Preview
+
 on:
   - push
   - pull_request
@@ -7,15 +8,7 @@ jobs:
   release-preview:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          cache: 'pnpm'
-          node-version-file: 'package.json'
-      - run: pnpm --frozen-lockfile install
-      - run: pnpm --recursive --filter ./packages/* test
-      - run: pnpm --recursive --filter ./packages/* build
+      - uses: ./.github/actions/setup
+      - run: pnpm test
+      - run: pnpm build
       - run: pnpm pkg-pr-new publish --pnpm --compact ./packages/*

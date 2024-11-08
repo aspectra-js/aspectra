@@ -12,26 +12,28 @@
     "name": "Shun Ueda",
     "email": "me@shu.nu"
   },
-  "sideEffects": false,
   "type": "module",
   "scripts": {
     "check": "biome check --write",
     "commit": "git add --all && cz",
     "format": "pnpm format:json && biome format --write",
     "format:json": "sort-package-json 'package.json' 'packages/*/package.json' 'apps/*/package.json'",
-    "prepare": "lefthook install"
+    "prepare": "lefthook install",
+    "build": "pnpm --recursive --filter ./packages/* run build",
+    "test": "pnpm --recursive --filter ./packages/* run test",
+    "version": "changeset version",
+    "publish": "pnpm check && pnpm build && pnpm test && changeset publish"
   },
   "devDependencies": {
     "@aspectra/toolbox": "workspace:*",
     "@biomejs/biome": "^1.9.4",
+    "@changesets/changelog-github": "^0.5.0",
+    "@changesets/cli": "^2.27.9",
     "@types/node": "^22.9.0",
     "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
     "lefthook": "^1.8.2",
     "pkg-pr-new": "^0.0.30",
-    "release-it": "^17.10.0",
-    "release-it-pnpm": "^4.6.3",
-    "repomix": "^0.2.2",
     "sort-package-json": "^2.10.1",
     "tsx": "^4.19.2",
     "typescript": "^5.6.3"
@@ -39,8 +41,5 @@
   "packageManager": "pnpm@9.12.3",
   "engines": {
     "node": ">=22"
-  },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
   }
 }
