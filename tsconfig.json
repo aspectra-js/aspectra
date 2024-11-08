@@ -18,6 +18,10 @@
     "verbatimModuleSyntax": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src/**/*.ts", "test/**/*.ts", "scripts/**/*.ts"],
+  "include": [
+    "packages/aspectra/src/**/*.ts",
+    "packages/aspectra/test/**/*.ts",
+    "scripts/**/*.ts"
+  ],
   "exclude": ["dist", "node_modules"]
 }
