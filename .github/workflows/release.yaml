@@ -7,11 +7,18 @@ permissions:
 on:
   workflow_dispatch:
     inputs:
+      package:
+        required: true
+        description: 'Select the package to release'
+        type: choice
+        default: aspectra
+        options:
+          - aspectra
       increment:
         required: true
         description: 'Select the version increment type'
-        default: 'patch'
         type: choice
+        default: patch
         options:
           - major
           - minor
@@ -32,11 +39,18 @@ jobs:
         with:
           cache: 'pnpm'
           registry-url: 'https://registry.npmjs.org'
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm test
-      - run: pnpm build
-      - run: pnpm release-it ${{ inputs.increment }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_CONFIG_PROVENANCE: true
+      - run: pnpm --frozen-lockfile install
+      - working-directory: packages/${{ inputs.package }}
+        run:
+          pnpm test
+          pnpm build
+          pnpm release-it
+#        run: pnpm test
+#      - run: cd packages/${{ inputs.package }}
+#      - run: pnpm test
+#      - run: pnpm build
+#      - run: pnpm release-it ${{ inputs.increment }}
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+#          NPM_CONFIG_PROVENANCE: true

@@ -10,7 +10,7 @@ class Main {
   }
 }
 
-describe(import.meta.filename, context => {
+describe(import.meta.filename, _ => {
   afterEach(() => {
     mockFn.mock.resetCalls()
   })

@@ -22,7 +22,7 @@ export function sealed<T extends Class<object, MixinConstructorArgs>>(
   _: ClassDecoratorContext<T>,
 ) {
   return class extends target {
-    constructor(...args: MixinConstructorArgs) {
+    constructor(..._: MixinConstructorArgs) {
       super()
       throw new SealedClassExtentionError(target.name, this.constructor.name)
     }

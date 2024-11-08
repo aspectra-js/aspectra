@@ -1,4 +1,4 @@
-import { name } from '../../../package.json'
+import { name } from '../package.json'
 /**
  * @internal
  * Well-known symbols and constants.

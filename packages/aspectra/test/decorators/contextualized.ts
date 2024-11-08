@@ -26,28 +26,32 @@ describe(import.meta.filename, () => {
       new Set([Context.global]),
     )
   })
-  test('should register same context', () => {
+
+  test('should register same context for A1 and A2', () => {
+    deepStrictEqual(Context.getRegistered(A1), new Set([Context.get(context)]))
+    deepStrictEqual(Context.getRegistered(A2), new Set([Context.get(context)]))
+  })
+
+  test('should register no shared context between A1 and B', () => {
+    deepStrictEqual(Context.getRegistered(A1), new Set([Context.get(context)]))
     deepStrictEqual(
-      Context.getRegistered(A1).intersection(Context.getRegistered(A2)),
-      new Set([Context.get(context)]),
+      Context.getRegistered(B),
+      new Set([Context.get(otherContext)]),
     )
   })
-  test('should register new contexts', () => {
+
+  test('should register multiple contexts for C', () => {
     deepStrictEqual(
-      Context.getRegistered(A1).intersection(Context.getRegistered(B)),
-      new Set(),
+      Context.getRegistered(C),
+      new Set([Context.get(context), Context.get(otherContext)]),
     )
   })
-  test('should register multiple contexts', () => {
+
+  test('should register contexts in different order consistently', () => {
     deepStrictEqual(
-      Context.getRegistered(A1).intersection(Context.getRegistered(C)),
-      new Set([Context.get(context)]),
+      Context.getRegistered(C),
+      new Set([Context.get(context), Context.get(otherContext)]),
     )
-  })
-  test('should register multiple contexts in different order', () => {
-    deepStrictEqual(
-      Context.getRegistered(C).intersection(Context.getRegistered(A1)),
-      new Set([Context.get(context)]),
-    )
+    deepStrictEqual(Context.getRegistered(A1), new Set([Context.get(context)]))
   })
 })

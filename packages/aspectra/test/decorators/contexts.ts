@@ -24,10 +24,7 @@ describe(import.meta.filename, () => {
   test('should have global contexts', () => {
     const global = new Global()
     deepStrictEqual(
-      global.contexts
-        .values()
-        .map(it => it.id)
-        .toArray(),
+      Array.from(global.contexts).map(it => it.id),
       [Aspectra.GLOBAL_CONTEXT_ID],
     )
   })
@@ -35,10 +32,7 @@ describe(import.meta.filename, () => {
   test('should have contextualized contexts', () => {
     const contextualized = new Contextualized()
     deepStrictEqual(
-      contextualized.contexts
-        .values()
-        .map(it => it.id)
-        .toArray(),
+      Array.from(contextualized.contexts).map(it => it.id),
       customContexts,
     )
   })
