@@ -5,7 +5,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/aspectra-js/aspectra.git"
+    "url": "https://github.com/shunueda/aspectra.git"
   },
   "license": "MIT",
   "author": {
@@ -22,19 +22,18 @@
     "prepare": "lefthook install"
   },
   "devDependencies": {
+    "@aspectra/toolbox": "workspace:*",
     "@biomejs/biome": "^1.9.4",
     "@types/node": "^22.9.0",
     "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
     "lefthook": "^1.8.2",
     "pkg-pr-new": "^0.0.30",
-    "pkgroll": "^2.5.1",
     "release-it": "^17.10.0",
     "release-it-pnpm": "^4.6.3",
     "repomix": "^0.2.2",
     "sort-package-json": "^2.10.1",
     "tsx": "^4.19.2",
-    "turbo": "^2.2.3",
     "typescript": "^5.6.3"
   },
   "packageManager": "pnpm@9.12.3",

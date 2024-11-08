@@ -21,7 +21,8 @@
     "useDefineForClassFields": true,
     "skipLibCheck": true,
     "strict": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "target": "es2022"
   },
   "exclude": ["node_modules"]
 }

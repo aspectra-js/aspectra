@@ -3,59 +3,32 @@
   "name": "aspectra",
   "version": "0.1.12",
   "description": "The decorator framework.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shunueda/aspectra.git",
+    "directory": "packages/aspectra"
+  },
   "keywords": [
     "aspect oriented",
     "decorator",
     "decorators",
     "dependency injection",
-    "dependency inversion",
     "di",
     "injection",
     "inversion of control",
     "inversify",
     "ioc",
-    "node",
     "typescript"
   ],
-  "license": "MIT",
-  "sideEffects": false,
   "type": "module",
-  "exports": {
-    ".": {
-      "require": {
-        "types": "./dist/index.d.cts",
-        "default": "./dist/index.cjs"
-      },
-      "import": {
-        "types": "./dist/index.d.mts",
-        "default": "./dist/index.mjs"
-      }
-    },
-    "./utils": {
-      "require": {
-        "types": "./dist/utils/index.d.cts",
-        "default": "./dist/utils/index.cjs"
-      },
-      "import": {
-        "types": "./dist/utils/index.d.mts",
-        "default": "./dist/utils/index.mjs"
-      }
-    }
-  },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.cts",
-  "files": ["dist"],
   "scripts": {
-    "build": "pkgroll --minify --sourcemap --clean-dist",
-    "check": "biome check --write",
-    "commit": "git add --all && cz",
+    "build": "toolbox build",
     "test": "tsx --test",
-    "test:watch": "tsx --test --watch",
     "type-check": "tsc"
   },
-  "packageManager": "pnpm@9.12.3",
-  "engines": {
-    "node": ">=22"
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist",
+    "provenance": true
   }
 }
