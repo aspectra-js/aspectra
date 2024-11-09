@@ -2,7 +2,7 @@ import { equal } from 'node:assert'
 import { mock } from 'node:test'
 import { describe } from 'node:test'
 import { test } from 'node:test'
-import { postconstruct } from '../../../src/utils'
+import { postconstruct } from 'aspectra/utils'
 
 const mockFn = mock.fn()
 

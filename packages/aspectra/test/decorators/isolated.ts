@@ -1,7 +1,7 @@
 import { notEqual } from 'node:assert'
 import { equal } from 'node:assert'
 import { describe, test } from 'node:test'
-import { contextualize, isolated, provide, provider } from '../../src'
+import { contextualize, isolated, provide, provider } from 'aspectra'
 
 const contextId1 = `${import.meta.filename}-context-1`
 const contextId2 = `${import.meta.filename}-context-2`
