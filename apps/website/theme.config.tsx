@@ -1,7 +1,18 @@
+import type { DocsThemeConfig } from 'nextra-theme-docs'
+import pkg from './package.json'
+
 export default {
-  logo: <span>My Nextra Documentation</span>,
+  logo: (
+    <span
+      style={{
+        letterSpacing: '-0.05em',
+        fontWeight: 600,
+      }}
+    >
+      @spectra
+    </span>
+  ),
   project: {
-    link: 'https://github.com/shuding/nextra',
+    link: pkg.repository.url,
   },
-  // ... other theme options
-}
+} satisfies DocsThemeConfig

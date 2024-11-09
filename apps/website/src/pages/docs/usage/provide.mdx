@@ -1,0 +1,29 @@
+# @provide
+
+`providers` can be injected using the `@provide` decorator.
+
+Regardless of how many times a `provider` is injected, the same instance will
+be returned each time. Don't worry about creating multiple instances of the
+same `provider`, simply inject wherever you need it.
+
+```typescript filename="src/index.ts"
+import { application, provide } from 'aspectra'
+import { Database } from './providers/database'
+
+@application
+class Application {
+  @provide(Database)
+  private readonly database!: Database
+
+  @provide(Database)
+  private readonly other!: Database // same instance as above
+
+  public start() {
+    console.log(this.database.getAll())
+  }
+}
+```
+
+```bash
+tsx src/index.ts # Output: ['item1', 'item2']
+```

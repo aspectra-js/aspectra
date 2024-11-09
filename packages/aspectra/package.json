@@ -24,7 +24,7 @@
   "scripts": {
     "build": "toolbox build",
     "test": "tsx --test",
-    "type-check": "tsc"
+    "type-checkw": "tsc"
   },
   "publishConfig": {
     "access": "public",

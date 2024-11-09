@@ -1,0 +1,25 @@
+# @application
+
+This is the entry point of the application. It will instantiate the class and
+call the `start` method.
+
+```typescript filename="src/index.ts"
+import { application } from 'aspectra'
+
+@application
+class Application {
+  public start() {
+    console.log('Hello, world!')
+  }
+}
+
+// equivalent to
+const app = new Application()
+app.start()
+```
+
+Which can be run with:
+
+```bash
+tsx src/index.ts
+```
