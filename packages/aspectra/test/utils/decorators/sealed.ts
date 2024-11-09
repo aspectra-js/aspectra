@@ -1,6 +1,6 @@
 import { throws } from 'node:assert'
 import { describe, test } from 'node:test'
-import { sealed } from '../../../src/utils'
+import { sealed } from 'aspectra/utils'
 
 @sealed
 class Base {}

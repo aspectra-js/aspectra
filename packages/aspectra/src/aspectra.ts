@@ -1,4 +1,5 @@
 import { name } from '../package.json'
+
 /**
  * @internal
  * Well-known symbols and constants.

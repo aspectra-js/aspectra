@@ -1,4 +1,4 @@
-import type { Class } from '../../types'
+import type { Class } from '../types'
 
 /**
  * Entry point of the application. Will instantiate the class and calls the

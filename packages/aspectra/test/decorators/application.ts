@@ -2,8 +2,7 @@ import { equal } from 'node:assert'
 import { describe } from 'node:test'
 import { test } from 'node:test'
 import { mock } from 'node:test'
-import { provide, provider } from '../../../src'
-import { application } from '../../../src/utils'
+import { application, provide, provider } from 'aspectra'
 
 const startMock = mock.fn()
 const providerConstructorMock = mock.fn()

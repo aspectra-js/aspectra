@@ -1,56 +1,29 @@
 name: Release
 
-permissions:
-  contents: write
-  id-token: write
-
 on:
-  workflow_dispatch:
-    inputs:
-      package:
-        required: true
-        description: 'Select the package to release'
-        type: choice
-        default: aspectra
-        options:
-          - aspectra
-      increment:
-        required: true
-        description: 'Select the version increment type'
-        type: choice
-        default: patch
-        options:
-          - major
-          - minor
-          - patch
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - run: |
-          git config user.name '${{ github.actor }}'
-          git config user.email '${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com'
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
+      - uses: ./.github/actions/setup
+      - uses: changesets/action@v1
         with:
-          cache: 'pnpm'
-          registry-url: 'https://registry.npmjs.org'
-      - run: pnpm --frozen-lockfile install
-      - working-directory: packages/${{ inputs.package }}
-        run:
-          pnpm test
-          pnpm build
-          pnpm release-it
-#        run: pnpm test
-#      - run: cd packages/${{ inputs.package }}
-#      - run: pnpm test
-#      - run: pnpm build
-#      - run: pnpm release-it ${{ inputs.increment }}
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-#          NPM_CONFIG_PROVENANCE: true
+          version: pnpm version
+          publish: pnpm publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,4 +1,3 @@
-export { application } from './decorators/application'
 export { autobind } from './decorators/autobind'
 export { bound } from './decorators/bound'
 export { main } from './decorators/main'
