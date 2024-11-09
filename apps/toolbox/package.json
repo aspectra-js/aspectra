@@ -1,9 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "@aspectra/toolbox",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
-  "version": "0.1.0",
   "bin": "src/index.ts",
   "dependencies": {
     "@fontsource/geist-mono": "^5.1.0",

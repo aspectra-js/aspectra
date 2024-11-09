@@ -1,5 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
+  "name": "@aspectra/aspectra",
   "private": true,
   "repository": {
     "type": "git",
@@ -11,6 +12,7 @@
     "email": "me@shu.nu"
   },
   "type": "module",
+  "workspaces": ["packages/*"],
   "scripts": {
     "build": "pnpm --recursive --filter ./packages/* run build",
     "build:graphics": "toolbox graphics",
