@@ -3,6 +3,7 @@
   "name": "@aspectra/toolbox",
   "private": true,
   "type": "module",
+  "version": "0.1.0",
   "bin": "src/index.ts",
   "dependencies": {
     "@fontsource/geist-mono": "^5.1.0",

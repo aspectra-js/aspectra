@@ -26,7 +26,7 @@
     "version": "changeset version"
   },
   "devDependencies": {
-    "@aspectra/toolbox": "workspace:^",
+    "@aspectra/toolbox": "workspace:^0.1.0",
     "@biomejs/biome": "^1.9.4",
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.9",

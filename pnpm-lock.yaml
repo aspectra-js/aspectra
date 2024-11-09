@@ -9,7 +9,7 @@ importers:
   .:
     devDependencies:
       '@aspectra/toolbox':
-        specifier: workspace:^
+        specifier: workspace:^0.1.0
         version: link:apps/toolbox
       '@biomejs/biome':
         specifier: ^1.9.4

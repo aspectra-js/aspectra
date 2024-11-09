@@ -11,4 +11,4 @@ runs:
         registry-url: 'https://registry.npmjs.org'
         node-version-file: 'package.json'
     - shell: bash
-      run: pnpm install
+      run: pnpm --frozen-lockfile install
