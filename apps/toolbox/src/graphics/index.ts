@@ -12,7 +12,7 @@ const components = [
   {
     component: Banner,
     width: 1200,
-    height: 400,
+    height: 300,
   },
 ] as const
 
