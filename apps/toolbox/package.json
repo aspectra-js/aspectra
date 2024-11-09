@@ -5,7 +5,15 @@
   "type": "module",
   "bin": "src/index.ts",
   "dependencies": {
+    "@fontsource/geist-mono": "^5.1.0",
+    "@fontsource/geist-sans": "^5.1.0",
+    "playwright": "^1.48.2",
+    "react": "^18.3.1",
+    "satori": "^0.11.3",
     "tsup": "^8.3.5",
     "type-fest": "^4.26.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12"
   }
 }

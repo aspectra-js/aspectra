@@ -19,6 +19,7 @@
     "format": "pnpm format:json && biome format --write",
     "format:json": "sort-package-json 'package.json' 'packages/*/package.json' 'apps/*/package.json'",
     "prepare": "lefthook install",
+    "build:graphics": "toolbox graphics",
     "build": "pnpm --recursive --filter ./packages/* run build",
     "test": "pnpm --recursive --filter ./packages/* run test",
     "version": "changeset version",
