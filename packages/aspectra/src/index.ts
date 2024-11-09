@@ -1,3 +1,4 @@
+export { application } from './decorators/application'
 export { Context } from './context'
 export { contexts } from './decorators/contexts'
 export { contextualize } from './decorators/contextualize'

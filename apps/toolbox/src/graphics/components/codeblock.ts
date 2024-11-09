@@ -1,5 +1,5 @@
-import { provide, provider } from 'aspectra'
-import { application, memoized } from 'aspectra/utils'
+import { application, provide, provider } from 'aspectra'
+import { memoized } from 'aspectra/utils'
 
 @provider
 class DatabaseProvider {
