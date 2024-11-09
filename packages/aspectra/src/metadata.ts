@@ -10,17 +10,14 @@ export class Metadata {
   public strategy = Strategy.DEFAULT
 
   public static fromClass<T>(target: Class<T, UnknownArgs>) {
-    if (!target[Symbol.metadata]) {
-      Object.defineProperty(target, Symbol.metadata, {
-        value: {} satisfies DecoratorMetadataObject,
-        writable: false,
-        configurable: true,
-      })
-    }
-    // biome-ignore lint/style/noNonNullAssertion: Assigned above
-    target[Symbol.metadata]![Metadata.namespace] ??= new Metadata()
-    // biome-ignore lint/style/noNonNullAssertion: Assigned above
-    return target[Symbol.metadata]![Metadata.namespace]! as Metadata
+    // biome-ignore lint/suspicious/noAssignInExpressions: handled properly
+    const metadata = (target[Symbol.metadata] ??= {
+      value: {} as DecoratorMetadataObject,
+      writable: false,
+      configurable: true,
+    })
+    // biome-ignore lint/suspicious/noAssignInExpressions: handled properly
+    return (metadata[Metadata.namespace] ??= new Metadata()) as Metadata
   }
 
   public static fromContext(context: DecoratorContext) {

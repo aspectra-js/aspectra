@@ -23,7 +23,7 @@ import type { UnknownClass } from '../types'
  * }
  * ```
  */
-export function provide<T extends object, P>(provider: ProviderClassType) {
+export function provide<T extends object, P>(provider: ProviderClassType<P>) {
   return (_: unknown, context: ClassFieldDecoratorContext<T, P>) => {
     const name = context.name as keyof T
     context.addInitializer(function () {

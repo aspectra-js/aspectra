@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "name": "@aspectra/examples",
+  "scripts": {
+    "start": "toolbox run"
+  },
+  "devDependencies": {
+    "@aspectra/toolbox": "workspace:^"
+  }
+}

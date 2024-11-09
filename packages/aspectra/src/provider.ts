@@ -3,7 +3,7 @@ import { Strategy } from './lib/strategy'
 import { Metadata } from './metadata'
 import type { Class } from './types'
 
-export type ProviderClassType = Class<unknown, []>
+export type ProviderClassType<T = unknown> = Class<T, []>
 
 export abstract class Provider {
   protected readonly metadata: Metadata

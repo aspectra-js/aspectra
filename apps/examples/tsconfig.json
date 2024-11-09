@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig.json",
+  "extends": ["../../tsconfig.json"],
+  "compilerOptions": {
+    "paths": {
+      "aspectra": ["../../packages/aspectra/dist"],
+      "aspectra/utils": ["../../packages/aspectra/dist/utils"]
+    }
+  }
+}

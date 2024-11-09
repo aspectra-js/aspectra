@@ -45,6 +45,12 @@ importers:
         specifier: ^5.6.3
         version: 5.6.3
 
+  apps/examples:
+    devDependencies:
+      '@aspectra/toolbox':
+        specifier: workspace:^
+        version: link:../toolbox
+
   apps/toolbox:
     dependencies:
       '@fontsource/geist-mono':
