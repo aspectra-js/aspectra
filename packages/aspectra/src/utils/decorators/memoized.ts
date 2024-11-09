@@ -1,3 +1,4 @@
+import { AspectraMap } from '../../collections/map'
 import type { Fun } from '../../types'
 import { type Serializable, serialize } from '../serialize'
 
@@ -22,17 +23,13 @@ export function memoized<T, U extends Serializable[], R>(
   target: Fun<U, R, T>,
   context: ClassMethodDecoratorContext<T, typeof target>,
 ) {
-  const cache = new Map<string, R>()
+  const cache = new AspectraMap<string, R>()
   context.addInitializer(function () {
     this[context.name as keyof T] = ((...args: U) => {
       const key = serialize(args)
-      if (cache.has(key)) {
-        // biome-ignore lint/style/noNonNullAssertion: Checked for existence above
-        return cache.get(key)!
-      }
-      const result = target.call(this, ...args)
-      cache.set(key, result)
-      return result
+      return cache.getOrPut(key, () => {
+        return target.call(this, ...args)
+      })
     }) as T[keyof T]
   })
 }

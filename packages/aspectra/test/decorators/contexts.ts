@@ -1,10 +1,9 @@
 import { deepStrictEqual } from 'node:assert'
 import { describe } from 'node:test'
 import { test } from 'node:test'
-import { type Context, contexts } from 'aspectra'
+import { Context, contexts } from 'aspectra'
 import { contextualize } from 'aspectra'
 import { isolated } from 'aspectra'
-import { Aspectra } from 'aspectra/aspectra'
 
 const customContexts = ['a', 'b'] as const
 
@@ -25,7 +24,7 @@ describe(import.meta.filename, () => {
     const global = new Global()
     deepStrictEqual(
       Array.from(global.contexts).map(it => it.id),
-      [Aspectra.GLOBAL_CONTEXT_ID],
+      [Context.global.id],
     )
   })
 

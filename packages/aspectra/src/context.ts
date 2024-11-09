@@ -1,4 +1,5 @@
-import { Aspectra } from './aspectra'
+import { name } from '../package.json'
+import { AspectraMap } from './collections/map'
 import { Container } from './container'
 import { Metadata } from './metadata'
 import type { UnknownClass } from './types'
@@ -6,9 +7,9 @@ import type { UnknownClass } from './types'
 export type ContextId = PropertyKey
 
 export class Context {
-  public static readonly global = new Context(Aspectra.GLOBAL_CONTEXT_ID)
+  public static readonly global = new Context(Symbol(`${name}.global_context`))
 
-  private static readonly contexts = new Map<ContextId, Context>([
+  private static readonly contexts = new AspectraMap<ContextId, Context>([
     [Context.global.id, Context.global],
   ])
 
@@ -18,21 +19,17 @@ export class Context {
 
   public static getRegistered(cls: UnknownClass) {
     const metadata = Metadata.fromClass(cls)
-    const contexts = new Set<Context>()
-    for (const contextId of metadata.contextIds) {
-      if (Context.contexts.has(contextId)) {
-        // biome-ignore lint/style/noNonNullAssertion: Checked for existence above
-        const context = Context.contexts.get(contextId)!
-        contexts.add(context)
-      }
-    }
-    return contexts
+    return new Set(
+      Array.from(metadata.contexts).filter(context =>
+        Context.contexts.has(context.id),
+      ),
+    )
   }
 
   public static registerIfMissing(contextId: ContextId) {
-    if (!Context.contexts.has(contextId)) {
-      Context.contexts.set(contextId, new Context(contextId))
-    }
+    return Context.contexts.getOrPut(contextId, () => {
+      return new Context(contextId)
+    })
   }
 
   public static get(id: ContextId) {

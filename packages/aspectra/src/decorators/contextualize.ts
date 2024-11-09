@@ -39,19 +39,19 @@ import type { NonEmptyArray } from '../types'
  * }
  * ```
  */
-export function contextualize(...contexts: NonEmptyArray<Context | ContextId>) {
+export function contextualize(...args: NonEmptyArray<Context | ContextId>) {
   return (
     target: Class<object, UnknownArgs>,
     context: ClassDecoratorContext<typeof target>,
   ) => {
     const metadata = Metadata.fromContext(context)
-    metadata.contextIds.clear()
-    for (const context of contexts) {
-      if (context instanceof Context) {
-        metadata.contextIds.add(context.id)
+    metadata.contexts.clear()
+    for (const arg of args) {
+      if (arg instanceof Context) {
+        metadata.contexts.add(arg)
       } else {
-        metadata.contextIds.add(context)
-        Context.registerIfMissing(context)
+        const context = Context.registerIfMissing(arg)
+        metadata.contexts.add(context)
       }
     }
   }

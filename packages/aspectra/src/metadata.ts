@@ -1,11 +1,12 @@
-import { Aspectra } from './aspectra'
-import type { ContextId } from './context'
+import { name } from '../package.json'
+import { Context } from './context'
 import { Strategy } from './lib/strategy'
 import type { Class, UnknownArgs } from './types'
 
 export class Metadata {
-  private static readonly namespace = Aspectra.METADATA_NAMESPACE
-  public readonly contextIds = new Set<ContextId>([Aspectra.GLOBAL_CONTEXT_ID])
+  private static readonly namespace = Symbol(`${name}.metadata`)
+
+  public readonly contexts = new Set<Context>([Context.global])
   public strategy = Strategy.DEFAULT
 
   public static fromClass<T>(target: Class<T, UnknownArgs>) {
