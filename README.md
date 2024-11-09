@@ -1,1 +1,1 @@
-packages/aspectra/readme.md
+packages/aspectra/README.md
