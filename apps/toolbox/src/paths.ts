@@ -5,6 +5,7 @@ export const root = join(import.meta.filename, '..', '..', '..', '..')
 
 export const paths = {
   assets: join(root, 'packages', 'aspectra', 'assets'),
+  rootAssets: join(root, 'assets'),
 }
 
 Object.values(paths).forEach(async path => {

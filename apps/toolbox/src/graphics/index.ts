@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs'
 import { rename, writeFile } from 'node:fs/promises'
+import { cp } from 'node:fs/promises'
 import { join } from 'node:path'
 import { webkit } from 'playwright'
 import { createElement } from 'react'
@@ -46,3 +47,8 @@ const [download] = await Promise.all([page.waitForEvent('download')])
 const path = await download.path()
 await rename(path, join(paths.assets, 'codeblock.svg'))
 await browser.close()
+
+await cp(paths.assets, paths.rootAssets, {
+  recursive: true,
+  force: true,
+})
