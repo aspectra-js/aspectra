@@ -14,19 +14,19 @@
   },
   "type": "module",
   "scripts": {
+    "build": "pnpm --recursive --filter ./packages/* run build",
+    "build:graphics": "toolbox graphics",
     "check": "biome check --write",
     "commit": "git add --all && cz",
     "format": "pnpm format:json && biome format --write",
     "format:json": "sort-package-json 'package.json' 'packages/*/package.json' 'apps/*/package.json'",
     "prepare": "lefthook install",
-    "build:graphics": "toolbox graphics",
-    "build": "pnpm --recursive --filter ./packages/* run build",
+    "publish": "pnpm check && pnpm build && pnpm test && changeset publish",
     "test": "pnpm --recursive --filter ./packages/* run test",
-    "version": "changeset version",
-    "publish": "pnpm check && pnpm build && pnpm test && changeset publish"
+    "version": "changeset version"
   },
   "devDependencies": {
-    "@aspectra/toolbox": "workspace:*",
+    "@aspectra/toolbox": "workspace:^",
     "@biomejs/biome": "^1.9.4",
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.9",
