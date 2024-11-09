@@ -33,7 +33,7 @@ const codeblockUrl = `https://www.ray.so/#code=${btoa(
   readFileSync(join(import.meta.dirname, 'components', 'codeblock.ts'))
     .toString()
     .trim(),
-)}&padding=16&title=aspectra&language=typescript&theme=falcon&ref=codeImage&background=true`
+)}&padding=16&title=aspectra&language=typescript&theme=falcon&ref=codeImage&background=false`
 
 const browser = await webkit.launch()
 const context = await browser.newContext()
