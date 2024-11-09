@@ -1,5 +1,5 @@
-import { application, provide, provider } from 'aspectra'
-import { contextualize } from 'aspectra'
+import { application, contextualize, provide, provider } from 'aspectra'
+import { cached } from 'aspectra/utils'
 
 enum ContextId {
   DATABASE = 'database',
@@ -8,8 +8,8 @@ enum ContextId {
 
 @contextualize(ContextId.DATABASE)
 @provider
-class ProductDatabase {
-  public queryAll() {
+class DatabaseProvider {
+  @cached('1h') public queryAllProducts() {
     return [
       { id: 1, name: 'Laptop', price: 1000 },
       { id: 2, name: 'Smartphone', price: 500 },
@@ -20,12 +20,13 @@ class ProductDatabase {
 @contextualize(ContextId.DATABASE, ContextId.ORDER)
 @provider
 class OrderProvider {
-  @provide(ProductDatabase)
-  private readonly productDatabase!: ProductDatabase
+  @provide(DatabaseProvider)
+  private readonly databaseProvider!: DatabaseProvider
 
   public processOrder(id: number) {
-    const product = this.productDatabase.queryAll().find(it => it.id === id)
-
+    const product = this.databaseProvider
+      .queryAllProducts()
+      .find(it => it.id === id)
     if (product) {
       return `Order confirmed for ${product.name} at $${product.price}`
     }

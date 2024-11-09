@@ -1,9 +1,9 @@
 import { application, provide, provider } from 'aspectra'
-import { memoized } from 'aspectra/utils'
+import { cached } from 'aspectra/utils'
 
 @provider
 class DatabaseProvider {
-  @memoized public getAll() {
+  @cached('1h') public getAll() {
     return ['john', 'jane', 'joe']
   }
 }
