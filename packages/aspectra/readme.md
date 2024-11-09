@@ -1,5 +1,5 @@
 <div align='center'>
-  <img src='../../assets/banner.svg' alt='banner' width='600'>
+  <img src='assets/banner.svg' alt='banner' width='600'>
 </div>
 
 <div align='center'>
@@ -13,5 +13,5 @@
 <br />
 
 <div align='center'>
-  <img src='../../assets/codeblock.svg' alt='codeblock'>
+  <img src='assets/codeblock.svg' alt='codeblock'>
 </div>
