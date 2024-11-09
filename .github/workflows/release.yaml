@@ -22,8 +22,8 @@ jobs:
       - uses: ./.github/actions/setup
       - uses: changesets/action@v1
         with:
-          version: pnpm version
-          publish: pnpm publish -r
+          version: pnpm ci:version
+          publish: pnpm ci:publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
