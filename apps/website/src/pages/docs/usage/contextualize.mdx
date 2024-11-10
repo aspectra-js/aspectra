@@ -2,10 +2,16 @@ import { Callout } from 'nextra/components'
 
 # @contextualize
 
-As we discussed, `providers` are stored in the global context (accesible via
-`(Context.global)`), but `@contextualize` restricts the access to specific
-contexts, giving you fine-granate control over dependency injection within your
-application.
+In `aspectra`, contexts serve as containers for managing providers. By default,
+all providers are stored within the global context (`Context.global`), making
+them accessible throughout the application. Providers in the global context can
+be injected anywhere using the `@provide` decorator, simplifying dependency
+injection for widely-used services.
+
+To restrict a provider to a specific context, use the `@contextualize`
+decorator. This enables precise control over where dependencies can be
+injected, ensuring that certain providers are only available within designated
+parts of your application.
 
 #### Example
 
@@ -13,7 +19,6 @@ Let's see an example where we have two contexts: `DATABASE` and `ORDER`.
 
 ```typescript
 import { application, contextualize, provide, provider } from 'aspectra'
-import { cached } from 'aspectra/utils'
 
 enum ContextId {
   DATABASE = 'database',
@@ -23,7 +28,7 @@ enum ContextId {
 @contextualize(ContextId.DATABASE)
 @provider
 class DatabaseProvider {
-  @cached('1hour') public queryAll() {
+  public queryAll() {
     return [
       { id: 1, name: 'Laptop', price: 1000 },
       { id: 2, name: 'Smartphone', price: 500 },
@@ -75,8 +80,8 @@ flowchart LR
 ```
 
 <Callout>
-  By restricting `DatabaseProvider` to the `DATABASE` context, we ensure it
-  isn't exposed directly to `CommerceApplication`, and accessible only through
-  `OrderProvider`. `Contexts` encapsulate the providers, ensuring secure and
-  organized dependency management.
+    By restricting `DatabaseProvider` to the `DATABASE` context, we ensure it
+    isn't exposed directly to `CommerceApplication`, and accessible only through
+    `OrderProvider`. `Contexts` encapsulate the providers, ensuring secure and
+    organized dependency management.
 </Callout>
