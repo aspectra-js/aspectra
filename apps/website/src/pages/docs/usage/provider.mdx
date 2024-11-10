@@ -1,7 +1,11 @@
 # @provider
 
-`providers` are classes that provide a service to the application. An example
-of a `provider` is a database connection:
+The `@provider` decorator registers a class as a service provider within the
+application. Providers encapsulate functionality, such as a database
+connection, which can be injected wherever needed using the `@provide`
+decorator.
+
+#### Example
 
 ```typescript filename="src/providers/database.ts"
 import { provider } from 'aspectra'

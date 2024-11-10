@@ -1,10 +1,17 @@
+import { Callout } from 'nextra/components'
+
 # @provide
 
-`providers` can be injected using the `@provide` decorator.
+The @provide decorator injects providers as singletons. Each time a provider is
+injected, `aspectra` returns the same instance, managing its lifecycle
+automatically. This allows you to inject it wherever needed without worrying
+about multiple instances.
 
-Regardless of how many times a `provider` is injected, the same instance will
-be returned each time. Don't worry about creating multiple instances of the
-same `provider`, simply inject wherever you need it.
+<Callout type="info" emoji="ℹ️">
+  You can customize this behavior later on! 😃
+</Callout>
+
+#### Example
 
 ```typescript filename="src/index.ts"
 import { application, provide } from 'aspectra'
@@ -16,7 +23,7 @@ class Application {
   private readonly database!: Database
 
   @provide(Database)
-  private readonly other!: Database // same instance as above
+  private readonly other!: Database // same instance as `database`
 
   public start() {
     console.log(this.database.getAll())

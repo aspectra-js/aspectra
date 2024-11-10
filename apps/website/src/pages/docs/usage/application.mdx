@@ -1,7 +1,16 @@
+import { Callout } from 'nextra/components'
+
 # @application
 
-This is the entry point of the application. It will instantiate the class and
-call the `start` method.
+The `@application` decorator marks the entry point of your aspectra-based
+application. It instantiates the class it decorates and calls its `start`
+method automatically.
+
+<Callout type="info" emoji="ℹ️">
+  Lack of `start` method will result in a compile-time error.
+</Callout>
+
+#### Example
 
 ```typescript filename="src/index.ts"
 import { application } from 'aspectra'
@@ -12,13 +21,18 @@ class Application {
     console.log('Hello, world!')
   }
 }
+```
 
-// equivalent to
+This is functionally equivalent to:
+
+```typescript
 const app = new Application()
 app.start()
 ```
 
-Which can be run with:
+#### Running the Application
+
+Run your application using:
 
 ```bash
 tsx src/index.ts

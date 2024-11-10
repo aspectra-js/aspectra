@@ -1,0 +1,82 @@
+import { Callout } from 'nextra/components'
+
+# @contextualize
+
+As we discussed, `providers` are stored in the global context (accesible via
+`(Context.global)`), but `@contextualize` restricts the access to specific
+contexts, giving you fine-granate control over dependency injection within your
+application.
+
+#### Example
+
+Let's see an example where we have two contexts: `DATABASE` and `ORDER`.
+
+```typescript
+import { application, contextualize, provide, provider } from 'aspectra'
+import { cached } from 'aspectra/utils'
+
+enum ContextId {
+  DATABASE = 'database',
+  ORDER = 'order',
+}
+
+@contextualize(ContextId.DATABASE)
+@provider
+class DatabaseProvider {
+  @cached('1hour') public queryAll() {
+    return [
+      { id: 1, name: 'Laptop', price: 1000 },
+      { id: 2, name: 'Smartphone', price: 500 },
+    ]
+  }
+}
+
+@contextualize(ContextId.DATABASE, ContextId.ORDER)
+@provider
+class OrderProvider {
+  @provide(DatabaseProvider)
+  private readonly database!: DatabaseProvider
+
+  public process(id: number) {
+    const product = this.database
+      .queryAll()
+      .find(it => it.id === id)
+    if (product) {
+      // process order
+    } else {
+      console.error('Product not found')
+    }
+  }
+}
+
+@contextualize(ContextId.ORDER)
+@application
+class CommerceApplication {
+  @provide(OrderProvider)
+  private readonly order!: OrderProvider
+
+  public start() {
+    this.order.process(1)
+    this.order.process(3)
+  }
+}
+```
+
+Let's break down the contexualization:
+- `DatabaseProvider` -> `DATABASE`
+- `OrderProvider` -> `DATABASE` & `ORDER`
+- `CommerceApplication` -> `ORDER`
+
+Here's how we can visualize the context tree:
+
+```mermaid
+flowchart LR
+   DatabaseProvider <-- DATABASE --> OrderProvider <-- ORDER --> CommerceApplication
+```
+
+<Callout>
+  By restricting `DatabaseProvider` to the `DATABASE` context, we ensure it
+  isn't exposed directly to `CommerceApplication`, and accessible only through
+  `OrderProvider`. `Contexts` encapsulate the providers, ensuring secure and
+  organized dependency management.
+</Callout>

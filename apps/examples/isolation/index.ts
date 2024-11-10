@@ -13,7 +13,7 @@ class LoggerProvider {
   private readonly origin!: Context
 
   public log(message: string) {
-    console.log(`[${this.origin.id.toString()}] ${message}`)
+    console.log(`[${this.origin.id.toString()}]:`, message)
   }
 }
 
@@ -21,10 +21,10 @@ class LoggerProvider {
 @provider
 class DatabaseProvider {
   @provide(LoggerProvider)
-  private readonly loggerProvider!: LoggerProvider
+  private readonly logger!: LoggerProvider
 
   public connect() {
-    this.loggerProvider.log('Connected to database')
+    this.logger.log('Connected to database')
   }
 }
 
@@ -32,13 +32,13 @@ class DatabaseProvider {
 @application
 class Application {
   @provide(LoggerProvider)
-  private readonly loggerProvider!: LoggerProvider
+  private readonly logger!: LoggerProvider
 
   @provide(DatabaseProvider)
-  private readonly databaseProvider!: DatabaseProvider
+  private readonly database!: DatabaseProvider
 
   public start() {
-    this.loggerProvider.log('Starting application')
-    this.databaseProvider.connect()
+    this.logger.log('Starting application')
+    this.database.connect()
   }
 }
