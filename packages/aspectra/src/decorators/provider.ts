@@ -19,7 +19,7 @@ import type { Class } from '../types'
 export function provider<T>(
   target: Class<T, []>,
   context: ClassDecoratorContext<typeof target>,
-) {
+): void {
   context.addInitializer(function () {
     const provider = Provider.fromClassType(target)
     for (const context of Context.of(this)) {

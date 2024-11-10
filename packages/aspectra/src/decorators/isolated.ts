@@ -36,7 +36,7 @@ import type { ProviderClassType } from '../provider'
 export function isolated(
   target: ProviderClassType,
   context: ClassDecoratorContext<typeof target>,
-) {
+): void {
   const metadata = Metadata.fromContext(context)
   if (metadata.strategy !== Strategy.DEFAULT) {
     throw new MultipleScopeModifierError(

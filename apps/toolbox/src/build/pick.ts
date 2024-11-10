@@ -1,4 +1,4 @@
-export function pick<T>(object: T, keys: Array<keyof T>) {
+export function pick<T>(object: T, keys: Array<keyof T>): Partial<T> {
   const result: Partial<T> = {}
   for (const key of keys) {
     if (object[key] === undefined) {

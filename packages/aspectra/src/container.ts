@@ -9,7 +9,7 @@ export class Container {
     Provider
   >()
 
-  public register(provider: Provider, context: Context) {
+  public register(provider: Provider, context: Context): Provider {
     const { classType } = provider
     if (this.providers.has(classType)) {
       throw new DuplicateProviderError(classType.name, context.id)
@@ -18,7 +18,10 @@ export class Container {
     return provider
   }
 
-  public resolve<T>(providerClass: ProviderClassType, context: Context) {
+  public resolve<T>(
+    providerClass: ProviderClassType,
+    context: Context,
+  ): T | undefined {
     for (const providers of [
       this.providers,
       Context.global.container.providers,

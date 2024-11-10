@@ -38,7 +38,7 @@ export function cached<T, U extends Serializable[], R>(
   return (
     target: Fun<U, R, T>,
     context: ClassMethodDecoratorContext<T, typeof target>,
-  ) => {
+  ): void => {
     const cache = new AspectraMap<string, CacheEntry<R>>()
     context.addInitializer(function () {
       this[context.name as keyof T] = ((...args: U) => {

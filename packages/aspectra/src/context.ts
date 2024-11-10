@@ -17,11 +17,11 @@ export class Context {
 
   private constructor(public readonly id: ContextId) {}
 
-  public static of(classType: UnknownClass) {
+  public static of(classType: UnknownClass): ReadonlySet<Context> {
     return Metadata.fromClass(classType).contexts
   }
 
-  public static getOrRegister(contextId: ContextId) {
+  public static getOrRegister(contextId: ContextId): Context {
     return Context.contexts.getOrPut(contextId, () => {
       return new Context(contextId)
     })

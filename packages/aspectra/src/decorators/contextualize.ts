@@ -43,7 +43,7 @@ export function contextualize(...args: NonEmptyArray<Context | ContextId>) {
   return (
     target: Class<object, UnknownArgs>,
     context: ClassDecoratorContext<typeof target>,
-  ) => {
+  ): void => {
     const metadata = Metadata.fromContext(context)
     metadata.contexts.clear()
     for (const arg of args) {

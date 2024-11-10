@@ -22,7 +22,7 @@ import type { UnknownClass } from '../types'
 export function contexts<T extends object>(
   _: unknown,
   context: ClassFieldDecoratorContext<T, ReadonlySet<Context>>,
-) {
+): void {
   context.addInitializer(function () {
     this[context.name as keyof T] = Metadata.fromClass(
       this.constructor as UnknownClass,

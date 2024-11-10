@@ -5,11 +5,11 @@ import { bound } from 'aspectra/utils'
 class Test {
   constructor(private value: number) {}
 
-  @bound public get() {
+  @bound public get(): number {
     return this.value
   }
 
-  @bound public incrementBy(value: number) {
+  @bound public incrementBy(value: number): void {
     this.value += value
   }
 }

@@ -20,7 +20,7 @@ import type { Class, MixinConstructorArgs } from '../../types'
 export function sealed<T extends Class<object, MixinConstructorArgs>>(
   target: T,
   _: ClassDecoratorContext<T>,
-) {
+): T {
   return class extends target {
     constructor(..._: MixinConstructorArgs) {
       super()

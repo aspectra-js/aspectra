@@ -6,11 +6,11 @@ import { autobind } from 'aspectra/utils'
 class Test {
   constructor(private value: number) {}
 
-  public get() {
+  public get(): number {
     return this.value
   }
 
-  public add(value: number) {
+  public add(value: number): void {
     this.value += value
   }
 }

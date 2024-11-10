@@ -15,7 +15,7 @@ import type { Fun } from '../../types'
 export function postconstruct<T, R>(
   target: Fun<[], R, T>,
   context: ClassMethodDecoratorContext<T, typeof target>,
-) {
+): void {
   context.addInitializer(function () {
     target.call(this)
   })

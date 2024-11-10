@@ -30,7 +30,7 @@ export abstract class Provider {
 
   abstract provide<T>(context: Context): T
 
-  protected createInstance<T>(context: Context) {
+  protected createInstance<T>(context: Context): T {
     const instance = Reflect.construct(this.classType, []) as T
     instance[this.metadata.injectionKeys.origin as keyof T] =
       context as T[keyof T]
@@ -41,7 +41,7 @@ export abstract class Provider {
 export class SingletonProvider extends Provider {
   private instance: unknown
 
-  public override provide<T>(context: Context) {
+  public override provide<T>(context: Context): T {
     if (!this.instance) {
       this.instance = this.createInstance(context)
     }
@@ -50,7 +50,7 @@ export class SingletonProvider extends Provider {
 }
 
 export class TransientProvider extends Provider {
-  public override provide<T>(context: Context) {
+  public override provide<T>(context: Context): T {
     return this.createInstance<T>(context)
   }
 }

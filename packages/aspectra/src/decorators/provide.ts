@@ -24,7 +24,7 @@ import type { UnknownClass } from '../types'
  * ```
  */
 export function provide<T extends object, P>(provider: ProviderClassType<P>) {
-  return (_: unknown, context: ClassFieldDecoratorContext<T, P>) => {
+  return (_: unknown, context: ClassFieldDecoratorContext<T, P>): void => {
     const name = context.name as keyof T
     context.addInitializer(function () {
       const contexts = Context.of(this.constructor as UnknownClass)

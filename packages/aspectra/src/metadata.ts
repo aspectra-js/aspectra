@@ -14,7 +14,7 @@ export class Metadata {
   public strategy = Strategy.DEFAULT
   public readonly injectionKeys: InjectionKeys = {}
 
-  public static fromClass<T>(target: Class<T, UnknownArgs>) {
+  public static fromClass<T>(target: Class<T, UnknownArgs>): Metadata {
     // biome-ignore lint/suspicious/noAssignInExpressions: handled properly
     const metadata = (target[Symbol.metadata] ??= {
       value: {} as DecoratorMetadataObject,
@@ -25,7 +25,7 @@ export class Metadata {
     return (metadata[Metadata.namespace] ??= new Metadata()) as Metadata
   }
 
-  public static fromContext(context: DecoratorContext) {
+  public static fromContext(context: DecoratorContext): Metadata {
     context.metadata[Metadata.namespace] ??= new Metadata()
     return context.metadata[Metadata.namespace] as Metadata
   }

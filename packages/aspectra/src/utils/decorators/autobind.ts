@@ -26,7 +26,7 @@ import type { Class, MixinConstructorArgs } from '../../types'
 export function autobind<T extends Class<object, MixinConstructorArgs>>(
   target: T,
   _: ClassDecoratorContext<T>,
-) {
+): T {
   return class extends target {
     constructor(...args: MixinConstructorArgs) {
       super(...args)

@@ -19,7 +19,7 @@ export function main<A extends UnknownArgs, R, T>(
   context: ClassMethodDecoratorContext<T, typeof target> & {
     static: true
   },
-) {
+): void {
   context.addInitializer(function () {
     target.apply(this)
   })

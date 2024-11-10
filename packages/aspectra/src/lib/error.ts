@@ -26,7 +26,7 @@ export class DuplicateProviderError extends CustomError {
 }
 
 export class ProviderNotFoundError extends CustomError {
-  public constructor(name: string, contexts: Set<Context>) {
+  public constructor(name: string, contexts: ReadonlySet<Context>) {
     super(
       `Provider [${name}] not found in contexts: [${Array.from(contexts)
         .map(context => context.id.toString())

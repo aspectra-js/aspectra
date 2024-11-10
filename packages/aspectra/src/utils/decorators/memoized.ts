@@ -22,7 +22,7 @@ import { type Serializable, serialize } from '../serialize'
 export function memoized<T, U extends Serializable[], R>(
   target: Fun<U, R, T>,
   context: ClassMethodDecoratorContext<T, typeof target>,
-) {
+): void {
   const cache = new AspectraMap<string, R>()
   context.addInitializer(function () {
     this[context.name as keyof T] = ((...args: U) => {

@@ -18,6 +18,6 @@ export function application<
   T extends {
     start(): void
   },
->(target: Class<T, []>, _: ClassDecoratorContext<typeof target>) {
+>(target: Class<T, []>, _: ClassDecoratorContext<typeof target>): void {
   queueMicrotask(() => Reflect.construct(target, []).start())
 }

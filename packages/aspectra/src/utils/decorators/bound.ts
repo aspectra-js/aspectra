@@ -20,7 +20,7 @@ import type { Fun, UnknownArgs } from '../../types'
 export function bound<A extends UnknownArgs, R, T>(
   target: Fun<A, R, T>,
   context: ClassMethodDecoratorContext<T, typeof target>,
-) {
+): void {
   context.addInitializer(function () {
     this[context.name as keyof T] = target.bind(this) as T[keyof T]
   })
