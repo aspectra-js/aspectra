@@ -51,25 +51,21 @@ export type TimeString =
   | `${number}${UnitAnyCase}`
   | `${number} ${UnitAnyCase}`
 
+const regex =
+  /^(?<value>-?(?:\d+)?\.?\d+) *(?<type>milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i
+
 export function ms(str: string): number {
   if (str.length === 0 || str.length > 100) {
     throw new Error(
       'Value provided to parse must be a string with length between 1 and 99.',
     )
   }
-  const match =
-    /^(?<value>-?(?:\d+)?\.?\d+) *(?<type>milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(
-      str,
-    )
-  // Named capture groups need to be manually typed today.
-  // https://github.com/microsoft/TypeScript/issues/32098
-  const groups = match?.groups as { value: string; type?: string } | undefined
+  const groups = regex.exec(str)?.groups
   if (!groups) {
     return Number.NaN
   }
-  const n = Number.parseFloat(groups.value)
-  const type = (groups.type || 'ms').toLowerCase() as Lowercase<Unit>
-  switch (type) {
+  const n = Number.parseFloat(groups.value || '')
+  switch ((groups.type || 'ms').toLowerCase()) {
     case 'years':
     case 'year':
     case 'yrs':
@@ -110,8 +106,6 @@ export function ms(str: string): number {
       return n
     default:
       // This should never occur.
-      throw new Error(
-        `The unit ${type as string} was matched, but no matching case exists.`,
-      )
+      throw new Error()
   }
 }
