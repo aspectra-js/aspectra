@@ -4,6 +4,7 @@ description: Setup Node.js, pnpm, and dependencies
 runs:
   using: composite
   steps:
+    - uses: Kesin11/actions-timeline@v2
     - uses: pnpm/action-setup@v4
     - uses: actions/setup-node@v4
       with:

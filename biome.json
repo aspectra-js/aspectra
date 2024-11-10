@@ -39,7 +39,7 @@
       "linter": {
         "rules": {
           "nursery": {
-            "useExplicitType": "error"
+            "useExplicitType": "warn"
           }
         }
       }

@@ -1,10 +1,8 @@
 {
-  "$schema": "https://unpkg.com/@changesets/config@3.0.3/schema.json",
+  "$schema": "https://unpkg.com/@changesets/config/schema.json",
   "changelog": [
-    "@changesets/changelog-github",
-    {
-      "repo": "shunueda/aspectra"
-    }
+    "@svitejs/changesets-changelog-github-compact",
+    { "repo": "shunueda/aspectra" }
   ],
   "commit": false,
   "linked": [],
