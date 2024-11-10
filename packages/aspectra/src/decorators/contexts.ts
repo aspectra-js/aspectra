@@ -1,4 +1,5 @@
-import { Context } from '../context'
+import type { Context } from '../context'
+import { Metadata } from '../metadata'
 import type { UnknownClass } from '../types'
 
 /**
@@ -23,8 +24,8 @@ export function contexts<T extends object>(
   context: ClassFieldDecoratorContext<T, ReadonlySet<Context>>,
 ) {
   context.addInitializer(function () {
-    this[context.name as keyof T] = Context.getRegistered(
+    this[context.name as keyof T] = Metadata.fromClass(
       this.constructor as UnknownClass,
-    ) as T[keyof T]
+    ).contexts as T[keyof T]
   })
 }

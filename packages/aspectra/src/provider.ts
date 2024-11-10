@@ -1,3 +1,4 @@
+import { AspectraWeakMap } from './collections/weak-map'
 import type { Context } from './context'
 import { Strategy } from './lib/strategy'
 import { Metadata } from './metadata'
@@ -12,7 +13,7 @@ export abstract class Provider {
     this.metadata = Metadata.fromClass(classType)
   }
 
-  public static createFromClass(classType: ProviderClassType): Provider {
+  public static fromClassType(classType: ProviderClassType): Provider {
     const metadata = Metadata.fromClass(classType)
     switch (metadata.strategy) {
       case Strategy.SINGLETON: {
@@ -29,36 +30,37 @@ export abstract class Provider {
 
   abstract provide<T>(context: Context): T
 
-  protected createInstance<T>() {
-    return Reflect.construct(this.classType, []) as T
+  protected createInstance<T>(context: Context) {
+    const instance = Reflect.construct(this.classType, []) as T
+    instance[this.metadata.injectionKeys.origin as keyof T] =
+      context as T[keyof T]
+    return instance
   }
 }
 
 export class SingletonProvider extends Provider {
   private instance: unknown
 
-  public override provide<T>() {
+  public override provide<T>(context: Context) {
     if (!this.instance) {
-      this.instance = this.createInstance()
+      this.instance = this.createInstance(context)
     }
     return this.instance as T
   }
 }
 
 export class TransientProvider extends Provider {
-  public override provide<T>() {
-    return this.createInstance<T>()
+  public override provide<T>(context: Context) {
+    return this.createInstance<T>(context)
   }
 }
 
 export class IsolatedProvider extends Provider {
-  private readonly providers = new WeakMap<Context, unknown>()
+  private readonly providers = new AspectraWeakMap<Context, unknown>()
 
   public override provide<T>(context: Context): T {
-    if (!this.providers.has(context)) {
-      const instance = this.createInstance<T>()
-      this.providers.set(context, instance)
-    }
-    return this.providers.get(context) as T
+    return this.providers.getOrPut(context, () => {
+      return this.createInstance<T>(context)
+    }) as T
   }
 }

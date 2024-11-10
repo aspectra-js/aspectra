@@ -4,10 +4,6 @@
   "compilerOptions": {
     "jsx": "preserve",
     "lib": ["es6", "esnext.decorators"],
-    "paths": {
-      "aspectra": ["./dist"],
-      "aspectra/utils": ["./dist/utils"]
-    },
     "target": "es2022"
   },
   "include": ["src/**/*.ts", "test/**/*.ts"],

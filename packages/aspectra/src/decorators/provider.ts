@@ -21,8 +21,8 @@ export function provider<T>(
   context: ClassDecoratorContext<typeof target>,
 ) {
   context.addInitializer(function () {
-    const provider = Provider.createFromClass(target)
-    for (const context of Context.getRegistered(this)) {
+    const provider = Provider.fromClassType(target)
+    for (const context of Context.of(this)) {
       context.container.register(provider, context)
     }
   })

@@ -17,22 +17,13 @@ export class Context {
 
   private constructor(public readonly id: ContextId) {}
 
-  public static getRegistered(cls: UnknownClass) {
-    const metadata = Metadata.fromClass(cls)
-    return new Set(
-      Array.from(metadata.contexts).filter(context =>
-        Context.contexts.has(context.id),
-      ),
-    )
+  public static of(classType: UnknownClass) {
+    return Metadata.fromClass(classType).contexts
   }
 
-  public static registerIfMissing(contextId: ContextId) {
+  public static getOrRegister(contextId: ContextId) {
     return Context.contexts.getOrPut(contextId, () => {
       return new Context(contextId)
     })
-  }
-
-  public static get(id: ContextId) {
-    return Context.contexts.get(id)
   }
 }

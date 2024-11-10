@@ -50,7 +50,7 @@ export function contextualize(...args: NonEmptyArray<Context | ContextId>) {
       if (arg instanceof Context) {
         metadata.contexts.add(arg)
       } else {
-        const context = Context.registerIfMissing(arg)
+        const context = Context.getOrRegister(arg)
         metadata.contexts.add(context)
       }
     }

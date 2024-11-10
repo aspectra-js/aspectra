@@ -1,9 +1,13 @@
-import type { Context } from './context'
+import { AspectraWeakMap } from './collections/weak-map'
+import { Context } from './context'
 import { DuplicateProviderError } from './lib/error'
 import type { Provider, ProviderClassType } from './provider'
 
 export class Container {
-  private readonly providers = new WeakMap<ProviderClassType, Provider>()
+  private readonly providers = new AspectraWeakMap<
+    ProviderClassType,
+    Provider
+  >()
 
   public register(provider: Provider, context: Context) {
     const { classType } = provider
@@ -15,6 +19,15 @@ export class Container {
   }
 
   public resolve<T>(providerClass: ProviderClassType, context: Context) {
-    return this.providers.get(providerClass)?.provide<T>(context)
+    for (const providers of [
+      this.providers,
+      Context.global.container.providers,
+    ]) {
+      const provider = providers.get(providerClass)
+      if (provider) {
+        return provider.provide<T>(context)
+      }
+    }
+    return
   }
 }

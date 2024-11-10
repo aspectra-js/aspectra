@@ -1,6 +1,7 @@
 import { ok } from 'node:assert'
 import { describe, test } from 'node:test'
-import { Context, contextualize, provider } from 'aspectra'
+import { contextualize, provider } from 'aspectra'
+import { Context } from 'aspectra'
 
 const contextId = import.meta.filename
 
@@ -11,7 +12,7 @@ class Provider {}
 describe(import.meta.filename, () => {
   test('should create a provider', () => {
     ok(
-      Array.from(Context.getRegistered(Provider)).some(context =>
+      Array.from(Context.of(Provider)).some(context =>
         context.container.resolve(Provider, context),
       ),
     )

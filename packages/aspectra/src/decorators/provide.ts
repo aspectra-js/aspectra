@@ -27,10 +27,7 @@ export function provide<T extends object, P>(provider: ProviderClassType<P>) {
   return (_: unknown, context: ClassFieldDecoratorContext<T, P>) => {
     const name = context.name as keyof T
     context.addInitializer(function () {
-      const contexts = new Set([
-        ...Context.getRegistered(this.constructor as UnknownClass),
-        Context.global,
-      ])
+      const contexts = Context.of(this.constructor as UnknownClass)
       for (const context of contexts) {
         const resolved = context.container.resolve(provider, context)
         if (resolved) {

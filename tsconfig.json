@@ -22,7 +22,11 @@
     "skipLibCheck": true,
     "strict": true,
     "strictNullChecks": true,
-    "target": "es2022"
+    "target": "es2022",
+    "paths": {
+      "aspectra": ["./packages/aspectra/src"],
+      "aspectra/utils": ["./packages/aspectra/src/utils"]
+    }
   },
   "exclude": ["node_modules"]
 }
