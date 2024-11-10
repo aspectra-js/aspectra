@@ -1,4 +1,3 @@
-#!/usr/bin/env tsx
 import { join } from 'node:path'
 
 const option = process.argv.at(3)

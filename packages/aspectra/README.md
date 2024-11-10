@@ -19,5 +19,5 @@
 <br />
 
 <div align='center'>
-  <img src='assets/basic.svg' alt='codeblock'>
+  <img src='assets/codeblocks/basic.svg' alt='codeblock'>
 </div>

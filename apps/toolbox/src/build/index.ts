@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync } from 'node:fs'
+import { readdirSync } from 'node:fs'
 import { cp, rm, writeFile } from 'node:fs/promises'
 import { join, relative } from 'node:path'
 import { build } from 'tsup'
@@ -46,22 +46,18 @@ await Promise.all(
     .map(it => rm(join(it.parentPath, it.name))),
 )
 
-// original package.json
-const original = readFileSync(join(cwd, 'package.json')).toString()
-
-// include only the necessary fields
-const include = pick<PackageJson>(JSON.parse(original), [
-  'name',
-  'version',
-  'type',
-  'repository',
-  'dependencies',
-  'keywords',
-])
-
-// add exports field
+// read the package.json and modify it
 const modified = {
-  ...include,
+  // pick only the necessary fields from the package.json
+  ...pick<PackageJson>(await import(join(cwd, 'package.json')), [
+    'name',
+    'version',
+    'type',
+    'repository',
+    'dependencies',
+    'keywords',
+  ]),
+  // additional fields
   publishConfig: {
     provenance: true,
   },
@@ -71,13 +67,13 @@ const modified = {
     './package.json': './package.json',
     ...Object.fromEntries(
       entries.map(entry => {
-        const relative = entry.replace('src', '.')
+        const path = entry.replace('src', '.')
         return [
-          relative.replace('/index.ts', ''),
+          path.replace('/index.ts', ''),
           {
-            types: relative.replace('.ts', '.d.ts'),
-            import: relative.replace('.ts', '.js'),
-            default: relative.replace('.ts', '.cjs'),
+            types: path.replace('.ts', '.d.ts'),
+            import: path.replace('.ts', '.js'),
+            default: path.replace('.ts', '.cjs'),
           },
         ]
       }),

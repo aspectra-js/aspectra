@@ -1,6 +1,5 @@
 import { readFileSync } from 'node:fs'
 import { readdirSync } from 'node:fs'
-import { rename, writeFile } from 'node:fs/promises'
 import { cp } from 'node:fs/promises'
 import { join } from 'node:path'
 import { webkit } from 'playwright'
@@ -9,6 +8,8 @@ import satori from 'satori'
 import { paths } from '../paths'
 import { Banner } from './components/banner'
 import { fonts } from './fonts'
+import { writeFileSafe } from './fs'
+import { renameSafe } from './fs'
 
 const components = [
   {
@@ -24,7 +25,7 @@ components.map(async ({ component, width, height }) => {
     width,
     height,
   })
-  await writeFile(
+  await writeFileSafe(
     join(paths.assets, `${component.name.toLowerCase()}.svg`),
     svg,
   )
@@ -36,29 +37,34 @@ await Promise.all(
   })
     .filter(it => it.isDirectory() && it.name !== 'node_modules')
     .map(async folder => {
-      const codeblockUrl = `https://www.ray.so/#code=${encodeURIComponent(
-        btoa(
-          readFileSync(join(paths.example, folder.name, 'index.ts'))
-            .toString()
-            .trim(),
-        ),
-      )}&padding=16&title=aspectra&language=typescript&theme=falcon&ref=codeImage&background=true`
       const browser = await webkit.launch()
       const context = await browser.newContext()
       const page = await context.newPage()
-      await page.goto(codeblockUrl)
+      const content = readFileSync(join(paths.example, folder.name, 'index.ts'))
+        .toString()
+        .trim()
+      await page.goto(
+        `https://www.ray.so/#code=${encodeURIComponent(
+          btoa(
+            (content.match(/\n/g) || []).length > 20 ? `${content}\n` : content,
+          ),
+        )}&padding=16&title=aspectra&language=typescript&theme=falcon&ref=codeImage&background=true`,
+      )
       await page.waitForTimeout(1000)
       await page.keyboard.down('Meta')
       await page.keyboard.down('Shift')
       await page.keyboard.press('S')
       const [download] = await Promise.all([page.waitForEvent('download')])
       const path = await download.path()
-      await rename(path, join(paths.assets, `${folder.name}.svg`))
+      await renameSafe(
+        path,
+        join(paths.assets, 'codeblocks', `${folder.name}.svg`),
+      )
       await browser.close()
     }),
 )
 
-await cp(paths.assets, paths.rootAssets, {
+await cp(paths.assets, paths.localAssets, {
   recursive: true,
   force: true,
 })
