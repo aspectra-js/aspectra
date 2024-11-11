@@ -8,14 +8,21 @@ automatically. This allows you to inject it wherever needed without worrying
 about multiple instances.
 
 <Callout type="info" emoji="ℹ️">
-  You can customize this behavior later on! 😃
+  You can customize this behavior by using the scope-modifier decorators, which
+  will be covered in the later section.
 </Callout>
 
 #### Example
 
 ```typescript filename="src/index.ts"
-import { application, provide } from 'aspectra'
-import { Database } from './providers/database'
+import { application, provide, provider } from 'aspectra'
+
+@provider
+export class Database {
+  public getAll() {
+    return ['item1', 'item2']
+  }
+}
 
 @application
 class Application {
@@ -29,8 +36,4 @@ class Application {
     console.log(this.database.getAll())
   }
 }
-```
-
-```bash
-tsx src/index.ts # Output: ['item1', 'item2']
 ```

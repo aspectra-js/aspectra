@@ -45,28 +45,6 @@ importers:
         specifier: ^5.6.3
         version: 5.6.3
 
-  apps/docs:
-    dependencies:
-      next:
-        specifier: ^15.0.2
-        version: 15.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      nextra:
-        specifier: ^4.0.0-app-router.24
-        version: 4.0.0-app-router.24(@types/react@18.3.12)(acorn@8.14.0)(next@15.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3)
-      nextra-theme-docs:
-        specifier: ^4.0.0-app-router.24
-        version: 4.0.0-app-router.24(@types/react@18.3.12)(next@15.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(nextra@4.0.0-app-router.24(@types/react@18.3.12)(acorn@8.14.0)(next@15.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.6.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react:
-        specifier: 18.3.1
-        version: 18.3.1
-      react-dom:
-        specifier: 18.3.1
-        version: 18.3.1(react@18.3.1)
-    devDependencies:
-      pagefind:
-        specifier: ^1.1.1
-        version: 1.2.0
-
   apps/examples:
     devDependencies:
       '@aspectra/toolbox':
@@ -103,6 +81,9 @@ importers:
 
   apps/website:
     dependencies:
+      aspectra:
+        specifier: workspace:*
+        version: link:../../packages/aspectra/dist
       next:
         specifier: ^15.0.2
         version: 15.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)

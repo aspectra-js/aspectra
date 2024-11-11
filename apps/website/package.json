@@ -17,6 +17,7 @@
     "directory": "packages/aspectra"
   },
   "dependencies": {
+    "aspectra": "workspace:*",
     "next": "^15.0.2",
     "nextra": "^4.0.0-app-router.24",
     "nextra-theme-docs": "^4.0.0-app-router.24",

@@ -5,6 +5,8 @@ const withNextra = nextra({
     codeblocks: true,
   },
   contentDirBasePath: '/docs',
+  codeHighlight: true,
+  defaultShowCopyCode: true,
 })
 
 export default withNextra({
