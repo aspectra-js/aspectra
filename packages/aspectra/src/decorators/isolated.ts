@@ -1,5 +1,5 @@
 import { MultipleScopeModifierError } from '../lib/error'
-import { Strategy } from '../lib/strategy'
+import { Scope } from '../lib/scope'
 import { Metadata } from '../metadata'
 import type { ProviderClassType } from '../provider'
 
@@ -38,12 +38,12 @@ export function isolated(
   context: ClassDecoratorContext<typeof target>,
 ): void {
   const metadata = Metadata.fromContext(context)
-  if (metadata.strategy !== Strategy.DEFAULT) {
+  if (metadata.scope !== Scope.DEFAULT) {
     throw new MultipleScopeModifierError(
       target.name,
-      metadata.strategy,
+      metadata.scope,
       isolated.name,
     )
   }
-  metadata.strategy = Strategy.ISOALTED
+  metadata.scope = Scope.ISOALTED
 }

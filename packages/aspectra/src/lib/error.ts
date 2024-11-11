@@ -1,5 +1,6 @@
 import type { ContextId } from '../context'
 import type { Context } from '../context'
+import type { Scope } from './scope'
 
 abstract class CustomError extends Error {
   protected constructor(message: string) {
@@ -10,9 +11,9 @@ abstract class CustomError extends Error {
 }
 
 export class MultipleScopeModifierError extends CustomError {
-  public constructor(name: string, strategy: string, scope: string) {
+  public constructor(name: string, scope: Scope, other: string) {
     super(
-      `Provider [${name}] is already marked as [${strategy}], and you attemped mark as [${scope}]`,
+      `Provider [${name}] is already marked as [${scope}], and you attemped mark as [${other}]`,
     )
   }
 }

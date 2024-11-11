@@ -4,3 +4,5 @@ pre-commit:
     check:
       run: pnpm check
       stage_fixed: true
+    type-check:
+      run: pnpm -r type-check

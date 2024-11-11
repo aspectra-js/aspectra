@@ -1,6 +1,6 @@
-export enum Strategy {
+export enum Scope {
   SINGLETON = 'singleton',
   TRANSIENT = 'transient',
   ISOALTED = 'isolated',
-  DEFAULT = Strategy.SINGLETON,
+  DEFAULT = Scope.SINGLETON,
 }

@@ -1,6 +1,6 @@
 import { AspectraWeakMap } from './collections/weak-map'
 import type { Context } from './context'
-import { Strategy } from './lib/strategy'
+import { Scope } from './lib/scope'
 import { Metadata } from './metadata'
 import type { Class } from './types'
 
@@ -15,14 +15,14 @@ export abstract class Provider {
 
   public static fromClassType(classType: ProviderClassType): Provider {
     const metadata = Metadata.fromClass(classType)
-    switch (metadata.strategy) {
-      case Strategy.SINGLETON: {
+    switch (metadata.scope) {
+      case Scope.SINGLETON: {
         return new SingletonProvider(classType)
       }
-      case Strategy.TRANSIENT: {
+      case Scope.TRANSIENT: {
         return new TransientProvider(classType)
       }
-      case Strategy.ISOALTED: {
+      case Scope.ISOALTED: {
         return new IsolatedProvider(classType)
       }
     }

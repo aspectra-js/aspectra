@@ -1,6 +1,6 @@
 import { name } from '../package.json'
 import { Context } from './context'
-import { Strategy } from './lib/strategy'
+import { Scope } from './lib/scope'
 import type { Class, UnknownArgs } from './types'
 
 interface InjectionKeys {
@@ -11,7 +11,7 @@ export class Metadata {
   private static readonly namespace = Symbol(`${name}.metadata`)
 
   public readonly contexts = new Set<Context>([Context.global])
-  public strategy = Strategy.DEFAULT
+  public scope = Scope.DEFAULT
   public readonly injectionKeys: InjectionKeys = {}
 
   public static fromClass<T>(target: Class<T, UnknownArgs>): Metadata {
