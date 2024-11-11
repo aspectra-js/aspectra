@@ -4,7 +4,6 @@ import { writeFile } from 'node:fs/promises'
 import { rm } from 'node:fs/promises'
 
 export async function tsx(code: string) {
-  console.log('Running tsx code...')
   const filename = `${randomUUID()}.ts`
   try {
     await writeFile(filename, code)

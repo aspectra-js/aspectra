@@ -1,27 +1,3 @@
-# @provider
+import { Tsdoc } from '../../app/components/tsdoc'
 
-The `@provider` decorator registers a class as a service provider within the
-application. Providers encapsulate functionality, such as a database
-connection, which can be injected wherever needed using the `@provide`
-decorator.
-
-#### Example
-
-```typescript filename="src/providers/database.ts"
-import { provider } from 'aspectra'
-
-@provider
-export class Database {
-  public connect() {
-    console.log('Connecting to the database')
-  }
-
-  public getAll() {
-    return ['item1', 'item2']
-  }
-
-  public close() {
-    console.log('Closing the database connection')
-  }
-}
-```
+<Tsdoc name='aspectra' path='decorators/provider.ts'/>

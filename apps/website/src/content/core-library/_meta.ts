@@ -1,6 +1,6 @@
 export default {
-  application: '',
-  provider: '',
-  provide: '',
-  contextualize: '',
+  application: '@application',
+  provider: '@provider',
+  provide: '@provide',
+  contextualize: '@contextualize',
 }

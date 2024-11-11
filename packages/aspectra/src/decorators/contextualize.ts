@@ -4,40 +4,82 @@ import type { Class, UnknownArgs } from '../types'
 import type { NonEmptyArray } from '../types'
 
 /**
- * Associates a class with one or more specific contexts, enabling contextualized
- * dependency injection.
+ * # @contextualize
  *
- * When combined with other decorators, this allows for fine-grained control
- * over the scope of a provider.
+ * In `aspectra`, contexts serve as containers for managing providers. By default,
+ * all providers are stored within the global context (`Context.global`), and
+ * providers in the global context can be injected anywhere using the `@provide`
+ * decorator.
  *
- * <div align='center'>
- *   <img src='assets/context-control.svg' alt='context-controlled-provider'>
- * </div>
+ * To restrict a provider to a specific context, use the `@contextualize`
+ * decorator. This enables precise control over where dependencies can be
+ * injected, ensuring that certain providers are only available within designated
+ * parts of your application.
  *
- * @example
+ * #### Example
+ *
+ * Let's see an example where we have two contexts: `DATABASE` and `ORDER`.
+ *
  * ```typescript
- * const contextId = 'custom_context'
- * const otherContextId = 'other_context'
+ * import { application, contextualize, provide, provider } from 'aspectra'
  *
- * @contextualize(contextId)
- * @provider
- * class Provider {}
- *
- * // Multiple context associations
- * @contextualize(contextId, otherContextId)
- * class Consumer {
- *   // This provider is resolved within the same context as `Provider`
- *   @provide(Provider)
- *   public readonly provider!: Provider
+ * enum ContextId {
+ *   DATABASE = 'database',
+ *   ORDER = 'order',
  * }
  *
- * class OutOfContextConsumer {
- *   // Fails at runtime as it defaults to the global context,
- *   // which lacks the `Provider` instance from `custom_context`
- *   @provide(Provider)
- *   public readonly provider!: Provider
+ * @contextualize(ContextId.DATABASE)
+ * @provider
+ * class DatabaseProvider {
+ *   public queryAll() {
+ *     return [
+ *       { id: 1, name: 'Laptop', price: 1000 },
+ *       { id: 2, name: 'Smartphone', price: 500 },
+ *     ]
+ *   }
+ * }
+ *
+ * @contextualize(ContextId.DATABASE, ContextId.ORDER)
+ * @provider
+ * class OrderProvider {
+ *   @provide(DatabaseProvider)
+ *   private readonly database!: DatabaseProvider
+ *
+ *   public process(id: number) {
+ *     const product = this.database
+ *       .queryAll()
+ *       .find(it => it.id === id)
+ *     if (product) {
+ *       console.log(`[id: ${id}] Processing order for ${product.name}`)
+ *     } else {
+ *       console.log(`[id: ${id}] Product not found`)
+ *     }
+ *   }
+ * }
+ *
+ * @contextualize(ContextId.ORDER)
+ * @application
+ * class CommerceApplication {
+ *   @provide(OrderProvider)
+ *   private readonly order!: OrderProvider
+ *
+ *   public start() {
+ *     this.order.process(1)
+ *     this.order.process(3)
+ *   }
  * }
  * ```
+ *
+ * Let's break down the contexualization:
+ * - `DatabaseProvider` & `OrderProvider` shares `DATABASE`
+ * - `OrderProvider` & `CommerceApplication` shares `ORDER`
+ *
+ * <Callout>
+ *     By restricting `DatabaseProvider` to the `DATABASE` context, we ensure it
+ *     isn't exposed directly to `CommerceApplication`, and accessible only through
+ *     `OrderProvider`. `Contexts` encapsulate the providers, ensuring secure and
+ *     organized dependency management.
+ * </Callout>
  */
 export function contextualize(...args: NonEmptyArray<Context | ContextId>) {
   return (

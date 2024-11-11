@@ -4,22 +4,45 @@ import type { ProviderClassType } from '../provider'
 import type { UnknownClass } from '../types'
 
 /**
- * Inject a [`@provider`](#provider) into a class field.
+ * # @provide
  *
- * @remarks
- * Regardless of how many times it is injected, the same instance will be
- * returned each time.
+ * The @provide decorator injects providers as singletons. Each time a provider is
+ * injected, `aspectra` returns the same instance, managing its lifecycle
+ * automatically. This allows you to inject it wherever needed without worrying
+ * about multiple instances.
  *
- * @example
- * ```typescript
- * class Providers {
- *   @provide(SampleProvider)
- *   // notice the `!` for definite assignment
- *   private readonly provider!: SampleProvider
+ * <Callout type='info'>
+ *   You can customize this behavior by using the scope-modifier decorators, which
+ *   will be covered in the later section.
+ * </Callout>
  *
- *   // this will be the same instance as the `provider` above
- *   @provide(SampleProvider)
- *   private readonly second_provider!: SampleProvider
+ * #### Example
+ *
+ * ```typescript filename='src/index.ts'
+ * import { application, provide, provider } from 'aspectra'
+ *
+ * @provider
+ * export class Database {
+ *   private constructor() {
+ *     console.log(`I'm only called once!`)
+ *   }
+ *
+ *   public getAll() {
+ *     return ['item1', 'item2']
+ *   }
+ * }
+ *
+ * @application
+ * class Application {
+ *   @provide(Database)
+ *   private readonly database!: Database
+ *
+ *   @provide(Database)
+ *   private readonly other!: Database // same instance as `database`
+ *
+ *   public start() {
+ *     console.log(this.database.getAll())
+ *   }
  * }
  * ```
  */

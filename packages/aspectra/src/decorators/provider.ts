@@ -3,15 +3,30 @@ import { Provider } from '../provider'
 import type { Class } from '../types'
 
 /**
- * Registers a class as a provider, allowing it to be injected via
- * [`@provide`](#provide).
+ * # @provider
  *
- * @example
- * ```typescript
+ * The `@provider` decorator registers a class as a service provider within the
+ * application. Providers encapsulate functionality, such as a database
+ * connection, which can be injected wherever needed using the `@provide`
+ * decorator.
+ *
+ * #### Example
+ *
+ * ```typescript filename="src/providers/database.ts"
+ * import { provider } from 'aspectra'
+ *
  * @provider
- * class DatabaseProvider {
+ * export class Database {
+ *   public connect() {
+ *     console.log('Connecting to the database')
+ *   }
+ *
  *   public getAll() {
- *     // ...
+ *     return ['item1', 'item2']
+ *   }
+ *
+ *   public close() {
+ *     console.log('Closing the database connection')
  *   }
  * }
  * ```
