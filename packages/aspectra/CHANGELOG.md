@@ -1,5 +1,11 @@
 # aspectra
 
+## 0.1.14
+
+### Patch Changes
+
+- fix documentation ([`34188e3`](https://github.com/shunueda/aspectra/commit/34188e3bbbd04ee19694b25782501ba9181e4124))
+
 ## 0.1.13
 
 ### Patch Changes
