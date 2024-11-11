@@ -19,6 +19,10 @@ import { application, provide, provider } from 'aspectra'
 
 @provider
 export class Database {
+  private constructor() {
+    console.log("I'm only called once!")
+  }
+
   public getAll() {
     return ['item1', 'item2']
   }
