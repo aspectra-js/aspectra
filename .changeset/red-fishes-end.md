@@ -1,0 +1,5 @@
+---
+"aspectra": patch
+---
+
+fix documentation
