@@ -4,34 +4,55 @@ import { Metadata } from '../metadata'
 import type { ProviderClassType } from '../provider'
 
 /**
- * Defines a provider as `@transient`, ensuring a new instance is created
- * each time the provider is injected.
+ * # Transient
+ *
+ * Scope-modifier decorator. Defines a provider as `@transient`, ensuring a new
+ * instance each time the provider is injected.
  *
  * By default, providers are singletons, meaning a single instance is reused.
  * With `@transient`, a new instance is created upon each injection, which is
  * useful for stateless or temporary dependencies.
  *
- * @remarks
- * The `@transient` decorator differs from `@isolated`:
- * - `@transient` creates a new instance each time it’s requested.
- * - `@isolated` creates one instance per context, providing the same instance
- *   within a given context but different instances across different contexts.
+ * Comparing `@transient` vs `@isolated`:
+ *  - `@transient` creates a new instance each time it's requested.
+ *  - `@isolated` creates one instance per context ("different context,
+ *    different instance").
  *
- * @example
  * ```typescript
- * @provider
- * class Provider {}
+ * import {
+ *   application,
+ *   Context,
+ *   contextualize,
+ *   provide,
+ *   provider,
+ *   transient,
+ * } from 'aspectra'
+ * import { randomUUID } from 'node:crypto'
  *
  * @transient
  * @provider
- * class TransientProvider {}
+ * class Logger {
+ *   public readonly id = randomUUID()
+ * }
  *
- * class Consumer {
- *   @provide(Provider)
- *   private readonly provider!: Provider // Singleton instance
+ * @application
+ * class Application {
+ *   @provide(Logger)
+ *   private readonly first!: Logger
  *
- *   @provide(TransientProvider)
- *   private readonly transientProvider!: TransientProvider // New instance
+ *   @provide(Logger)
+ *   private readonly second!: Logger
+ *
+ *   @provide(Logger)
+ *   private readonly third!: Logger
+ *
+ *   public start() {
+ *     console.table({
+ *       first: this.first.id,
+ *       second: this.second.id,
+ *       third: this.third.id,
+ *     })
+ *   }
  * }
  * ```
  */

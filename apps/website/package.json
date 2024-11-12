@@ -18,6 +18,7 @@
     "directory": "packages/aspectra"
   },
   "dependencies": {
+    "@theguild/remark-mermaid": "^0.1.3",
     "aspectra": "workspace:*",
     "next": "^15.0.2",
     "nextra": "^4.0.0-app-router.24",

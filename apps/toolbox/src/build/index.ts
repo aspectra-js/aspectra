@@ -31,6 +31,7 @@ await build({
   dts: true,
   shims: true,
   treeshake: true,
+  keepNames: true,
   cjsInterop: true,
   removeNodeProtocol: false,
   outDir,

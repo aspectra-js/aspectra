@@ -6,14 +6,16 @@ import type { UnknownClass } from '../types'
 /**
  * # @provide
  *
- * The @provide decorator injects providers as singletons. Each time a provider is
- * injected, `aspectra` returns the same instance, managing its lifecycle
- * automatically. This allows you to inject it wherever needed without worrying
- * about multiple instances.
+ * The `@provide` decorator injects providers into the class field as a
+ * "singleton", meaning the same instance is shared across all injections. This
+ * allows you to inject the provider wherever needed, without having to worry
+ * about creating multiple instances.
  *
  * <Callout type='info'>
- *   You can customize this behavior by using the scope-modifier decorators, which
- *   will be covered in the later section.
+ *   You can customize this behavior using scope-modifier decorators, such as
+ *   `@transient` and `@isolated`, which allow more granular control over the
+ *   lifecycle and scope of injected instances. These will be covered in a
+ *   later section.
  * </Callout>
  *
  * #### Example

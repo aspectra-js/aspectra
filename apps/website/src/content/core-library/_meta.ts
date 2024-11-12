@@ -3,4 +3,7 @@ export default {
   provider: '@provider',
   provide: '@provide',
   contextualize: '@contextualize',
+  isolated: '@isolated',
+  transient: '@transient',
+  origin: '@origin',
 }

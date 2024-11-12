@@ -1,15 +1,18 @@
 import type { Class, MixinConstructorArgs } from '../../types'
 
 /**
+ * # Autobind
+ *
  * Automatically binds all class methods to the instance.
  *
- * @example
  * ```typescript
+ * import { autobind } from 'aspectra/utils'
+ *
  * @autobind
- * class Example {
+ * class Greeting {
  *   private readonly name = 'John'
  *
- *   public greet() {
+ *   public hello() {
  *     console.log(`Hello from ${this.name}`)
  *   }
  *
@@ -18,9 +21,9 @@ import type { Class, MixinConstructorArgs } from '../../types'
  *   }
  * }
  *
- * const { greet, farewell } = new Example()
- * greet() // 'Hello from John'
- * farewell() // 'Goodbye from John'
+ * const { hello, farewell } = new Greeting()
+ * hello()
+ * farewell()
  * ```
  */
 export function autobind<T extends Class<object, MixinConstructorArgs>>(

@@ -36,6 +36,9 @@ export default async function RootLayout({ children }: LayoutProps) {
           feedback={{
             content: null,
           }}
+          sidebar={{
+            defaultMenuCollapseLevel: 4,
+          }}
         >
           {children}
         </Layout>

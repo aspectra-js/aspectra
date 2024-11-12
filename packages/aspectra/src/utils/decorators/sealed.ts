@@ -2,19 +2,27 @@ import { SealedClassExtentionError } from '../../lib/error'
 import type { Class, MixinConstructorArgs } from '../../types'
 
 /**
+ * # Sealed
+ *
  * Seals a class, preventing it from being extended.
  *
- * @remarks
- * Error is thrown when attempting to instantiate a derived class.
+ * <Callout type='info'>
+ *   Error is thrown when attempting to instantiate a derived class.
+ * </Callout>
  *
- * @example
  * ```typescript
+ * import { sealed } from 'aspectra/utils'
+ *
  * @sealed
  * class Base {}
  *
  * class Derived extends Base {}
  *
- * const instance = new Derived() // throws
+ * try {
+ *   new Derived()
+ * } catch (error) {
+ *   console.table(error)
+ * }
  * ```
  */
 export function sealed<T extends Class<object, MixinConstructorArgs>>(

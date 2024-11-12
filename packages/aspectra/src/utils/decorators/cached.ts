@@ -1,6 +1,5 @@
 import { AspectraMap } from '../../collections/map'
-import type { TimeString } from '../../lib/ms'
-import { ms } from '../../lib/ms'
+import { type TimeString, ms } from '../../lib/ms'
 import type { Fun } from '../../types'
 import { type Serializable, serialize } from '../serialize'
 
@@ -10,26 +9,23 @@ interface CacheEntry<T> {
 }
 
 /**
- * Caches the method result for a specified duration.
+ * # Cached
  *
- * @remarks
- * Duration can be specified in milliseconds or using a human-readable string,
- * powered by [`ms`](https://github.com/vercel/ms).
+ * Similar to `memoized`, but with an expiration time.
  *
- * @example
+ * <Callout type='info'>
+ *   Duration can be specified in milliseconds or using a human-readable
+ *   string, powered by [`ms`](https://github.com/vercel/ms?tab=readme-ov-file#ms).
+ * </Callout>
+ *
  * ```typescript
- * class Calculator {
- *   @cached('5s') public square(num: number): number {
- *     console.log('Calculating...')
- *     return num * num
+ * import { cached } from 'aspectra/utils'
+ *
+ * class Database {
+ *   @cached('2h') public queryAll() {
+ *     // sql: SELECT * FROM table
  *   }
  * }
- *
- * const calculator = new Calculator()
- * console.log(calculator.square(2)) // Calculating... 4
- * console.log(calculator.square(2)) // 4
- * await setTimeout(5000) // wait for cache to expire
- * console.log(calculator.square(2)) // Calculating... 4
  * ```
  */
 export function cached<T, U extends Serializable[], R>(

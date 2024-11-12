@@ -6,19 +6,18 @@ import type { NonEmptyArray } from '../types'
 /**
  * # @contextualize
  *
- * In `aspectra`, contexts serve as containers for managing providers. By default,
- * all providers are stored within the global context (`Context.global`), and
- * providers in the global context can be injected anywhere using the `@provide`
- * decorator.
+ * Contexts serve as containers for managing providers. By default, providers
+ * are stored in the global context (`Context.global`) and can be injected
+ * anywhere using `@provide`. To limit provider availability to specific areas,
+ * use the `@contextualize` decorator.
  *
- * To restrict a provider to a specific context, use the `@contextualize`
- * decorator. This enables precise control over where dependencies can be
- * injected, ensuring that certain providers are only available within designated
- * parts of your application.
+ * This decorator enables precise control over dependency injection, supporting
+ * modularity, security, and organized management by keeping certain providers
+ * accessible only within designated contexts.
  *
  * #### Example
  *
- * Let's see an example where we have two contexts: `DATABASE` and `ORDER`.
+ * In this example, we define two contexts: `DATABASE` and `ORDER`.
  *
  * ```typescript
  * import { application, contextualize, provide, provider } from 'aspectra'
@@ -31,11 +30,8 @@ import type { NonEmptyArray } from '../types'
  * @contextualize(ContextId.DATABASE)
  * @provider
  * class DatabaseProvider {
- *   public queryAll() {
- *     return [
- *       { id: 1, name: 'Laptop', price: 1000 },
- *       { id: 2, name: 'Smartphone', price: 500 },
- *     ]
+ *   public getById(id: number) {
+ *     // run sql query
  *   }
  * }
  *
@@ -46,14 +42,8 @@ import type { NonEmptyArray } from '../types'
  *   private readonly database!: DatabaseProvider
  *
  *   public process(id: number) {
- *     const product = this.database
- *       .queryAll()
- *       .find(it => it.id === id)
- *     if (product) {
- *       console.log(`[id: ${id}] Processing order for ${product.name}`)
- *     } else {
- *       console.log(`[id: ${id}] Product not found`)
- *     }
+ *     const product = this.database.getById(id)
+ *     // process order
  *   }
  * }
  *
@@ -63,27 +53,33 @@ import type { NonEmptyArray } from '../types'
  *   @provide(OrderProvider)
  *   private readonly order!: OrderProvider
  *
+ *   // This will fail as `CommerceApplication` and `DatabaseProvider` have no shared contexts
+ *   // @provide(DatabaseProvider)
+ *   // private readonly database!: DatabaseProvider
+ *
  *   public start() {
  *     this.order.process(1)
- *     this.order.process(3)
  *   }
  * }
  * ```
  *
- * Let's break down the contexualization:
- * - `DatabaseProvider` & `OrderProvider` shares `DATABASE`
- * - `OrderProvider` & `CommerceApplication` shares `ORDER`
+ * ```mermaid
+ * flowchart LR
+ *     A[DatabaseProvider] <--> C0{DATABASE}
+ *     C0 <--> B[OrderProvider]
+ *     B <--> C1{ORDER}
+ *     C1 <--> C[CommerceApplication]
+ * ```
  *
  * <Callout>
- *     By restricting `DatabaseProvider` to the `DATABASE` context, we ensure it
- *     isn't exposed directly to `CommerceApplication`, and accessible only through
- *     `OrderProvider`. `Contexts` encapsulate the providers, ensuring secure and
- *     organized dependency management.
+ *   By assigning `DatabaseProvider` and `CommerceApplication` to different
+ *   contexts, only `OrderProvider` can access `DatabaseProvider`, preserving
+ *   strict boundaries between providers.
  * </Callout>
  */
-export function contextualize(...args: NonEmptyArray<Context | ContextId>) {
+export function contextualize<T>(...args: NonEmptyArray<Context | ContextId>) {
   return (
-    target: Class<object, UnknownArgs>,
+    target: Class<T, UnknownArgs>,
     context: ClassDecoratorContext<typeof target>,
   ): void => {
     const metadata = Metadata.fromContext(context)

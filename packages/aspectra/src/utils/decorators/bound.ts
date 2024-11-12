@@ -1,10 +1,13 @@
 import type { Fun, UnknownArgs } from '../../types'
 
 /**
+ * # Bound
+ *
  * Binds a class method to its instance.
  *
- * @example
  * ```typescript
+ * import { bound } from 'aspectra/utils'
+ *
  * class Example {
  *   private readonly name = 'John'
  *
@@ -14,7 +17,7 @@ import type { Fun, UnknownArgs } from '../../types'
  * }
  *
  * const { greet } = new Example()
- * greet() // 'Hello from John'
+ * greet()
  * ```
  */
 export function bound<A extends UnknownArgs, R, T>(

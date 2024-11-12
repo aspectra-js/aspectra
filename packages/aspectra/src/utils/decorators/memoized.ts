@@ -3,10 +3,13 @@ import type { Fun } from '../../types'
 import { type Serializable, serialize } from '../serialize'
 
 /**
+ * # Memoized
+ *
  * Memoizes the method. Usful for optimizing expensive computations.
  *
- * @example
  * ```typescript
+ * import { memoized } from 'aspectra/utils'
+ *
  * class Calculator {
  *   @memoized public square(num: number): number {
  *     console.log('Calculating...')
@@ -15,8 +18,8 @@ import { type Serializable, serialize } from '../serialize'
  * }
  *
  * const calculator = new Calculator()
- * console.log(calculator.square(2)) // Calculating... 4
- * console.log(calculator.square(2)) // 4
+ * console.log(calculator.square(2))
+ * console.log(calculator.square(2))
  * ```
  */
 export function memoized<T, U extends Serializable[], R>(

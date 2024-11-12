@@ -1,6 +1,7 @@
 import { join } from 'node:path'
 import { compileMdx } from 'nextra/compile'
 import { Callout } from 'nextra/components'
+import { Mermaid } from 'nextra/components'
 import { MDXRemote } from 'nextra/mdx-remote'
 import { Project } from 'ts-morph'
 
@@ -19,6 +20,7 @@ export async function Tsdoc({ name, path }: Props) {
       compiledSource={result}
       components={{
         Callout,
+        Mermaid,
       }}
     />
   )
