@@ -20,7 +20,7 @@
     "format": "pnpm format:json && biome format --write",
     "format:json": "sort-package-json 'package.json' 'packages/*/package.json' 'apps/*/package.json'",
     "prepare": "lefthook install",
-    "ci:publish": "pnpm check && pnpm build && pnpm test && changeset publish",
+    "ci:publish": "pnpm check && pnpm -r type-check && pnpm build && pnpm test && changeset publish",
     "test": "pnpm --recursive --filter ./packages/* run test",
     "ci:version": "changeset version"
   },
