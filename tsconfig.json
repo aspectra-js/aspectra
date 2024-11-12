@@ -1,5 +1,4 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig.json",
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "allowUnreachableCode": false,
@@ -22,11 +21,7 @@
     "skipLibCheck": true,
     "strict": true,
     "strictNullChecks": true,
-    "target": "es2022",
-    "paths": {
-      "aspectra": ["./packages/aspectra/src"],
-      "aspectra/utils": ["./packages/aspectra/src/utils"]
-    }
+    "target": "es2022"
   },
   "exclude": ["node_modules"]
 }
