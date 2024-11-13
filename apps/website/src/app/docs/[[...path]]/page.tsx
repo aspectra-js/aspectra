@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks -- false positive, useMDXComponents/useTOC are not react hooks */
-
 import { useMDXComponents } from 'nextra-theme-docs'
 import { generateStaticParamsFor, importPage } from 'nextra/pages'
 
@@ -29,7 +27,7 @@ export default async function Page(props: Props) {
     title,
   } = await importPage(params.path)
   return (
-    <Wrapper toc={useTOC()} metadata={metadata} title={title}>
+    <Wrapper toc={useTOC()} title={title} metadata={metadata}>
       <Mdx {...props} params={params} />
     </Wrapper>
   )

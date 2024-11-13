@@ -1,12 +1,12 @@
-export { application } from './decorators/application'
-export { Context } from './context'
-export { contexts } from './decorators/contexts'
-export { contextualize } from './decorators/contextualize'
-export { isolated } from './decorators/isolated'
-export { origin } from './decorators/origin'
-export { transient } from './decorators/transient'
-export { provide } from './decorators/provide'
-export { provider } from './decorators/provider'
+export { application } from './application'
+export { Context } from './internal/context'
+export { contexts } from './contexts'
+export { contextualize } from './contextualize'
+export { isolated } from './isolated'
+export { origin } from './origin'
+export { transient } from './transient'
+export { provide } from './provide'
+export { provider } from './provider'
 
 /**
  * [Symbol.metadata] polyfill
