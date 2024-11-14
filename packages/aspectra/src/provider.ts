@@ -1,6 +1,6 @@
 import { Context } from './internal/context'
 import { Provider } from './internal/provider'
-import type { Class } from './internal/types'
+import type { Class } from './types'
 
 /**
  * # @provider

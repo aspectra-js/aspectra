@@ -1,5 +1,5 @@
 import { SealedClassExtentionError } from '../internal/lib/error'
-import type { Class, MixinConstructorArgs } from '../internal/types'
+import type { Class, MixinConstructorArgs } from '../types'
 
 /**
  * # Sealed

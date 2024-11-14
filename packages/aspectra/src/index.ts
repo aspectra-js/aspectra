@@ -7,6 +7,7 @@ export { origin } from './origin'
 export { transient } from './transient'
 export { provide } from './provide'
 export { provider } from './provider'
+export * from './types'
 
 /**
  * [Symbol.metadata] polyfill

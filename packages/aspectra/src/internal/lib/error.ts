@@ -1,5 +1,4 @@
-import type { ContextId } from '../context'
-import type { Context } from '../context'
+import type { Context, ContextId } from '../context'
 import type { Scope } from './scope'
 
 abstract class CustomError extends Error {

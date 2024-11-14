@@ -1,7 +1,7 @@
 import { name } from '../../package.json'
+import type { Class, UnknownArgs } from '../types'
 import { Context } from './context'
 import { Scope } from './lib/scope'
-import type { Class, UnknownArgs } from './types'
 
 interface InjectionKeys {
   origin?: PropertyKey

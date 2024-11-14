@@ -1,4 +1,4 @@
-import type { Fun, UnknownArgs } from '../internal/types'
+import type { Fun, UnknownArgs } from '../types'
 
 /**
  * # Bound

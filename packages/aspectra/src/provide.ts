@@ -1,7 +1,7 @@
 import { Context } from './internal/context'
 import { ProviderNotFoundError } from './internal/lib/error'
 import type { ProviderClassType } from './internal/provider'
-import type { UnknownClass } from './internal/types'
+import type { UnknownClass } from './types'
 
 /**
  * # @provide

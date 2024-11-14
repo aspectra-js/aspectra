@@ -1,9 +1,6 @@
 import { deepStrictEqual } from 'node:assert'
-import { describe } from 'node:test'
-import { test } from 'node:test'
-import { Context, contexts } from '../src'
-import { contextualize } from '../src'
-import { isolated } from '../src'
+import { describe, test } from 'node:test'
+import { Context, contexts, contextualize, isolated } from 'aspectra'
 
 const customContexts = ['a', 'b'] as const
 

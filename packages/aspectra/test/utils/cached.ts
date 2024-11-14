@@ -1,6 +1,6 @@
 import { equal } from 'node:assert'
 import { afterEach, describe, mock, test } from 'node:test'
-import { cached } from '../../src/utils'
+import { cached } from 'aspectra/utils'
 
 const duration = 5000
 

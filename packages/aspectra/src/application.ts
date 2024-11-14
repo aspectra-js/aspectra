@@ -1,4 +1,4 @@
-import type { Class } from './internal/types'
+import type { Class } from './types'
 
 /**
  * # @application

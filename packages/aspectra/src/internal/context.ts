@@ -1,8 +1,8 @@
 import { name } from '../../package.json'
-import { AspectraMap } from './collections/map'
+import type { UnknownClass } from '../types'
+import { AspectraMap } from './collection/map'
 import { Container } from './container'
 import { Metadata } from './metadata'
-import type { UnknownClass } from './types'
 
 export type ContextId = PropertyKey
 

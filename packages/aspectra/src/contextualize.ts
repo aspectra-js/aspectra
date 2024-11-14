@@ -1,7 +1,6 @@
 import { Context, type ContextId } from './internal/context'
 import { Metadata } from './internal/metadata'
-import type { Class, UnknownArgs } from './internal/types'
-import type { NonEmptyArray } from './internal/types'
+import type { Class, NonEmptyArray, UnknownArgs } from './types'
 
 /**
  * # @contextualize

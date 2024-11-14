@@ -4,11 +4,9 @@
  *
  * The file has been modified by Shun Ueda <me@shu.nu>.
  */
-import { doesNotThrow } from 'node:assert'
-import { equal } from 'node:assert'
-import { describe } from 'node:test'
-import { test } from 'node:test'
-import { ms } from '../../../src/internal/lib/ms'
+import { doesNotThrow, equal } from 'node:assert'
+import { describe, test } from 'node:test'
+import { ms } from 'aspectra/internal/lib/ms'
 
 describe(import.meta.filename, () => {
   describe('short', () => {

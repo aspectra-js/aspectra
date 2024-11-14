@@ -1,4 +1,4 @@
-import { AspectraWeakMap } from './collections/weak-map'
+import { AspectraWeakMap } from './collection/weak-map'
 import { Context } from './context'
 import { DuplicateProviderError } from './lib/error'
 import type { Provider, ProviderClassType } from './provider'

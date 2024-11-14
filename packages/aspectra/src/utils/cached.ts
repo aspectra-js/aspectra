@@ -1,7 +1,7 @@
-import { AspectraMap } from '../internal/collections/map'
+import { AspectraMap } from '../internal/collection/map'
 import { type TimeString, ms } from '../internal/lib/ms'
 import { type Serializable, serialize } from '../internal/serialize'
-import type { Fun } from '../internal/types'
+import type { Fun } from '../types'
 
 interface CacheEntry<T> {
   value: T

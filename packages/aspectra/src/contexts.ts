@@ -1,6 +1,6 @@
 import type { Context } from './internal/context'
 import { Metadata } from './internal/metadata'
-import type { UnknownClass } from './internal/types'
+import type { UnknownClass } from './types'
 
 /**
  * Injects the current set of registered contexts into the decorated class field.

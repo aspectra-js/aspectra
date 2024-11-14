@@ -1,7 +1,7 @@
 import { deepStrictEqual } from 'node:assert'
 import { describe, test } from 'node:test'
-import { Context, contextualize } from '../src'
-import type { UnknownClass } from '../src/internal/types'
+import { Context, contextualize } from 'aspectra'
+import type { UnknownClass } from 'aspectra/types'
 
 class Uncontextualized {}
 

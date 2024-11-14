@@ -1,4 +1,4 @@
-import type { Class, MixinConstructorArgs } from '../internal/types'
+import type { Class, MixinConstructorArgs } from '../types'
 
 /**
  * # Autobind

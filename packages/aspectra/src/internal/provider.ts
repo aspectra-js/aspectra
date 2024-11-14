@@ -1,8 +1,8 @@
-import { AspectraWeakMap } from './collections/weak-map'
+import type { Class } from '../types'
+import { AspectraWeakMap } from './collection/weak-map'
 import type { Context } from './context'
 import { Scope } from './lib/scope'
 import { Metadata } from './metadata'
-import type { Class } from './types'
 
 export type ProviderClassType<T = unknown> = Class<T, []>
 
