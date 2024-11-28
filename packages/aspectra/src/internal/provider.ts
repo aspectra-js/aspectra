@@ -32,8 +32,8 @@ export abstract class Provider {
 
   protected createInstance<T>(context: Context): T {
     const instance = Reflect.construct(this.classType, []) as T
-    if (this.metadata.injectionKeys.origin) {
-      instance[this.metadata.injectionKeys.origin as keyof T] =
+    if (this.metadata.injections.origin) {
+      instance[this.metadata.injections.origin as keyof T] =
         context as T[keyof T]
     }
     return instance

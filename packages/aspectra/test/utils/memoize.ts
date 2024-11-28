@@ -27,9 +27,9 @@ describe(import.meta.filename, () => {
   test('should not memoize call with different args', () => {
     const instance = new Test()
     const numbers = [3, 4]
-    numbers.forEach(num => {
+    for (const num of numbers) {
       equal(instance.square(num), num ** 2)
-    })
+    }
     equal(mockFn.mock.callCount(), numbers.length)
   })
 })

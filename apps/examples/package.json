@@ -6,6 +6,6 @@
     "start": "toolbox run"
   },
   "devDependencies": {
-    "@aspectra/toolbox": "workspace:^"
+    "@aspectra/toolbox": "workspace:*"
   }
 }

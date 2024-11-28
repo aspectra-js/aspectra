@@ -10,18 +10,22 @@
     "module": "preserve",
     "moduleDetection": "force",
     "moduleResolution": "bundler",
+    "lib": ["es6", "esnext.decorators"],
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
     "noPropertyAccessFromIndexSignature": false,
     "noUncheckedIndexedAccess": true,
-    "noUnusedParameters": true,
     "useDefineForClassFields": true,
     "skipLibCheck": true,
     "strict": true,
     "strictNullChecks": true,
-    "target": "es2022"
+    "target": "es2022",
+    "paths": {
+      "aspectra": ["./packages/aspectra/src"],
+      "aspectra/*": ["./packages/aspectra/src/*"]
+    }
   },
   "exclude": ["node_modules"]
 }

@@ -59,5 +59,5 @@ export function origin<T>(
   context: ClassFieldDecoratorContext<T, Context>,
 ): void {
   const metadata = Metadata.fromContext(context)
-  metadata.injectionKeys.origin = context.name
+  metadata.injections.origin = context.name
 }

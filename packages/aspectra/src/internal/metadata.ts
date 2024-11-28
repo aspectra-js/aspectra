@@ -1,32 +1,13 @@
-import { name } from '../../package.json'
-import type { Class, UnknownArgs } from '../types'
+import { AbstractMetadata } from './abstract-metadata'
 import { Context } from './context'
 import { Scope } from './lib/scope'
 
-interface InjectionKeys {
+interface Injections {
   origin?: PropertyKey
 }
 
-export class Metadata {
-  private static readonly namespace = Symbol(`${name}.metadata`)
-
-  public readonly contexts = new Set<Context>([Context.global])
+export class Metadata extends AbstractMetadata {
   public scope = Scope.DEFAULT
-  public readonly injectionKeys: InjectionKeys = {}
-
-  public static fromClass<T>(target: Class<T, UnknownArgs>): Metadata {
-    // biome-ignore lint/suspicious/noAssignInExpressions: handled properly
-    const metadata = (target[Symbol.metadata] ??= {
-      value: {} as DecoratorMetadataObject,
-      writable: false,
-      configurable: true,
-    })
-    // biome-ignore lint/suspicious/noAssignInExpressions: handled properly
-    return (metadata[Metadata.namespace] ??= new Metadata()) as Metadata
-  }
-
-  public static fromContext(context: DecoratorContext): Metadata {
-    context.metadata[Metadata.namespace] ??= new Metadata()
-    return context.metadata[Metadata.namespace] as Metadata
-  }
+  public readonly contexts = new Set<Context>([Context.global])
+  public readonly injections: Injections = {}
 }

@@ -1,14 +1,4 @@
 {
   "extends": ["../../tsconfig.json"],
-  "compilerOptions": {
-    "jsx": "preserve",
-    "lib": ["es6", "esnext.decorators"],
-    "target": "es2022",
-    "paths": {
-      "aspectra": ["./src"],
-      "aspectra/*": ["./src/*"]
-    }
-  },
-  "include": ["src/**/*.ts", "test/**/*.ts"],
-  "exclude": []
+  "include": ["src/**/*.ts", "test/**/*.ts"]
 }

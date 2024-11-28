@@ -12,5 +12,5 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/setup
-      - run: pnpm -r type-check
+      - run: pnpm --recursive type-check
       - run: pnpm test

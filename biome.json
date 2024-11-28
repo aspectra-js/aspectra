@@ -19,8 +19,8 @@
         "noUnusedImports": "warn"
       },
       "complexity": {
-        "noForEach": "off",
-        "noStaticOnlyClass": "off"
+        "noStaticOnlyClass": "off",
+        "noThisInStatic": "off"
       }
     }
   },

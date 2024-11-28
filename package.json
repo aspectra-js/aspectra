@@ -15,17 +15,16 @@
   "scripts": {
     "build": "pnpm --recursive --filter ./packages/* run build",
     "build:graphics": "toolbox graphics",
+    "ci:publish": "pnpm check && pnpm -r type-check && pnpm build && pnpm test && changeset publish",
+    "ci:version": "changeset version",
     "check": "biome check --write",
     "commit": "git add --all && cz",
-    "format": "pnpm format:json && biome format --write",
-    "format:json": "sort-package-json 'package.json' 'packages/*/package.json' 'apps/*/package.json'",
+    "format": "biome format --write",
     "prepare": "lefthook install",
-    "ci:publish": "pnpm check && pnpm -r type-check && pnpm build && pnpm test && changeset publish",
-    "test": "pnpm --recursive --filter ./packages/* run test",
-    "ci:version": "changeset version"
+    "test": "pnpm --recursive --filter ./packages/* run test"
   },
   "devDependencies": {
-    "@aspectra/toolbox": "workspace:^0.1.0",
+    "@aspectra/toolbox": "workspace:*",
     "@biomejs/biome": "^1.9.4",
     "@changesets/cli": "^2.27.9",
     "@svitejs/changesets-changelog-github-compact": "^1.2.0",
@@ -34,7 +33,6 @@
     "cz-conventional-changelog": "^3.3.0",
     "lefthook": "^1.8.2",
     "pkg-pr-new": "^0.0.30",
-    "sort-package-json": "^2.10.1",
     "tsx": "^4.19.2",
     "typescript": "^5.6.3"
   },

@@ -8,6 +8,8 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/aspectra/dist" />
       <excludeFolder url="file://$MODULE_DIR$/apps/website-/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/apps/website/public/_pagefind" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/aspectra/.tsup" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/meta/dist" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
